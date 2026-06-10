@@ -28,7 +28,9 @@ export async function submitIndexNow(input: {
 }): Promise<{ status: number; submitted: number }> {
   const fetchImpl = input.fetchImpl ?? fetch;
   const origin = new URL(input.origin).origin;
-  const sitemapResponse = await fetchImpl(`${origin}/sitemap.xml`);
+  const sitemapResponse = await fetchImpl(`${origin}/sitemap.xml`, {
+    headers: { "user-agent": "AI-Web-Observatory-Smoke/1.0" },
+  });
   if (!sitemapResponse.ok) {
     throw new Error(
       `Unable to fetch sitemap: HTTP ${sitemapResponse.status}`,
