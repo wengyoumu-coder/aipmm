@@ -4,6 +4,7 @@ import {
   REGISTRY,
   UPDATED_ON,
 } from "./catalog";
+import { isAdminAuthorized, queryStats } from "./analytics";
 import { classifyRequest } from "./classify";
 import {
   createResponse,
@@ -540,6 +541,55 @@ export async function handleRequest(
   const origin = resolveOrigin(request, env);
   const head = request.method === "HEAD";
   const allowedReadMethod = request.method === "GET" || head;
+
+  if (url.pathname === "/api/admin/stats") {
+    if (!allowedReadMethod) {
+      return errorResponse(
+        405,
+        "method_not_allowed",
+        `Method ${request.method} is not allowed for ${url.pathname}`,
+      );
+    }
+    if (!isAdminAuthorized(request, env)) {
+      return errorResponse(
+        401,
+        "unauthorized",
+        "A valid bearer token is required",
+        head,
+      );
+    }
+    if (!env.DB) {
+      return errorResponse(
+        503,
+        "analytics_unavailable",
+        "The analytics database is not configured",
+        head,
+      );
+    }
+    const rawDays = url.searchParams.get("days") ?? "7";
+    const days = Number(rawDays);
+    if (!Number.isInteger(days) || days < 1 || days > 31) {
+      return errorResponse(
+        400,
+        "invalid_request",
+        "days must be an integer between 1 and 31",
+        head,
+      );
+    }
+    const metrics = await queryStats(env.DB, days);
+    return jsonResponse(
+      {
+        generatedAt: new Date().toISOString(),
+        metrics,
+        signalNotice:
+          "User-agent identity is claimed unless independently verified by network origin.",
+      },
+      {
+        head,
+        headers: { "cache-control": "no-store" },
+      },
+    );
+  }
 
   if (
     request.method === "POST" &&
