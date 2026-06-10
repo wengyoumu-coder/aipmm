@@ -109,6 +109,10 @@ describe("public routes", () => {
       name: string;
       resources: string[];
     }>();
+    const tools = await (await fetchPath("/api/v1/tools.json")).json<{
+      name: string;
+      tools: Array<{ id: string; method: string; exampleRequest: unknown }>;
+    }>();
     const feed = await fetchPath("/changelog.xml");
     const openapi = await (await fetchPath("/openapi.json")).json<{
       openapi: string;
@@ -120,6 +124,15 @@ describe("public routes", () => {
 
     expect(manifest.name).toBe("AI Web Observatory");
     expect(manifest.resources).toContain(`${origin}/api/v1/registry.json`);
+    expect(manifest.resources).toContain(`${origin}/api/v1/tools.json`);
+    expect(tools.name).toBe("AI Web Observatory tool catalog");
+    expect(tools.tools).toContainEqual(
+      expect.objectContaining({
+        id: "classify-user-agent",
+        method: "POST",
+      }),
+    );
+    expect(tools.tools[0]).toHaveProperty("exampleRequest");
     expect(feed.headers.get("content-type")).toContain("application/rss+xml");
     expect(await feed.text()).toContain("<rss version=\"2.0\">");
     expect(openapi.openapi).toBe("3.1.0");

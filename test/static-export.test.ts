@@ -23,6 +23,9 @@ describe("static site export", () => {
       stat(join(outputDir, "api", "v1", "registry.json")),
     ).resolves.toBeDefined();
     await expect(
+      stat(join(outputDir, "api", "v1", "tools.json")),
+    ).resolves.toBeDefined();
+    await expect(
       stat(
         join(
           outputDir,
@@ -46,6 +49,9 @@ describe("static site export", () => {
     );
     expect(sitemap).toContain(
       "<loc>https://wengyoumu-coder.github.io/api/v1/registry.json</loc>",
+    );
+    expect(sitemap).toContain(
+      "<loc>https://wengyoumu-coder.github.io/api/v1/tools.json</loc>",
     );
     expect(manifest).toContain(
       "https://wengyoumu-coder.github.io/api/v1/registry.json",

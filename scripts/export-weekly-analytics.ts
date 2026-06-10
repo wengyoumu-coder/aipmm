@@ -8,6 +8,12 @@ export type NamedQuery = {
   sql: string;
 };
 
+export type WranglerCommandPlan = {
+  command: string;
+  args: string[];
+  description: string;
+};
+
 export function buildWeeklyQueries(
   days: number,
   windowEnd = new Date(),
@@ -156,37 +162,66 @@ export function parseWranglerJson(stdout: string): Record<string, unknown>[] {
   return result.results ?? [];
 }
 
+export function buildWranglerCommandPlans(
+  nodeVersion: string,
+  database: string,
+  sql: string,
+): WranglerCommandPlan[] {
+  const baseArgs = [
+    "wrangler",
+    "d1",
+    "execute",
+    database,
+    "--remote",
+    "--json",
+    "--command",
+    sql,
+  ];
+  const plans: WranglerCommandPlan[] = [
+    {
+      command: "npx",
+      args: baseArgs,
+      description: "default-wrangler-runtime",
+    },
+  ];
+  const major = Number.parseInt(nodeVersion.split(".")[0] ?? "", 10);
+  if (Number.isFinite(major) && major > 22) {
+    plans.push({
+      command: "npx",
+      args: ["-p", "node@22", "-p", "wrangler@4.99.0", ...baseArgs],
+      description: "node22-wrangler-fallback",
+    });
+  }
+  return plans;
+}
+
 function queryRemoteD1(
   database: string,
   sql: string,
 ): Record<string, unknown>[] {
-  const command = spawnSync(
-    "npx",
-    [
-      "wrangler",
-      "d1",
-      "execute",
-      database,
-      "--remote",
-      "--json",
-      "--command",
-      sql,
-    ],
-    {
-      cwd: join(dirname(fileURLToPath(import.meta.url)), ".."),
+  const projectRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
+  const failures: string[] = [];
+  for (const plan of buildWranglerCommandPlans(
+    process.versions.node,
+    database,
+    sql,
+  )) {
+    const command = spawnSync(plan.command, plan.args, {
+      cwd: projectRoot,
       encoding: "utf8",
       maxBuffer: 10 * 1024 * 1024,
-    },
-  );
-  if (command.status !== 0) {
+    });
+    if (command.status === 0) {
+      return parseWranglerJson(command.stdout);
+    }
     const details = [command.stdout.trim(), command.stderr.trim()]
       .filter(Boolean)
       .join("\n");
-    throw new Error(
-      `D1 query failed:\n${details || `exit status ${command.status}`}`,
+    failures.push(
+      `${plan.description}:\n${details || `exit status ${command.status}`}`,
     );
   }
-  return parseWranglerJson(command.stdout);
+  throw new Error(`D1 query failed:\n${failures.join("\n\n")}`);
 }
 
 function argument(name: string): string | undefined {

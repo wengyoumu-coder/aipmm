@@ -126,6 +126,13 @@ export type ChangeRecord = {
 export const CHANGES: ChangeRecord[] = [
   {
     date: UPDATED_ON,
+    id: "tool-catalog",
+    title: "Tool catalog and example-driven discovery",
+    summary:
+      "Published HTML and JSON tool directories with example requests, then linked them through discovery resources.",
+  },
+  {
+    date: UPDATED_ON,
     id: "robots-policy-recipes",
     title: "AI robots.txt policy recipes and generator",
     summary:

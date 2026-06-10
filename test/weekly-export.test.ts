@@ -2,6 +2,7 @@ import { describe, expect, test } from "vitest";
 
 import {
   buildWeeklyQueries,
+  buildWranglerCommandPlans,
   parseWranglerJson,
 } from "../scripts/export-weekly-analytics";
 
@@ -78,5 +79,35 @@ describe("weekly analytics export", () => {
         JSON.stringify([{ results: [], success: false }]),
       ),
     ).toThrow("D1 query was not successful");
+  });
+
+  test("adds a node 22 fallback for newer runtimes", () => {
+    const plans = buildWranglerCommandPlans(
+      "25.5.0",
+      "ai-web-observatory",
+      "SELECT COUNT(*) AS requests FROM request_events;",
+    );
+
+    expect(plans).toHaveLength(2);
+    expect(plans[0]?.command).toBe("npx");
+    expect(plans[0]?.args).toContain("wrangler");
+    expect(plans[1]).toEqual({
+      command: "npx",
+      args: [
+        "-p",
+        "node@22",
+        "-p",
+        "wrangler@4.99.0",
+        "wrangler",
+        "d1",
+        "execute",
+        "ai-web-observatory",
+        "--remote",
+        "--json",
+        "--command",
+        "SELECT COUNT(*) AS requests FROM request_events;",
+      ],
+      description: "node22-wrangler-fallback",
+    });
   });
 });

@@ -111,6 +111,7 @@ ${jsonLd}
 <nav>
 <a href="/registry">Registry</a>
 <a href="/robots-recipes">Recipes</a>
+<a href="/tools">Tools</a>
 <a href="/changelog">Changelog</a>
 <a href="/llms.txt">LLM index</a>
 <a href="/openapi.json">OpenAPI</a>
@@ -118,7 +119,7 @@ ${jsonLd}
 </header>
 <main>${input.body}</main>
 <footer>
-<p>Machine resources: <a href="/api/v1/manifest.json">manifest</a> · <a href="/api/v1/registry.json">registry JSON</a> · <a href="/api/v1/robots-recipes.json">recipes JSON</a> · <a href="/sitemap.xml">sitemap</a> · <a href="/llms-full.txt">full text</a></p>
+<p>Machine resources: <a href="/api/v1/manifest.json">manifest</a> · <a href="/api/v1/registry.json">registry JSON</a> · <a href="/api/v1/tools.json">tools JSON</a> · <a href="/api/v1/robots-recipes.json">recipes JSON</a> · <a href="/sitemap.xml">sitemap</a> · <a href="/llms-full.txt">full text</a></p>
 </footer>
 </body>
 </html>`;

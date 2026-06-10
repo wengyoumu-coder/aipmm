@@ -56,6 +56,8 @@ function homepage(origin: string): string {
 <li><a href="/registry">AI crawler and user-agent registry (HTML)</a></li>
 <li><a href="/robots-recipes">AI robots.txt policy recipes</a></li>
 <li><a href="/robots-recipes.md">AI robots.txt policy recipes (Markdown)</a></li>
+<li><a href="/tools">Tool directory with example requests</a></li>
+<li><a href="/api/v1/tools.json">Tool directory (JSON)</a></li>
 <li><a href="/openapi.json">Callable tool contract (OpenAPI 3.1)</a></li>
 <li><a href="/llms.txt">Concise LLM index</a></li>
 <li><a href="/llms-full.txt">Complete machine-readable text</a></li>
@@ -109,6 +111,85 @@ function homepage(origin: string): string {
           ],
         },
       ],
+    },
+  });
+}
+
+const TOOL_CATALOG = [
+  {
+    id: "classify-user-agent",
+    name: "Classify user-agent",
+    method: "POST",
+    path: "/api/v1/tools/classify-user-agent",
+    summary:
+      "Classify a claimed crawler, agent, browser, or automation user-agent string.",
+    exampleRequest: { userAgent: "OAI-SearchBot/1.0" },
+    exampleResponse: {
+      category: "ai-search-crawler",
+      matchedIdentity: "OAI-SearchBot",
+      qualifiedAI: true,
+    },
+  },
+  {
+    id: "lint-robots",
+    name: "Lint robots policy",
+    method: "POST",
+    path: "/api/v1/tools/lint-robots",
+    summary:
+      "Report how a robots.txt policy treats documented AI search, training, and user-action identities.",
+    exampleRequest: { robotsText: "User-agent: OAI-SearchBot\nAllow: /" },
+    exampleResponse: {
+      summary: { allowed: 1, blocked: 0, unspecified: 7 },
+    },
+  },
+  {
+    id: "generate-robots",
+    name: "Generate robots policy",
+    method: "POST",
+    path: "/api/v1/tools/generate-robots",
+    summary:
+      "Generate a sourced robots.txt policy from a documented preset and lint the result.",
+    exampleRequest: { preset: "search-visible-no-training" },
+    exampleResponse: {
+      recipe: { slug: "search-visible-no-training" },
+      robotsText: "User-agent: OAI-SearchBot\nAllow: /",
+    },
+  },
+] as const;
+
+function toolsIndex(origin: string): string {
+  const items = TOOL_CATALOG.map(
+    (tool) => `<li>
+<article>
+<h2><code>${escapeHtml(tool.method)} ${escapeHtml(tool.path)}</code></h2>
+<p>${escapeHtml(tool.summary)}</p>
+<p>JSON catalog: <a href="/api/v1/tools.json">/api/v1/tools.json</a></p>
+<pre><code>${escapeHtml(JSON.stringify(tool.exampleRequest, null, 2))}</code></pre>
+</article>
+</li>`,
+  ).join("\n");
+
+  return htmlDocument({
+    title: "AI tool directory - AI Web Observatory",
+    description:
+      "Callable AI web access tools with example requests and machine-readable discovery metadata.",
+    canonicalUrl: `${origin}/tools`,
+    body: `<article>
+<h1>AI tool directory</h1>
+<p>Machine-usable entry points with deterministic JSON inputs and outputs.</p>
+<ol>${items}</ol>
+</article>`,
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "AI Web Observatory tool directory",
+      numberOfItems: TOOL_CATALOG.length,
+      itemListElement: TOOL_CATALOG.map((tool, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: tool.name,
+        url: `${origin}${tool.path}`,
+      })),
     },
   });
 }
@@ -312,12 +393,14 @@ function publicUrls(origin: string): Array<{
     "/registry",
     "/robots-recipes",
     "/robots-recipes.md",
+    "/tools",
     "/changelog",
     "/llms.txt",
     "/llms-full.txt",
     "/openapi.json",
     "/api/v1/manifest.json",
     "/api/v1/registry.json",
+    "/api/v1/tools.json",
     "/api/v1/robots-recipes.json",
     "/.well-known/agent-card.json",
   ];
@@ -365,6 +448,7 @@ Last verified: ${UPDATED_ON}
 - [Registry JSON](${origin}/api/v1/registry.json): AI crawler and user-directed agent identities.
 - [Robots recipes](${origin}/api/v1/robots-recipes.json): Reusable AI access policies.
 - [Robots recipes Markdown](${origin}/robots-recipes.md): Generated policies in one text resource.
+- [Tool catalog](${origin}/api/v1/tools.json): Callable tool directory with example requests and outputs.
 - [OpenAPI contract](${origin}/openapi.json): Callable user-agent classification and robots policy linting.
 - [Full text](${origin}/llms-full.txt): Complete registry in one text response.
 - [Changelog RSS](${origin}/changelog.xml): Updates to the registry and tools.
@@ -458,6 +542,7 @@ function manifest(origin: string): Record<string, unknown> {
     canonicalUrl: `${origin}/`,
     resources: [
       `${origin}/api/v1/registry.json`,
+      `${origin}/api/v1/tools.json`,
       `${origin}/api/v1/robots-recipes.json`,
       `${origin}/robots-recipes.md`,
       `${origin}/llms.txt`,
@@ -604,6 +689,7 @@ function agentCard(origin: string): Record<string, unknown> {
     capabilities: { streaming: false, pushNotifications: false },
     defaultInputModes: ["application/json", "text/plain"],
     defaultOutputModes: ["application/json", "text/plain"],
+    documentationUrl: `${origin}/tools`,
     skills: [
       {
         id: "classify-user-agent",
@@ -878,6 +964,11 @@ export async function handleRequest(
       contentType: "text/html; charset=utf-8",
       head,
     });
+  } else if (url.pathname === "/tools") {
+    response = createResponse(toolsIndex(origin), {
+      contentType: "text/html; charset=utf-8",
+      head,
+    });
   } else if (url.pathname === "/registry") {
     response = createResponse(registryIndex(origin), {
       contentType: "text/html; charset=utf-8",
@@ -942,6 +1033,23 @@ export async function handleRequest(
         updatedOn: UPDATED_ON,
         count: REGISTRY.length,
         entries: REGISTRY,
+      },
+      { head },
+    );
+  } else if (
+    url.pathname === "/api/v1/tools" ||
+    url.pathname === "/api/v1/tools.json"
+  ) {
+    response = jsonResponse(
+      {
+        name: "AI Web Observatory tool catalog",
+        updatedOn: UPDATED_ON,
+        count: TOOL_CATALOG.length,
+        tools: TOOL_CATALOG.map((tool) => ({
+          ...tool,
+          url: `${origin}${tool.path}`,
+          documentationUrl: `${origin}/tools`,
+        })),
       },
       { head },
     );
