@@ -1,0 +1,45 @@
+# AI Web Observatory Launch Baseline
+
+## Status
+
+- Production URL: https://ai-web-observatory.aipmm.workers.dev
+- Measurement start: `2026-06-10T11:38:50Z`
+- Initial deployed version: `0f3dcf52-9dc3-4a45-ac13-62b0ce71417d`
+- Launch documentation version: `1d2cd5a9-ca40-4eff-b822-c967d561790d`
+- Database: Cloudflare D1 `ai-web-observatory`
+
+## Verification
+
+- 39 automated tests passed.
+- TypeScript strict type checking passed.
+- Worker production bundle validation passed.
+- 15 production smoke checks passed.
+- D1 request writes and aggregate statistics were verified before launch.
+- All 20 pre-launch verification events were deleted.
+- Internal smoke checks and admin statistics reads are excluded from logging.
+
+## Discovery
+
+- `robots.txt` explicitly allows documented AI search, training, and
+  user-directed identities.
+- `sitemap.xml` lists 25 canonical URLs.
+- `llms.txt`, `llms-full.txt`, OpenAPI, RSS, JSON registry, JSON-LD, and an
+  agent card are public.
+- IndexNow accepted all 25 canonical URLs with HTTP `202` on
+  `2026-06-10`.
+- The GitHub repository homepage points to production.
+
+## Baseline Data
+
+The first post-cleanup event was an unclassified request to `/` at
+`2026-06-10T11:39:40.068Z`. It had no AI identity or referral signal and is
+retained as real production traffic.
+
+No AI traffic is claimed at launch. User-agent matches remain explicitly
+labelled as claimed identities until network-origin verification is added.
+
+## First Review
+
+The first meaningful comparison requires seven complete days after launch.
+The scheduled weekly review will report the first available window and will not
+make a strategy change unless the data is sufficient to evaluate one.

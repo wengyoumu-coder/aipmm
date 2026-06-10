@@ -104,6 +104,12 @@ are measurable even when a crawler does not execute JavaScript.
    npm run smoke -- https://the-deployed-host.example
    ```
 
+8. Notify participating search engines after canonical URL changes:
+
+   ```bash
+   npm run submit:indexnow
+   ```
+
 Never commit `.dev.vars`, `.env`, generated secrets, or raw analytics exports.
 
 ## Measurement
