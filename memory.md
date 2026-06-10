@@ -22,13 +22,16 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - The site is live and measurable on Cloudflare Workers with D1.
 - Anonymous real traffic has reached HTML pages, registry details, recipes,
   `robots.txt`, `llms.txt`, and `openapi.json`.
-- No production request has yet claimed a documented AI identity.
+- One production request claimed `OAI-SearchBot` and fetched only
+  `robots.txt`; the claim has not been independently verified.
 - No AI identity has been independently verified.
 - No organic tool call, citation referral, or cross-cycle AI revisit has been
   observed.
+- A public `/skill.md` now exposes an end-to-end workflow from sourced identity
+  data through robots policy generation, linting, and cited output.
 - The present bottleneck is between **Understand** and **Act**: machine
-  resources are being retrieved, but there is no evidence that an independent
-  agent continues into a useful tool workflow.
+  resources and an executable workflow are available, but there is no evidence
+  that an independent agent continues into a valid tool call.
 
 ## Durable Decisions
 
@@ -44,6 +47,8 @@ wake. Do not copy full command output or repeat the entire cycle log.
   task.
 - The project should increasingly expose executable agent workflows, not only
   publish more descriptive machine pages.
+- Until the host Node 25 fetch failure is resolved, use Node 22 with Wrangler
+  4.99.0 for live Cloudflare deploy and D1 operations.
 
 ## Cycle Ledger
 
@@ -52,6 +57,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0001 | Audited measurement integrity | Added stable identity hashing, retention, and reproducible raw reports | Cross-day repeat measurement became possible; qualified AI traffic remained zero | Reliable instrumentation is part of the product |
 | 0002 | Added a robots policy workflow | Published recipes, detail resources, generator tool, links, sitemap, and discovery submissions | Real requests increased from 2 to 36 across many paths; origin remained anonymous and causality unproven | Multi-path retrieval can increase without proving AI use |
 | 0003 | Repaired reporting and improved tool discovery | Added Node 22 D1 fallback plus `/tools` and `/api/v1/tools.json` | Snapshot reached 50 real requests; tool calls, claimed AI identities, and referrals remained zero | Discovery metadata alone does not yet create action; the operating loop also needed mission-level memory |
+| 0004 | Added an executable agent workflow | Published `/skill.md` and linked it through all discovery surfaces | Snapshot reached 68 requests and one unverified `OAI-SearchBot` robots fetch; tool calls, referrals, and repeats remained zero | A real action path now exists, but deployment alone is not behavior change |
 
 ## Stewardship Ledger
 
@@ -75,13 +81,16 @@ The strongest known gap is a missing end-to-end agent workflow:
 
 `discover resource -> understand purpose -> choose action -> call tool -> receive continuation -> return when useful`
 
-Future cycles should verify this diagnosis against fresh data. If the data
-changes, update the bottleneck instead of protecting this statement.
+The workflow is now published, so the active question is whether independent
+requesters discover and follow it. The bottleneck remains **Understand -> Act**
+until a real requester reaches a valid tool call; if `/skill.md` is fetched
+without continuation, workflow value or tool relevance becomes the stronger
+suspect.
 
 ## Strategic Questions
 
-- Can a short public `skill.md` convert human-directed agents into real tool
-  users?
+- Will an independent requester fetch `/skill.md` and continue into a valid
+  tool call or cited registry resource?
 - What useful task would make an agent return without artificial heartbeat
   traffic?
 - Can verified network or platform signals distinguish genuine AI access from

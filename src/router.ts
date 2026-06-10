@@ -40,6 +40,7 @@ function commonHeaders(origin: string): HeadersInit {
     link: [
       `<${origin}/sitemap.xml>; rel="sitemap"; type="application/xml"`,
       `<${origin}/llms.txt>; rel="alternate"; type="text/plain"`,
+      `<${origin}/skill.md>; rel="describedby"; type="text/markdown"`,
       `<${origin}/openapi.json>; rel="service-desc"; type="application/json"`,
     ].join(", "),
   };
@@ -58,6 +59,7 @@ function homepage(origin: string): string {
 <li><a href="/robots-recipes.md">AI robots.txt policy recipes (Markdown)</a></li>
 <li><a href="/tools">Tool directory with example requests</a></li>
 <li><a href="/api/v1/tools.json">Tool directory (JSON)</a></li>
+<li><a href="/skill.md">Executable AI web access policy skill (Markdown)</a></li>
 <li><a href="/openapi.json">Callable tool contract (OpenAPI 3.1)</a></li>
 <li><a href="/llms.txt">Concise LLM index</a></li>
 <li><a href="/llms-full.txt">Complete machine-readable text</a></li>
@@ -177,6 +179,7 @@ function toolsIndex(origin: string): string {
     body: `<article>
 <h1>AI tool directory</h1>
 <p>Machine-usable entry points with deterministic JSON inputs and outputs.</p>
+<p>End-to-end workflow: <a href="/skill.md">/skill.md</a></p>
 <ol>${items}</ol>
 </article>`,
     jsonLd: {
@@ -384,6 +387,62 @@ Sitemap: ${origin}/sitemap.xml
 `;
 }
 
+function skillMarkdown(origin: string): string {
+  return `---
+name: ai-web-access-policy
+description: Audit or generate robots.txt rules for documented AI search, training, and user-directed fetch identities.
+---
+
+# AI Web Access Policy
+
+Use this skill when a user needs to understand, draft, or audit robots.txt rules for AI systems.
+
+## Inputs
+
+- The user's desired policy: search visibility, training access, user-directed access, or a custom combination.
+- An existing robots.txt policy when the task is an audit.
+- An optional absolute sitemap URL when generating a policy.
+
+## Workflow
+
+1. Read the sourced identity registry at ${origin}/api/v1/registry.json.
+2. Read available policy presets at ${origin}/api/v1/robots-recipes.json.
+3. Choose the closest preset and explain any mismatch with the user's intent.
+4. Generate a policy with the tool below.
+5. If the policy is modified, lint the final text with the lint tool.
+6. Return the final robots.txt, the decision for each documented identity, and source links from the registry.
+
+## Generate a policy
+
+\`\`\`http
+POST ${origin}/api/v1/tools/generate-robots
+Content-Type: application/json
+
+{"preset":"search-visible-no-training","sitemap":"https://example.com/sitemap.xml"}
+\`\`\`
+
+## Audit a policy
+
+\`\`\`http
+POST ${origin}/api/v1/tools/lint-robots
+Content-Type: application/json
+
+{"robotsText":"User-agent: OAI-SearchBot\\nAllow: /"}
+\`\`\`
+
+## Integrity rules
+
+- Do not treat a claimed User-Agent as independently verified.
+- Do not invent crawler identities or source claims.
+- Distinguish documented robots.txt intent from guaranteed crawler behavior.
+- Do not send requests to third-party sites unless the user explicitly asks.
+
+## Completion
+
+A complete result includes the selected intent, final policy, lint summary, per-identity decisions, and citations to the registry source URLs.
+`;
+}
+
 function publicUrls(origin: string): Array<{
   url: string;
   modified: string;
@@ -394,6 +453,7 @@ function publicUrls(origin: string): Array<{
     "/robots-recipes",
     "/robots-recipes.md",
     "/tools",
+    "/skill.md",
     "/changelog",
     "/llms.txt",
     "/llms-full.txt",
@@ -449,6 +509,7 @@ Last verified: ${UPDATED_ON}
 - [Robots recipes](${origin}/api/v1/robots-recipes.json): Reusable AI access policies.
 - [Robots recipes Markdown](${origin}/robots-recipes.md): Generated policies in one text resource.
 - [Tool catalog](${origin}/api/v1/tools.json): Callable tool directory with example requests and outputs.
+- [Agent skill](${origin}/skill.md): End-to-end workflow for generating and auditing AI robots.txt policy.
 - [OpenAPI contract](${origin}/openapi.json): Callable user-agent classification and robots policy linting.
 - [Full text](${origin}/llms-full.txt): Complete registry in one text response.
 - [Changelog RSS](${origin}/changelog.xml): Updates to the registry and tools.
@@ -543,6 +604,7 @@ function manifest(origin: string): Record<string, unknown> {
     resources: [
       `${origin}/api/v1/registry.json`,
       `${origin}/api/v1/tools.json`,
+      `${origin}/skill.md`,
       `${origin}/api/v1/robots-recipes.json`,
       `${origin}/robots-recipes.md`,
       `${origin}/llms.txt`,
@@ -689,7 +751,8 @@ function agentCard(origin: string): Record<string, unknown> {
     capabilities: { streaming: false, pushNotifications: false },
     defaultInputModes: ["application/json", "text/plain"],
     defaultOutputModes: ["application/json", "text/plain"],
-    documentationUrl: `${origin}/tools`,
+    documentationUrl: `${origin}/skill.md`,
+    toolsUrl: `${origin}/tools`,
     skills: [
       {
         id: "classify-user-agent",
@@ -997,6 +1060,11 @@ export async function handleRequest(
     });
   } else if (url.pathname === "/robots-recipes.md") {
     response = createResponse(robotsRecipesMarkdown(origin), {
+      contentType: "text/markdown; charset=utf-8",
+      head,
+    });
+  } else if (url.pathname === "/skill.md") {
+    response = createResponse(skillMarkdown(origin), {
       contentType: "text/markdown; charset=utf-8",
       head,
     });

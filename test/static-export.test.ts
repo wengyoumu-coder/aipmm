@@ -25,6 +25,7 @@ describe("static site export", () => {
     await expect(
       stat(join(outputDir, "api", "v1", "tools.json")),
     ).resolves.toBeDefined();
+    await expect(stat(join(outputDir, "skill.md"))).resolves.toBeDefined();
     await expect(
       stat(
         join(
@@ -53,8 +54,14 @@ describe("static site export", () => {
     expect(sitemap).toContain(
       "<loc>https://wengyoumu-coder.github.io/api/v1/tools.json</loc>",
     );
+    expect(sitemap).toContain(
+      "<loc>https://wengyoumu-coder.github.io/skill.md</loc>",
+    );
     expect(manifest).toContain(
       "https://wengyoumu-coder.github.io/api/v1/registry.json",
+    );
+    expect(manifest).toContain(
+      "https://wengyoumu-coder.github.io/skill.md",
     );
   });
 

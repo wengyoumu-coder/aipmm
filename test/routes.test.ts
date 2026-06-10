@@ -99,9 +99,19 @@ describe("public routes", () => {
   test("publishes concise and full LLM text resources", async () => {
     const concise = await fetchPath("/llms.txt");
     const full = await fetchPath("/llms-full.txt");
+    const skill = await fetchPath("/skill.md");
 
     expect(await concise.text()).toContain("# AI Web Observatory");
     expect(await full.text()).toContain("## Registry Entries");
+    expect(skill.headers.get("content-type")).toContain("text/markdown");
+    const skillBody = await skill.text();
+    expect(skillBody).toContain("name: ai-web-access-policy");
+    expect(skillBody).toContain(
+      "POST https://observatory.example/api/v1/tools/generate-robots",
+    );
+    expect(skillBody).toContain(
+      "Do not treat a claimed User-Agent as independently verified",
+    );
   });
 
   test("publishes manifest, changelog feed, OpenAPI, and agent card", async () => {
@@ -125,6 +135,7 @@ describe("public routes", () => {
     expect(manifest.name).toBe("AI Web Observatory");
     expect(manifest.resources).toContain(`${origin}/api/v1/registry.json`);
     expect(manifest.resources).toContain(`${origin}/api/v1/tools.json`);
+    expect(manifest.resources).toContain(`${origin}/skill.md`);
     expect(tools.name).toBe("AI Web Observatory tool catalog");
     expect(tools.tools).toContainEqual(
       expect.objectContaining({
@@ -143,6 +154,7 @@ describe("public routes", () => {
     expect(card.skills).toContainEqual(
       expect.objectContaining({ id: "classify-user-agent" }),
     );
+    expect(card).toHaveProperty("documentationUrl", `${origin}/skill.md`);
   });
 
   test("returns stable cache metadata and supports HEAD", async () => {

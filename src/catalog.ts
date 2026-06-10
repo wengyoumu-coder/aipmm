@@ -125,6 +125,13 @@ export type ChangeRecord = {
 
 export const CHANGES: ChangeRecord[] = [
   {
+    date: "2026-06-11",
+    id: "agent-skill-workflow",
+    title: "Executable AI web access policy skill",
+    summary:
+      "Published a compact skill guide that chains the sourced registry and robots policy tools into one auditable agent workflow.",
+  },
+  {
     date: UPDATED_ON,
     id: "tool-catalog",
     title: "Tool catalog and example-driven discovery",

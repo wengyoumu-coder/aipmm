@@ -10,6 +10,7 @@ const resources = [
   ["/robots-recipes", "text/html"],
   ["/robots-recipes.md", "text/markdown"],
   ["/tools", "text/html"],
+  ["/skill.md", "text/markdown"],
   ["/api/v1/manifest.json", "application/json"],
   ["/api/v1/registry.json", "application/json"],
   ["/api/v1/tools.json", "application/json"],

@@ -17,6 +17,7 @@ function resources(): StaticResource[] {
     { route: "/registry", outputPath: "registry/index.html" },
     { route: "/robots-recipes", outputPath: "robots-recipes/index.html" },
     { route: "/tools", outputPath: "tools/index.html" },
+    { route: "/skill.md", outputPath: "skill.md" },
     { route: "/robots-recipes.md", outputPath: "robots-recipes.md" },
     { route: "/changelog", outputPath: "changelog/index.html" },
     { route: "/api/v1/manifest.json", outputPath: "api/v1/manifest.json" },
