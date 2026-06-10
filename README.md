@@ -162,14 +162,32 @@ share, tool interactions, AI referrals, and crawl depth.
 
 The active operating loop runs every five hours. Each run is an `AI Cycle`:
 
-1. export current production data with `npm run report:raw`;
-2. choose and execute one bounded growth or measurement action;
-3. test, deploy, and notify discovery systems when relevant;
-4. append evidence to `reports/cycles/YYYY-MM-DD.md`;
-5. commit and push the cycle.
+1. read `Agent.md`, `SOUL.md`, `memory.md`, and `LOOP.md`;
+2. run `npm run cycle:context` to verify the persistent handoff;
+3. export current production data with `npm run report:raw`;
+4. re-diagnose the current mission bottleneck;
+5. compare exploit, explore, and measurement options;
+6. choose and execute one bounded primary bet;
+7. test, deploy, and notify discovery systems when relevant;
+8. append evidence to `reports/cycles/YYYY-MM-DD.md`;
+9. update `memory.md`, and update `SOUL.md` only for durable character changes;
+10. commit and push the cycle.
 
 Cycle count is the experiment clock. Calendar dates only group logs for human
 access.
+
+### Persistent Agent Governance
+
+| File | Responsibility |
+| --- | --- |
+| `Agent.md` | Stable mission, success ladder, operating principles, and boundaries |
+| `SOUL.md` | Slowly evolving operational character and judgment habits |
+| `memory.md` | Durable facts, decisions, failed assumptions, bottleneck, and cumulative cycle learning |
+| `LOOP.md` | Dynamic wake, diagnosis, option selection, execution, verification, reflection, and handoff workflow |
+| `CLAUDE.md` | Claude Code compatibility imports for the same governance |
+
+The previous cycle's next observation is an evidence target, not an instruction
+queue. Every wake must reconsider the mission from fresh production evidence.
 
 ## Source Policy
 
