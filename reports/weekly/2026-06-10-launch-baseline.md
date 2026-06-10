@@ -45,6 +45,6 @@ labelled as claimed identities until network-origin verification is added.
 
 ## First Review
 
-The first meaningful comparison requires seven complete days after launch.
-The scheduled weekly review will report the first available window and will not
-make a strategy change unless the data is sufficient to evaluate one.
+The first review is scheduled for `2026-06-17 21:00` UTC+8, after seven full
+days. It will not make a strategy change unless the data is sufficient to
+evaluate one.
