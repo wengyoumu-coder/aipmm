@@ -80,9 +80,10 @@ These tools are deterministic and do not require an external model.
 ### Measurement
 
 Every request is classified and written to Cloudflare D1 when the binding is
-available. Raw IP addresses are never stored. The worker stores a daily salted
-SHA-256 hash of a coarse network prefix plus user-agent, request metadata, bot
-classification, and referral signals.
+available. Raw IP addresses are never stored. The worker stores both a daily
+salted SHA-256 hash and a stable salted SHA-256 hash of a coarse network prefix
+plus user-agent. The daily hash supports daily uniqueness; the stable hash
+supports cross-day repeat measurement. Events are deleted after 45 days.
 
 An authenticated `/api/admin/stats` endpoint returns aggregate metrics. The
 admin token is a Cloudflare secret and is never committed.

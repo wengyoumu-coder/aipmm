@@ -1,8 +1,11 @@
 import { describe, expect, test } from "vitest";
 
 import {
+  hashStableIdentity,
   hashDailyIdentity,
   normalizeNetworkPrefix,
+  purgeOldEvents,
+  queryStats,
   recordRequest,
 } from "../src/analytics";
 import { classifyRequest } from "../src/classify";
@@ -72,6 +75,28 @@ describe("privacy-preserving identity", () => {
     expect(first).toMatch(/^[a-f0-9]{64}$/);
     expect(samePrefix).toBe(first);
     expect(nextDay).not.toBe(first);
+  });
+
+  test("uses a stable salted hash for cross-day repeat measurement", async () => {
+    const first = await hashStableIdentity({
+      ip: "203.0.113.84",
+      userAgent: "OAI-SearchBot/1.0",
+      salt: "test-salt",
+    });
+    const samePrefix = await hashStableIdentity({
+      ip: "203.0.113.99",
+      userAgent: "OAI-SearchBot/1.0",
+      salt: "test-salt",
+    });
+    const differentAgent = await hashStableIdentity({
+      ip: "203.0.113.84",
+      userAgent: "GPTBot/1.0",
+      salt: "test-salt",
+    });
+
+    expect(first).toMatch(/^[a-f0-9]{64}$/);
+    expect(samePrefix).toBe(first);
+    expect(differentAgent).not.toBe(first);
   });
 });
 
@@ -153,6 +178,11 @@ describe("request recording", () => {
     expect(statement.values).toContain("ai-search-crawler");
     expect(statement.values).toContain("OAI-SearchBot");
     expect(statement.values).toContain("machine");
+    expect(
+      statement.values.filter(
+        (value) => typeof value === "string" && /^[a-f0-9]{64}$/.test(value),
+      ),
+    ).toHaveLength(2);
     expect(statement.values.join("|")).not.toContain("203.0.113.84");
   });
 
@@ -172,6 +202,57 @@ describe("request recording", () => {
     });
 
     expect(recorded).toBe(false);
+  });
+});
+
+describe("aggregate measurement and retention", () => {
+  test("measures repeats with the stable identity hash", async () => {
+    let query = "";
+    const db = {
+      prepare: (sql: string) => {
+        query = sql;
+        return new StatementMock([
+          {
+            windowDays: 7,
+            requests: 2,
+            qualifiedAiRequests: 2,
+            qualifiedAiUniqueDaily: 2,
+            aiRepeat7d: 1,
+            machineResourceRequests: 2,
+            toolInteractions: 0,
+            citationReferrals: 0,
+            crawlDepth: 1,
+          },
+        ]);
+      },
+    };
+
+    const metrics = await queryStats(db, 7);
+
+    expect(query).toContain("stable_identity_hash");
+    expect(query).not.toContain("GROUP BY identity_hash\n        HAVING");
+    expect(metrics.aiRepeat7d).toBe(1);
+  });
+
+  test("deletes events older than the retention window", async () => {
+    let query = "";
+    const statement = new StatementMock();
+    const db = {
+      prepare: (sql: string) => {
+        query = sql;
+        return statement;
+      },
+    };
+
+    const purged = await purgeOldEvents(
+      db,
+      new Date("2026-08-01T03:17:00Z"),
+      45,
+    );
+
+    expect(purged).toBe(true);
+    expect(query).toContain("DELETE FROM request_events");
+    expect(statement.values).toEqual(["2026-06-17T03:17:00.000Z"]);
   });
 });
 

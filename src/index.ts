@@ -1,4 +1,4 @@
-import { recordRequest } from "./analytics";
+import { purgeOldEvents, recordRequest } from "./analytics";
 import { classifyRequest } from "./classify";
 import { handleRequest } from "./router";
 import type { Env, ExecutionContextLike } from "./types";
@@ -26,5 +26,15 @@ export default {
     );
 
     return response;
+  },
+
+  scheduled(
+    _controller: ScheduledController,
+    env: Env,
+    context: ExecutionContextLike,
+  ): void {
+    if (env.DB) {
+      context.waitUntil(purgeOldEvents(env.DB));
+    }
   },
 };

@@ -8,7 +8,7 @@ access by AI search systems, crawlers, and user-directed agents.
 
 - Site: https://ai-web-observatory.aipmm.workers.dev
 - Source: https://github.com/wengyoumu-coder/aipmm
-- Measurement start: `2026-06-10T11:38:50Z`
+- Measurement start: `2026-06-10T11:49:05Z`
 - Hosting: Cloudflare Workers
 - Request analytics: Cloudflare D1
 
@@ -120,11 +120,14 @@ The Worker stores:
 - response status and content type;
 - claimed crawler category and matched identity;
 - daily salted hash of coarse network prefix plus user-agent;
+- stable salted hash of the same coarse identity for cross-day repeat metrics;
 - country code when provided by Cloudflare;
 - referral host and AI attribution parameters;
 - machine-resource and tool-interaction flags.
 
 It does not store raw IP addresses.
+Events are automatically deleted after 45 days by a daily Cloudflare Cron
+Trigger.
 
 Query a 7-day window:
 

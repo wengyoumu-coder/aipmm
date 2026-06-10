@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS request_events (
   occurred_at TEXT NOT NULL,
   day TEXT NOT NULL,
   identity_hash TEXT NOT NULL,
+  stable_identity_hash TEXT NOT NULL,
   path TEXT NOT NULL,
   method TEXT NOT NULL,
   status INTEGER NOT NULL,
@@ -29,3 +30,7 @@ CREATE INDEX IF NOT EXISTS idx_request_events_path
 
 CREATE INDEX IF NOT EXISTS idx_request_events_identity
   ON request_events (identity_hash, day);
+
+CREATE INDEX IF NOT EXISTS idx_request_events_stable_identity
+  ON request_events (stable_identity_hash, day)
+  WHERE qualified_ai = 1;

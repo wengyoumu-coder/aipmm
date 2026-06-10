@@ -42,19 +42,7 @@ export function normalizeNetworkPrefix(ip: string): string {
   return "unknown";
 }
 
-export async function hashDailyIdentity(input: {
-  ip: string;
-  userAgent: string;
-  day: string;
-  salt: string;
-}): Promise<string> {
-  const prefix = normalizeNetworkPrefix(input.ip);
-  const material = [
-    input.day,
-    prefix,
-    input.userAgent.trim().toLowerCase(),
-    input.salt,
-  ].join("|");
+async function sha256(material: string): Promise<string> {
   const digest = await crypto.subtle.digest(
     "SHA-256",
     new TextEncoder().encode(material),
@@ -62,6 +50,35 @@ export async function hashDailyIdentity(input: {
   return Array.from(new Uint8Array(digest))
     .map((byte) => byte.toString(16).padStart(2, "0"))
     .join("");
+}
+
+export async function hashDailyIdentity(input: {
+  ip: string;
+  userAgent: string;
+  day: string;
+  salt: string;
+}): Promise<string> {
+  const prefix = normalizeNetworkPrefix(input.ip);
+  return sha256([
+    input.day,
+    prefix,
+    input.userAgent.trim().toLowerCase(),
+    input.salt,
+  ].join("|"));
+}
+
+export async function hashStableIdentity(input: {
+  ip: string;
+  userAgent: string;
+  salt: string;
+}): Promise<string> {
+  const prefix = normalizeNetworkPrefix(input.ip);
+  return sha256([
+    "stable-v1",
+    prefix,
+    input.userAgent.trim().toLowerCase(),
+    input.salt,
+  ].join("|"));
 }
 
 function safeHostname(value: string): string | null {
@@ -115,6 +132,11 @@ export async function recordRequest(input: {
       day,
       salt: input.env.ANALYTICS_SALT,
     });
+    const stableIdentityHash = await hashStableIdentity({
+      ip,
+      userAgent,
+      salt: input.env.ANALYTICS_SALT,
+    });
     const country =
       (input.request as Request & { cf?: { country?: string } }).cf?.country ??
       input.request.headers.get("cf-ipcountry");
@@ -128,15 +150,16 @@ export async function recordRequest(input: {
 
     await input.env.DB.prepare(
       `INSERT INTO request_events (
-        occurred_at, day, identity_hash, path, method, status, content_type,
-        category, matched_identity, qualified_ai, country, referer_host,
-        utm_source, referral_signal, resource_kind, is_tool
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        occurred_at, day, identity_hash, stable_identity_hash, path, method,
+        status, content_type, category, matched_identity, qualified_ai, country,
+        referer_host, utm_source, referral_signal, resource_kind, is_tool
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     )
       .bind(
         now.toISOString(),
         day,
         identityHash,
+        stableIdentityHash,
         url.pathname,
         input.request.method,
         input.response.status,
@@ -192,10 +215,10 @@ export async function queryStats(
         GROUP BY day, identity_hash
       ),
       repeat_identities AS (
-        SELECT identity_hash
+        SELECT stable_identity_hash
         FROM windowed
-        WHERE qualified_ai = 1
-        GROUP BY identity_hash
+        WHERE qualified_ai = 1 AND stable_identity_hash IS NOT NULL
+        GROUP BY stable_identity_hash
         HAVING COUNT(DISTINCT day) > 1
       )
       SELECT
@@ -238,6 +261,28 @@ export async function queryStats(
         ? 0
         : row.qualifiedAiRequests / row.qualifiedAiUniqueDaily,
   };
+}
+
+export async function purgeOldEvents(
+  db: D1DatabaseLike,
+  now = new Date(),
+  retentionDays = 45,
+): Promise<boolean> {
+  if (!Number.isInteger(retentionDays) || retentionDays < 7) {
+    throw new Error("retentionDays must be an integer of at least 7");
+  }
+  const cutoff = new Date(
+    now.getTime() - retentionDays * 24 * 60 * 60 * 1000,
+  ).toISOString();
+  try {
+    await db
+      .prepare("DELETE FROM request_events WHERE occurred_at < ?")
+      .bind(cutoff)
+      .run();
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export function isAdminAuthorized(request: Request, env: Env): boolean {
