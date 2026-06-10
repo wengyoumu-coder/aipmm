@@ -42,7 +42,7 @@ function homepage(origin: string): string {
 <section>
 <h2>Resources</h2>
 <ul>
-<li><a href="/api/v1/registry">AI crawler and user-agent registry (JSON)</a></li>
+<li><a href="/api/v1/registry.json">AI crawler and user-agent registry (JSON)</a></li>
 <li><a href="/registry">AI crawler and user-agent registry (HTML)</a></li>
 <li><a href="/openapi.json">Callable tool contract (OpenAPI 3.1)</a></li>
 <li><a href="/llms.txt">Concise LLM index</a></li>
@@ -79,13 +79,13 @@ function homepage(origin: string): string {
           name: "AI Web Access Identity Registry",
           description:
             "A sourced registry of AI search, training, and user-directed web access identities.",
-          url: `${origin}/api/v1/registry`,
+          url: `${origin}/api/v1/registry.json`,
           dateModified: UPDATED_ON,
           distribution: [
             {
               "@type": "DataDownload",
               encodingFormat: "application/json",
-              contentUrl: `${origin}/api/v1/registry`,
+              contentUrl: `${origin}/api/v1/registry.json`,
             },
             {
               "@type": "DataDownload",
@@ -148,7 +148,7 @@ function registryDetail(origin: string, entry: RegistryEntry): string {
 <dt>Verified</dt><dd><time datetime="${entry.verifiedOn}">${entry.verifiedOn}</time></dd>
 </dl>
 <p>Primary source: <a rel="external" href="${escapeHtml(entry.sourceUrl)}">${escapeHtml(entry.sourceTitle)}</a>.</p>
-<p>JSON representation: <a href="/api/v1/registry/${escapeHtml(entry.slug)}">/api/v1/registry/${escapeHtml(entry.slug)}</a></p>
+<p>JSON representation: <a href="/api/v1/registry/${escapeHtml(entry.slug)}.json">/api/v1/registry/${escapeHtml(entry.slug)}.json</a></p>
 </article>`,
     jsonLd: {
       "@context": "https://schema.org",
@@ -195,8 +195,8 @@ function publicUrls(origin: string): Array<{
     "/llms.txt",
     "/llms-full.txt",
     "/openapi.json",
-    "/api/v1/manifest",
-    "/api/v1/registry",
+    "/api/v1/manifest.json",
+    "/api/v1/registry.json",
     "/.well-known/agent-card.json",
   ];
 
@@ -204,6 +204,10 @@ function publicUrls(origin: string): Array<{
     ...fixed.map((path) => ({ url: `${origin}${path}`, modified: UPDATED_ON })),
     ...REGISTRY.map((entry) => ({
       url: `${origin}/registry/${entry.slug}`,
+      modified: entry.verifiedOn,
+    })),
+    ...REGISTRY.map((entry) => ({
+      url: `${origin}/api/v1/registry/${entry.slug}.json`,
       modified: entry.verifiedOn,
     })),
   ];
@@ -228,7 +232,7 @@ Last verified: ${UPDATED_ON}
 
 ## Primary resources
 
-- [Registry JSON](${origin}/api/v1/registry): AI crawler and user-directed agent identities.
+- [Registry JSON](${origin}/api/v1/registry.json): AI crawler and user-directed agent identities.
 - [OpenAPI contract](${origin}/openapi.json): Callable user-agent classification and robots policy linting.
 - [Full text](${origin}/llms-full.txt): Complete registry in one text response.
 - [Changelog RSS](${origin}/changelog.xml): Updates to the registry and tools.
@@ -311,7 +315,7 @@ function manifest(origin: string): Record<string, unknown> {
     updatedOn: UPDATED_ON,
     canonicalUrl: `${origin}/`,
     resources: [
-      `${origin}/api/v1/registry`,
+      `${origin}/api/v1/registry.json`,
       `${origin}/llms.txt`,
       `${origin}/llms-full.txt`,
       `${origin}/openapi.json`,
@@ -638,9 +642,15 @@ export async function handleRequest(
           }),
           { status: 404, contentType: "text/html; charset=utf-8", head },
         );
-  } else if (url.pathname === "/api/v1/manifest") {
+  } else if (
+    url.pathname === "/api/v1/manifest" ||
+    url.pathname === "/api/v1/manifest.json"
+  ) {
     response = jsonResponse(manifest(origin), { head });
-  } else if (url.pathname === "/api/v1/registry") {
+  } else if (
+    url.pathname === "/api/v1/registry" ||
+    url.pathname === "/api/v1/registry.json"
+  ) {
     response = jsonResponse(
       {
         name: "AI Web Access Identity Registry",
@@ -651,9 +661,10 @@ export async function handleRequest(
       { head },
     );
   } else if (url.pathname.startsWith("/api/v1/registry/")) {
-    const entry = findRegistryEntry(
-      url.pathname.slice("/api/v1/registry/".length),
-    );
+    const slug = url.pathname
+      .slice("/api/v1/registry/".length)
+      .replace(/\.json$/, "");
+    const entry = findRegistryEntry(slug);
     response = entry
       ? jsonResponse(entry, { head })
       : errorResponse(

@@ -27,7 +27,7 @@ describe("public routes", () => {
   });
 
   test("serves the registry as JSON with source metadata", async () => {
-    const response = await fetchPath("/api/v1/registry");
+    const response = await fetchPath("/api/v1/registry.json");
     const body = await response.json<{
       count: number;
       entries: Array<{ slug: string; sourceUrl: string }>;
@@ -48,7 +48,7 @@ describe("public routes", () => {
     const htmlResponse = await fetchPath("/registry/openai-oai-searchbot");
     const html = await htmlResponse.text();
     const jsonResponse = await fetchPath(
-      "/api/v1/registry/openai-oai-searchbot",
+      "/api/v1/registry/openai-oai-searchbot.json",
     );
     const json = await jsonResponse.json<{ userAgent: string }>();
 
@@ -90,7 +90,7 @@ describe("public routes", () => {
   });
 
   test("publishes manifest, changelog feed, OpenAPI, and agent card", async () => {
-    const manifest = await (await fetchPath("/api/v1/manifest")).json<{
+    const manifest = await (await fetchPath("/api/v1/manifest.json")).json<{
       name: string;
       resources: string[];
     }>();
@@ -104,7 +104,7 @@ describe("public routes", () => {
     ).json<{ name: string; skills: Array<{ id: string }> }>();
 
     expect(manifest.name).toBe("AI Web Observatory");
-    expect(manifest.resources).toContain(`${origin}/api/v1/registry`);
+    expect(manifest.resources).toContain(`${origin}/api/v1/registry.json`);
     expect(feed.headers.get("content-type")).toContain("application/rss+xml");
     expect(await feed.text()).toContain("<rss version=\"2.0\">");
     expect(openapi.openapi).toBe("3.1.0");
@@ -118,8 +118,8 @@ describe("public routes", () => {
   });
 
   test("returns stable cache metadata and supports HEAD", async () => {
-    const getResponse = await fetchPath("/api/v1/registry");
-    const headResponse = await fetchPath("/api/v1/registry", {
+    const getResponse = await fetchPath("/api/v1/registry.json");
+    const headResponse = await fetchPath("/api/v1/registry.json", {
       method: "HEAD",
     });
 
@@ -127,6 +127,19 @@ describe("public routes", () => {
     expect(getResponse.headers.get("cache-control")).toContain("public");
     expect(headResponse.status).toBe(200);
     expect(await headResponse.text()).toBe("");
+  });
+
+  test("keeps extensionless JSON endpoints as compatibility aliases", async () => {
+    const manifest = await fetchPath("/api/v1/manifest");
+    const registry = await fetchPath("/api/v1/registry");
+    const detail = await fetchPath(
+      "/api/v1/registry/openai-oai-searchbot",
+    );
+
+    expect(manifest.status).toBe(200);
+    expect(registry.status).toBe(200);
+    expect(detail.status).toBe(200);
+    expect(manifest.headers.get("content-type")).toContain("application/json");
   });
 
   test("returns structured JSON for unknown API routes", async () => {

@@ -16,7 +16,7 @@ deterministic tools:
 | --- | --- |
 | `/` | Semantic HTML entry point with JSON-LD |
 | `/registry` | Human- and crawler-readable registry |
-| `/api/v1/registry` | Registry JSON |
+| `/api/v1/registry.json` | Registry JSON |
 | `/llms.txt` | Concise machine index |
 | `/llms-full.txt` | Complete registry in one text response |
 | `/openapi.json` | Callable API contract |

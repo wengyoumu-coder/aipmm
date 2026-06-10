@@ -117,7 +117,7 @@ ${jsonLd}
 </header>
 <main>${input.body}</main>
 <footer>
-<p>Machine resources: <a href="/api/v1/manifest">manifest</a> · <a href="/api/v1/registry">registry JSON</a> · <a href="/sitemap.xml">sitemap</a> · <a href="/llms-full.txt">full text</a></p>
+<p>Machine resources: <a href="/api/v1/manifest.json">manifest</a> · <a href="/api/v1/registry.json">registry JSON</a> · <a href="/sitemap.xml">sitemap</a> · <a href="/llms-full.txt">full text</a></p>
 </footer>
 </body>
 </html>`;

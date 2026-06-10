@@ -7,10 +7,10 @@ const baseUrl = (
 const resources = [
   ["/", "text/html"],
   ["/registry", "text/html"],
-  ["/api/v1/manifest", "application/json"],
-  ["/api/v1/registry", "application/json"],
+  ["/api/v1/manifest.json", "application/json"],
+  ["/api/v1/registry.json", "application/json"],
   ["/registry/openai-oai-searchbot", "text/html"],
-  ["/api/v1/registry/openai-oai-searchbot", "application/json"],
+  ["/api/v1/registry/openai-oai-searchbot.json", "application/json"],
   ["/robots.txt", "text/plain"],
   ["/sitemap.xml", "application/xml"],
   ["/llms.txt", "text/plain"],
