@@ -7,12 +7,37 @@ import {
 
 describe("weekly analytics export", () => {
   test("uses stable identities for cross-day repeats", () => {
-    const queries = buildWeeklyQueries(7);
+    const queries = buildWeeklyQueries(
+      7,
+      new Date("2026-06-10T12:00:00Z"),
+    );
     const metrics = queries.find((query) => query.name === "metrics");
 
     expect(metrics?.sql).toContain("stable_identity_hash");
     expect(metrics?.sql).toContain("COUNT(DISTINCT day) > 1");
-    expect(metrics?.sql).toContain("datetime('now', '-7 days')");
+    expect(metrics?.sql).toContain(
+      "occurred_at >= '2026-06-03T12:00:00.000Z'",
+    );
+    expect(metrics?.sql).toContain(
+      "occurred_at < '2026-06-10T12:00:00.000Z'",
+    );
+  });
+
+  test("uses the same immutable time bounds for every query", () => {
+    const queries = buildWeeklyQueries(
+      7,
+      new Date("2026-06-10T12:00:00Z"),
+    );
+
+    for (const query of queries) {
+      expect(query.sql).toContain(
+        "occurred_at >= '2026-06-03T12:00:00.000Z'",
+      );
+      expect(query.sql).toContain(
+        "occurred_at < '2026-06-10T12:00:00.000Z'",
+      );
+      expect(query.sql).not.toContain("datetime('now'");
+    }
   });
 
   test("includes decision-relevant breakdowns", () => {

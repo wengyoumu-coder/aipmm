@@ -8,12 +8,23 @@ export type NamedQuery = {
   sql: string;
 };
 
-export function buildWeeklyQueries(days: number): NamedQuery[] {
+export function buildWeeklyQueries(
+  days: number,
+  windowEnd = new Date(),
+): NamedQuery[] {
   if (!Number.isInteger(days) || days < 1 || days > 31) {
     throw new Error("days must be an integer between 1 and 31");
   }
-  const window = `datetime('now', '-${days} days')`;
-  const windowed = `occurred_at >= ${window}`;
+  if (Number.isNaN(windowEnd.getTime())) {
+    throw new Error("windowEnd must be a valid date");
+  }
+  const windowStart = new Date(
+    windowEnd.getTime() - days * 24 * 60 * 60 * 1000,
+  );
+  const windowed = [
+    `occurred_at >= '${windowStart.toISOString()}'`,
+    `occurred_at < '${windowEnd.toISOString()}'`,
+  ].join(" AND ");
 
   return [
     {
@@ -168,8 +179,11 @@ function queryRemoteD1(
     },
   );
   if (command.status !== 0) {
+    const details = [command.stdout.trim(), command.stderr.trim()]
+      .filter(Boolean)
+      .join("\n");
     throw new Error(
-      `D1 query failed: ${command.stderr.trim() || command.stdout.trim()}`,
+      `D1 query failed:\n${details || `exit status ${command.status}`}`,
     );
   }
   return parseWranglerJson(command.stdout);
@@ -186,11 +200,15 @@ async function main(): Promise<void> {
   const days = Number(argument("--days") ?? "7");
   const database = argument("--database") ?? "ai-web-observatory";
   const projectRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
-  const date = new Date().toISOString().slice(0, 10);
+  const windowEnd = new Date();
+  const windowStart = new Date(
+    windowEnd.getTime() - days * 24 * 60 * 60 * 1000,
+  );
+  const date = windowEnd.toISOString().slice(0, 10);
   const outputPath =
     argument("--output") ??
     join(projectRoot, "reports", "raw", `${date}-${days}d.json`);
-  const queries = buildWeeklyQueries(days);
+  const queries = buildWeeklyQueries(days, windowEnd);
   const datasets = Object.fromEntries(
     queries.map((query) => [
       query.name,
@@ -198,9 +216,11 @@ async function main(): Promise<void> {
     ]),
   );
   const report = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: windowEnd.toISOString(),
     database,
     windowDays: days,
+    windowStart: windowStart.toISOString(),
+    windowEnd: windowEnd.toISOString(),
     identityNotice:
       "User-agent identities are claimed unless independently verified. Cross-day repeats use stable_identity_hash; daily uniqueness uses identity_hash.",
     datasets,
