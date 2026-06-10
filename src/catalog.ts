@@ -1,6 +1,8 @@
 import type { RegistryEntry } from "./types";
 
 export const UPDATED_ON = "2026-06-10";
+export const LAUNCHED_AT = "2026-06-10T11:38:50Z";
+export const INDEXNOW_KEY = "84072663bac3e2c61cb2e5c67a18746e";
 
 export const REGISTRY: RegistryEntry[] = [
   {

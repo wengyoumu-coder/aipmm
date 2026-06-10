@@ -4,6 +4,18 @@ AI Web Observatory is a machine-first experiment designed to measure and
 increase legitimate discovery, retrieval, citation, interaction, and repeat
 access by AI search systems, crawlers, and user-directed agents.
 
+## Production
+
+- Site: https://ai-web-observatory.aipmm.workers.dev
+- Source: https://github.com/wengyoumu-coder/aipmm
+- Measurement start: `2026-06-10T11:38:50Z`
+- Hosting: Cloudflare Workers
+- Request analytics: Cloudflare D1
+
+The production database was cleared immediately before the measurement start.
+Internal smoke-check traffic and admin statistics reads are excluded from
+analytics.
+
 The initial product is a sourced registry of AI web access identities plus two
 deterministic tools:
 

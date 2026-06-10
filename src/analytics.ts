@@ -102,6 +102,12 @@ export async function recordRequest(input: {
     const day = now.toISOString().slice(0, 10);
     const url = new URL(input.request.url);
     const userAgent = input.request.headers.get("user-agent") ?? "";
+    if (
+      userAgent === "AI-Web-Observatory-Smoke/1.0" ||
+      url.pathname.startsWith("/api/admin/")
+    ) {
+      return false;
+    }
     const ip = input.request.headers.get("cf-connecting-ip") ?? "unknown";
     const identityHash = await hashDailyIdentity({
       ip,

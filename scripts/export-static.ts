@@ -2,7 +2,7 @@ import { mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { REGISTRY } from "../src/catalog";
+import { INDEXNOW_KEY, REGISTRY } from "../src/catalog";
 import { handleRequest } from "../src/router";
 
 type StaticResource = {
@@ -18,6 +18,10 @@ function resources(): StaticResource[] {
     { route: "/api/v1/manifest.json", outputPath: "api/v1/manifest.json" },
     { route: "/api/v1/registry.json", outputPath: "api/v1/registry.json" },
     { route: "/robots.txt", outputPath: "robots.txt" },
+    {
+      route: `/${INDEXNOW_KEY}.txt`,
+      outputPath: `${INDEXNOW_KEY}.txt`,
+    },
     { route: "/sitemap.xml", outputPath: "sitemap.xml" },
     { route: "/llms.txt", outputPath: "llms.txt" },
     { route: "/llms-full.txt", outputPath: "llms-full.txt" },

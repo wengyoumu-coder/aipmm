@@ -70,6 +70,21 @@ describe("public routes", () => {
     expect(body).toContain(`Sitemap: ${origin}/sitemap.xml`);
   });
 
+  test("hosts the IndexNow ownership key", async () => {
+    const manifestResponse = await fetchPath("/api/v1/manifest.json");
+    const manifest = await manifestResponse.json<{
+      discovery: { indexNowKeyUrl: string };
+    }>();
+    const keyUrl = new URL(manifest.discovery.indexNowKeyUrl);
+    const response = await fetchPath(keyUrl.pathname);
+    const body = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("text/plain");
+    expect(body.trim()).toMatch(/^[a-f0-9]{32}$/);
+    expect(keyUrl.pathname).toBe(`/${body.trim()}.txt`);
+  });
+
   test("publishes a sitemap containing stable registry URLs", async () => {
     const response = await fetchPath("/sitemap.xml");
     const body = await response.text();

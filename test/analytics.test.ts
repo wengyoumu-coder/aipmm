@@ -76,6 +76,48 @@ describe("privacy-preserving identity", () => {
 });
 
 describe("request recording", () => {
+  test("does not record internal smoke checks or admin statistics reads", async () => {
+    let prepares = 0;
+    const env = {
+      ANALYTICS_SALT: "test-salt",
+      DB: {
+        prepare: () => {
+          prepares += 1;
+          return new StatementMock();
+        },
+      },
+    };
+
+    const smokeRecorded = await recordRequest({
+      request: new Request("https://observatory.example/robots.txt", {
+        headers: { "user-agent": "AI-Web-Observatory-Smoke/1.0" },
+      }),
+      response: new Response("ok"),
+      classification: classifyRequest({
+        userAgent: "AI-Web-Observatory-Smoke/1.0",
+        referer: "",
+        url: "https://observatory.example/robots.txt",
+      }),
+      env,
+    });
+    const adminRecorded = await recordRequest({
+      request: new Request(
+        "https://observatory.example/api/admin/stats?days=7",
+      ),
+      response: new Response("ok"),
+      classification: classifyRequest({
+        userAgent: "curl/8.0",
+        referer: "",
+        url: "https://observatory.example/api/admin/stats?days=7",
+      }),
+      env,
+    });
+
+    expect(smokeRecorded).toBe(false);
+    expect(adminRecorded).toBe(false);
+    expect(prepares).toBe(0);
+  });
+
   test("writes classified metadata without writing the raw IP", async () => {
     const statement = new StatementMock();
     const request = new Request(

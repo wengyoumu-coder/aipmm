@@ -4,10 +4,18 @@
   "main": "src/index.ts",
   "compatibility_date": "2026-06-10",
   "workers_dev": true,
+  "preview_urls": false,
   "observability": {
     "enabled": true
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ai-web-observatory",
+      "database_id": "acb66e7b-fe99-4075-979d-1e55a7d1b248"
+    }
+  ],
   "vars": {
-    "SITE_ORIGIN": "http://localhost:8787"
+    "SITE_ORIGIN": "https://ai-web-observatory.aipmm.workers.dev"
   }
 }

@@ -1,6 +1,8 @@
 import {
   CHANGES,
   findRegistryEntry,
+  INDEXNOW_KEY,
+  LAUNCHED_AT,
   REGISTRY,
   UPDATED_ON,
 } from "./catalog";
@@ -57,6 +59,7 @@ function homepage(origin: string): string {
 </ul>
 </section>
 <p>Registry entries: ${REGISTRY.length}. Last verified: <time datetime="${UPDATED_ON}">${UPDATED_ON}</time>.</p>
+<p>Public experiment launched: <time datetime="${LAUNCHED_AT}">${LAUNCHED_AT}</time>.</p>
 </article>`;
 
   return htmlDocument({
@@ -313,6 +316,7 @@ function manifest(origin: string): Record<string, unknown> {
       "Source-linked registry and deterministic tools for AI web access.",
     version: "0.1.0",
     updatedOn: UPDATED_ON,
+    launchedAt: LAUNCHED_AT,
     canonicalUrl: `${origin}/`,
     resources: [
       `${origin}/api/v1/registry.json`,
@@ -326,6 +330,11 @@ function manifest(origin: string): Record<string, unknown> {
       `${origin}/api/v1/tools/classify-user-agent`,
       `${origin}/api/v1/tools/lint-robots`,
     ],
+    discovery: {
+      robots: `${origin}/robots.txt`,
+      sitemap: `${origin}/sitemap.xml`,
+      indexNowKeyUrl: `${origin}/${INDEXNOW_KEY}.txt`,
+    },
   };
 }
 
@@ -677,6 +686,12 @@ export async function handleRequest(
     response = createResponse(robotsText(origin), {
       contentType: "text/plain; charset=utf-8",
       head,
+    });
+  } else if (url.pathname === `/${INDEXNOW_KEY}.txt`) {
+    response = createResponse(`${INDEXNOW_KEY}\n`, {
+      contentType: "text/plain; charset=utf-8",
+      head,
+      headers: { "cache-control": "public, max-age=86400" },
     });
   } else if (url.pathname === "/sitemap.xml") {
     response = createResponse(sitemapXml(origin), {
