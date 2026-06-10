@@ -155,6 +155,19 @@ The primary metric is qualified AI requests. Supporting metrics include unique
 daily identities, requests per identity, seven-day repeats, machine-resource
 share, tool interactions, AI referrals, and crawl depth.
 
+## AI Growth Cycles
+
+The active operating loop runs every five hours. Each run is an `AI Cycle`:
+
+1. export current production data with `npm run report:raw`;
+2. choose and execute one bounded growth or measurement action;
+3. test, deploy, and notify discovery systems when relevant;
+4. append evidence to `reports/cycles/YYYY-MM-DD.md`;
+5. commit and push the cycle.
+
+Cycle count is the experiment clock. Calendar dates only group logs for human
+access.
+
 ## Source Policy
 
 Registry records must cite operator documentation and include a verification
