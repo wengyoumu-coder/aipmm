@@ -4,6 +4,7 @@ import {
   REGISTRY,
   UPDATED_ON,
 } from "./catalog";
+import { classifyRequest } from "./classify";
 import {
   createResponse,
   errorResponse,
@@ -12,6 +13,7 @@ import {
   htmlDocument,
   jsonResponse,
 } from "./render";
+import { lintRobotsPolicy } from "./robots-lint";
 import type { Env, RegistryEntry } from "./types";
 
 function resolveOrigin(request: Request, env: Env): string {
@@ -420,6 +422,104 @@ function agentCard(origin: string): Record<string, unknown> {
   };
 }
 
+async function readJsonBody(
+  request: Request,
+): Promise<
+  | { ok: true; value: Record<string, unknown> }
+  | { ok: false; response: Response }
+> {
+  const declaredLength = Number(request.headers.get("content-length") ?? "0");
+  if (declaredLength > 65_536) {
+    return {
+      ok: false,
+      response: errorResponse(
+        413,
+        "payload_too_large",
+        "Request bodies are limited to 65536 bytes",
+      ),
+    };
+  }
+
+  const text = await request.text();
+  if (new TextEncoder().encode(text).byteLength > 65_536) {
+    return {
+      ok: false,
+      response: errorResponse(
+        413,
+        "payload_too_large",
+        "Request bodies are limited to 65536 bytes",
+      ),
+    };
+  }
+
+  try {
+    const value: unknown = JSON.parse(text);
+    if (!value || typeof value !== "object" || Array.isArray(value)) {
+      return {
+        ok: false,
+        response: errorResponse(
+          400,
+          "invalid_request",
+          "The JSON body must be an object",
+        ),
+      };
+    }
+    return { ok: true, value: value as Record<string, unknown> };
+  } catch {
+    return {
+      ok: false,
+      response: errorResponse(
+        400,
+        "invalid_json",
+        "The request body is not valid JSON",
+      ),
+    };
+  }
+}
+
+async function toolResponse(
+  request: Request,
+  pathname: string,
+): Promise<Response> {
+  const parsed = await readJsonBody(request);
+  if (!parsed.ok) {
+    return parsed.response;
+  }
+
+  if (pathname === "/api/v1/tools/classify-user-agent") {
+    const userAgent = parsed.value.userAgent;
+    if (typeof userAgent !== "string" || userAgent.trim() === "") {
+      return errorResponse(
+        400,
+        "invalid_request",
+        "userAgent must be a non-empty string",
+      );
+    }
+
+    const classification = classifyRequest({
+      userAgent,
+      referer: "",
+      url: request.url,
+    });
+    const registryEntry = classification.matchedIdentity
+      ? REGISTRY.find(
+          (entry) => entry.userAgent === classification.matchedIdentity,
+        ) ?? null
+      : null;
+    return jsonResponse({ ...classification, registryEntry });
+  }
+
+  const robotsText = parsed.value.robotsText;
+  if (typeof robotsText !== "string") {
+    return errorResponse(
+      400,
+      "invalid_request",
+      "robotsText must be a string",
+    );
+  }
+  return jsonResponse(lintRobotsPolicy(robotsText));
+}
+
 function withCommonHeaders(response: Response, origin: string): Response {
   const headers = new Headers(response.headers);
   new Headers(commonHeaders(origin)).forEach((value, key) => {
@@ -440,6 +540,17 @@ export async function handleRequest(
   const origin = resolveOrigin(request, env);
   const head = request.method === "HEAD";
   const allowedReadMethod = request.method === "GET" || head;
+
+  if (
+    request.method === "POST" &&
+    (url.pathname === "/api/v1/tools/classify-user-agent" ||
+      url.pathname === "/api/v1/tools/lint-robots")
+  ) {
+    return withCommonHeaders(
+      await toolResponse(request, url.pathname),
+      origin,
+    );
+  }
 
   if (!allowedReadMethod) {
     return errorResponse(
