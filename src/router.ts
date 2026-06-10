@@ -17,6 +17,14 @@ import {
   jsonResponse,
 } from "./render";
 import { lintRobotsPolicy } from "./robots-lint";
+import {
+  findRobotsRecipe,
+  generateRobotsPolicy,
+  recipeDecision,
+  ROBOTS_RECIPES,
+  robotsRecipesMarkdown,
+  type RobotsRecipe,
+} from "./robots-recipes";
 import type { Env, RegistryEntry } from "./types";
 
 function resolveOrigin(request: Request, env: Env): string {
@@ -46,6 +54,8 @@ function homepage(origin: string): string {
 <ul>
 <li><a href="/api/v1/registry.json">AI crawler and user-agent registry (JSON)</a></li>
 <li><a href="/registry">AI crawler and user-agent registry (HTML)</a></li>
+<li><a href="/robots-recipes">AI robots.txt policy recipes</a></li>
+<li><a href="/robots-recipes.md">AI robots.txt policy recipes (Markdown)</a></li>
 <li><a href="/openapi.json">Callable tool contract (OpenAPI 3.1)</a></li>
 <li><a href="/llms.txt">Concise LLM index</a></li>
 <li><a href="/llms-full.txt">Complete machine-readable text</a></li>
@@ -56,6 +66,7 @@ function homepage(origin: string): string {
 <ul>
 <li><code>POST /api/v1/tools/classify-user-agent</code></li>
 <li><code>POST /api/v1/tools/lint-robots</code></li>
+<li><code>POST /api/v1/tools/generate-robots</code></li>
 </ul>
 </section>
 <p>Registry entries: ${REGISTRY.length}. Last verified: <time datetime="${UPDATED_ON}">${UPDATED_ON}</time>.</p>
@@ -96,6 +107,111 @@ function homepage(origin: string): string {
               contentUrl: `${origin}/llms-full.txt`,
             },
           ],
+        },
+      ],
+    },
+  });
+}
+
+function robotsRecipeIndex(origin: string): string {
+  const items = ROBOTS_RECIPES.map(
+    (recipe) => `<li>
+<article>
+<h2><a href="/robots-recipes/${escapeHtml(recipe.slug)}">${escapeHtml(recipe.title)}</a></h2>
+<p>${escapeHtml(recipe.summary)}</p>
+<p>${escapeHtml(recipe.rationale)}</p>
+<p><a href="/api/v1/robots-recipes/${escapeHtml(recipe.slug)}.json">JSON representation</a></p>
+</article>
+</li>`,
+  ).join("\n");
+
+  return htmlDocument({
+    title: "AI robots.txt policy recipes",
+    description:
+      "Deterministic robots.txt recipes for AI search, training, and user-directed web identities.",
+    canonicalUrl: `${origin}/robots-recipes`,
+    body: `<article>
+<h1>AI robots.txt policy recipes</h1>
+<p>Five reusable policies derived from the sourced identity registry. Select a recipe, inspect every token, then generate or lint a final policy through the API.</p>
+<ol>${items}</ol>
+<p>Complete Markdown: <a href="/robots-recipes.md">/robots-recipes.md</a></p>
+</article>`,
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "AI robots.txt policy recipes",
+      numberOfItems: ROBOTS_RECIPES.length,
+      itemListElement: ROBOTS_RECIPES.map((recipe, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${origin}/robots-recipes/${recipe.slug}`,
+        name: recipe.title,
+      })),
+    },
+  });
+}
+
+function robotsRecipeDetail(
+  origin: string,
+  recipe: RobotsRecipe,
+): string {
+  const policy = generateRobotsPolicy(recipe, {
+    sitemap: `${origin}/sitemap.xml`,
+  });
+  const decisions = REGISTRY.map((entry) => {
+    const decision = recipeDecision(recipe, entry);
+    return `<tr>
+<td><a href="/registry/${escapeHtml(entry.slug)}">${escapeHtml(entry.robotsToken)}</a></td>
+<td>${escapeHtml(entry.operator)}</td>
+<td>${escapeHtml(entry.purpose)}</td>
+<td>${escapeHtml(decision)}</td>
+</tr>`;
+  }).join("\n");
+
+  return htmlDocument({
+    title: `${recipe.title} - AI Web Observatory`,
+    description: recipe.summary,
+    canonicalUrl: `${origin}/robots-recipes/${recipe.slug}`,
+    body: `<article>
+<h1>${escapeHtml(recipe.title)}</h1>
+<p>${escapeHtml(recipe.summary)}</p>
+<p>${escapeHtml(recipe.rationale)}</p>
+<h2>Generated robots.txt</h2>
+<pre><code>${escapeHtml(policy)}</code></pre>
+<h2>Identity decisions</h2>
+<table>
+<thead><tr><th>Token</th><th>Operator</th><th>Purpose</th><th>Decision</th></tr></thead>
+<tbody>${decisions}</tbody>
+</table>
+<h2>Machine continuation</h2>
+<ul>
+<li><a href="/api/v1/robots-recipes/${escapeHtml(recipe.slug)}.json">Recipe JSON</a></li>
+<li><code>POST /api/v1/tools/generate-robots</code> with <code>{"preset":"${escapeHtml(recipe.slug)}"}</code></li>
+<li><code>POST /api/v1/tools/lint-robots</code> to inspect a modified policy</li>
+</ul>
+</article>`,
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      name: recipe.title,
+      description: recipe.summary,
+      url: `${origin}/robots-recipes/${recipe.slug}`,
+      dateModified: UPDATED_ON,
+      step: [
+        {
+          "@type": "HowToStep",
+          name: "Review identity decisions",
+          text: "Review the allow or disallow decision for each documented identity.",
+        },
+        {
+          "@type": "HowToStep",
+          name: "Generate the policy",
+          text: "Copy the generated robots.txt or call the generator API.",
+        },
+        {
+          "@type": "HowToStep",
+          name: "Validate the policy",
+          text: "Call the lint tool after making site-specific changes.",
         },
       ],
     },
@@ -194,12 +310,15 @@ function publicUrls(origin: string): Array<{
   const fixed = [
     "/",
     "/registry",
+    "/robots-recipes",
+    "/robots-recipes.md",
     "/changelog",
     "/llms.txt",
     "/llms-full.txt",
     "/openapi.json",
     "/api/v1/manifest.json",
     "/api/v1/registry.json",
+    "/api/v1/robots-recipes.json",
     "/.well-known/agent-card.json",
   ];
 
@@ -212,6 +331,14 @@ function publicUrls(origin: string): Array<{
     ...REGISTRY.map((entry) => ({
       url: `${origin}/api/v1/registry/${entry.slug}.json`,
       modified: entry.verifiedOn,
+    })),
+    ...ROBOTS_RECIPES.map((recipe) => ({
+      url: `${origin}/robots-recipes/${recipe.slug}`,
+      modified: UPDATED_ON,
+    })),
+    ...ROBOTS_RECIPES.map((recipe) => ({
+      url: `${origin}/api/v1/robots-recipes/${recipe.slug}.json`,
+      modified: UPDATED_ON,
     })),
   ];
 }
@@ -236,6 +363,8 @@ Last verified: ${UPDATED_ON}
 ## Primary resources
 
 - [Registry JSON](${origin}/api/v1/registry.json): AI crawler and user-directed agent identities.
+- [Robots recipes](${origin}/api/v1/robots-recipes.json): Reusable AI access policies.
+- [Robots recipes Markdown](${origin}/robots-recipes.md): Generated policies in one text resource.
 - [OpenAPI contract](${origin}/openapi.json): Callable user-agent classification and robots policy linting.
 - [Full text](${origin}/llms-full.txt): Complete registry in one text response.
 - [Changelog RSS](${origin}/changelog.xml): Updates to the registry and tools.
@@ -254,12 +383,17 @@ function fullLlms(origin: string): string {
 - Source: ${entry.sourceTitle} (${entry.sourceUrl})
 - Verified: ${entry.verifiedOn}`,
   ).join("\n\n");
+  const recipes = robotsRecipesMarkdown(origin);
 
   return `${conciseLlms(origin)}
 
 ## Registry Entries
 
 ${entries}
+
+## robots.txt recipes
+
+${recipes}
 
 ## Tool usage
 
@@ -270,6 +404,10 @@ Body: {"userAgent":"OAI-SearchBot/1.0"}
 POST ${origin}/api/v1/tools/lint-robots
 Content-Type: application/json
 Body: {"robotsText":"User-agent: OAI-SearchBot\\nAllow: /"}
+
+POST ${origin}/api/v1/tools/generate-robots
+Content-Type: application/json
+Body: {"preset":"search-visible-no-training","sitemap":"${origin}/sitemap.xml"}
 `;
 }
 
@@ -320,6 +458,8 @@ function manifest(origin: string): Record<string, unknown> {
     canonicalUrl: `${origin}/`,
     resources: [
       `${origin}/api/v1/registry.json`,
+      `${origin}/api/v1/robots-recipes.json`,
+      `${origin}/robots-recipes.md`,
       `${origin}/llms.txt`,
       `${origin}/llms-full.txt`,
       `${origin}/openapi.json`,
@@ -329,6 +469,7 @@ function manifest(origin: string): Record<string, unknown> {
     tools: [
       `${origin}/api/v1/tools/classify-user-agent`,
       `${origin}/api/v1/tools/lint-robots`,
+      `${origin}/api/v1/tools/generate-robots`,
     ],
     discovery: {
       robots: `${origin}/robots.txt`,
@@ -369,6 +510,26 @@ function openApi(origin: string): Record<string, unknown> {
           responses: { "200": { description: "Registry entry" } },
         },
       },
+      "/api/v1/robots-recipes.json": {
+        get: {
+          operationId: "listRobotsRecipes",
+          responses: { "200": { description: "robots.txt policy recipes" } },
+        },
+      },
+      "/api/v1/robots-recipes/{slug}.json": {
+        get: {
+          operationId: "getRobotsRecipe",
+          parameters: [
+            {
+              name: "slug",
+              in: "path",
+              required: true,
+              schema: { type: "string" },
+            },
+          ],
+          responses: { "200": { description: "Generated recipe policy" } },
+        },
+      },
       "/api/v1/tools/classify-user-agent": {
         post: {
           operationId: "classifyUserAgent",
@@ -405,6 +566,30 @@ function openApi(origin: string): Record<string, unknown> {
           responses: { "200": { description: "Policy diagnostics" } },
         },
       },
+      "/api/v1/tools/generate-robots": {
+        post: {
+          operationId: "generateRobotsPolicy",
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  required: ["preset"],
+                  properties: {
+                    preset: {
+                      type: "string",
+                      enum: ROBOTS_RECIPES.map((recipe) => recipe.slug),
+                    },
+                    sitemap: { type: "string", format: "uri" },
+                  },
+                },
+              },
+            },
+          },
+          responses: { "200": { description: "Generated and linted policy" } },
+        },
+      },
     },
   };
 }
@@ -431,6 +616,12 @@ function agentCard(origin: string): Record<string, unknown> {
         name: "Lint robots policy",
         description:
           "Report how a robots.txt policy treats known AI web identities.",
+      },
+      {
+        id: "generate-robots",
+        name: "Generate robots policy",
+        description:
+          "Generate and lint a sourced AI robots.txt policy from a documented preset.",
       },
     ],
   };
@@ -523,6 +714,62 @@ async function toolResponse(
     return jsonResponse({ ...classification, registryEntry });
   }
 
+  if (pathname === "/api/v1/tools/generate-robots") {
+    const preset = parsed.value.preset;
+    if (typeof preset !== "string") {
+      return errorResponse(
+        400,
+        "invalid_request",
+        "preset must be a recipe slug",
+      );
+    }
+    const recipe = findRobotsRecipe(preset);
+    if (!recipe) {
+      return errorResponse(
+        400,
+        "invalid_request",
+        `Unknown preset: ${preset}`,
+      );
+    }
+
+    const sitemap = parsed.value.sitemap;
+    if (sitemap !== undefined && typeof sitemap !== "string") {
+      return errorResponse(
+        400,
+        "invalid_request",
+        "sitemap must be an absolute HTTP or HTTPS URL",
+      );
+    }
+    if (typeof sitemap === "string") {
+      try {
+        const parsedSitemap = new URL(sitemap);
+        if (
+          !["http:", "https:"].includes(parsedSitemap.protocol) ||
+          sitemap.length > 2_048
+        ) {
+          throw new Error("invalid sitemap");
+        }
+      } catch {
+        return errorResponse(
+          400,
+          "invalid_request",
+          "sitemap must be an absolute HTTP or HTTPS URL",
+        );
+      }
+    }
+
+    const robotsText = generateRobotsPolicy(recipe, { sitemap });
+    return jsonResponse({
+      recipe,
+      robotsText,
+      lint: lintRobotsPolicy(robotsText),
+      continuations: {
+        recipeJson: `/api/v1/robots-recipes/${recipe.slug}.json`,
+        lintTool: "/api/v1/tools/lint-robots",
+      },
+    });
+  }
+
   const robotsText = parsed.value.robotsText;
   if (typeof robotsText !== "string") {
     return errorResponse(
@@ -607,7 +854,8 @@ export async function handleRequest(
   if (
     request.method === "POST" &&
     (url.pathname === "/api/v1/tools/classify-user-agent" ||
-      url.pathname === "/api/v1/tools/lint-robots")
+      url.pathname === "/api/v1/tools/lint-robots" ||
+      url.pathname === "/api/v1/tools/generate-robots")
   ) {
     return withCommonHeaders(
       await toolResponse(request, url.pathname),
@@ -651,6 +899,34 @@ export async function handleRequest(
           }),
           { status: 404, contentType: "text/html; charset=utf-8", head },
         );
+  } else if (url.pathname === "/robots-recipes") {
+    response = createResponse(robotsRecipeIndex(origin), {
+      contentType: "text/html; charset=utf-8",
+      head,
+    });
+  } else if (url.pathname === "/robots-recipes.md") {
+    response = createResponse(robotsRecipesMarkdown(origin), {
+      contentType: "text/markdown; charset=utf-8",
+      head,
+    });
+  } else if (url.pathname.startsWith("/robots-recipes/")) {
+    const recipe = findRobotsRecipe(
+      url.pathname.slice("/robots-recipes/".length),
+    );
+    response = recipe
+      ? createResponse(robotsRecipeDetail(origin, recipe), {
+          contentType: "text/html; charset=utf-8",
+          head,
+        })
+      : createResponse(
+          htmlDocument({
+            title: "Not found - AI Web Observatory",
+            description: "The requested robots recipe does not exist.",
+            canonicalUrl: `${origin}${url.pathname}`,
+            body: "<h1>Not found</h1><p>The requested robots recipe does not exist.</p>",
+          }),
+          { status: 404, contentType: "text/html; charset=utf-8", head },
+        );
   } else if (
     url.pathname === "/api/v1/manifest" ||
     url.pathname === "/api/v1/manifest.json"
@@ -680,6 +956,54 @@ export async function handleRequest(
           404,
           "not_found",
           `No registry entry exists at ${url.pathname}`,
+          head,
+        );
+  } else if (
+    url.pathname === "/api/v1/robots-recipes" ||
+    url.pathname === "/api/v1/robots-recipes.json"
+  ) {
+    response = jsonResponse(
+      {
+        name: "AI robots.txt policy recipes",
+        updatedOn: UPDATED_ON,
+        count: ROBOTS_RECIPES.length,
+        recipes: ROBOTS_RECIPES.map((recipe) => ({
+          ...recipe,
+          htmlUrl: `${origin}/robots-recipes/${recipe.slug}`,
+          jsonUrl: `${origin}/api/v1/robots-recipes/${recipe.slug}.json`,
+        })),
+      },
+      { head },
+    );
+  } else if (url.pathname.startsWith("/api/v1/robots-recipes/")) {
+    const slug = url.pathname
+      .slice("/api/v1/robots-recipes/".length)
+      .replace(/\.json$/, "");
+    const recipe = findRobotsRecipe(slug);
+    response = recipe
+      ? jsonResponse(
+          {
+            recipe,
+            robotsText: generateRobotsPolicy(recipe, {
+              sitemap: `${origin}/sitemap.xml`,
+            }),
+            decisions: REGISTRY.map((entry) => ({
+              robotsToken: entry.robotsToken,
+              purpose: entry.purpose,
+              decision: recipeDecision(recipe, entry),
+              registryUrl: `${origin}/api/v1/registry/${entry.slug}.json`,
+            })),
+            continuations: {
+              generateTool: `${origin}/api/v1/tools/generate-robots`,
+              lintTool: `${origin}/api/v1/tools/lint-robots`,
+            },
+          },
+          { head },
+        )
+      : errorResponse(
+          404,
+          "not_found",
+          `No robots recipe exists at ${url.pathname}`,
           head,
         );
   } else if (url.pathname === "/robots.txt") {

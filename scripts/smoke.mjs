@@ -7,10 +7,17 @@ const baseUrl = (
 const resources = [
   ["/", "text/html"],
   ["/registry", "text/html"],
+  ["/robots-recipes", "text/html"],
+  ["/robots-recipes.md", "text/markdown"],
   ["/api/v1/manifest.json", "application/json"],
   ["/api/v1/registry.json", "application/json"],
+  ["/api/v1/robots-recipes.json", "application/json"],
   ["/registry/openai-oai-searchbot", "text/html"],
   ["/api/v1/registry/openai-oai-searchbot.json", "application/json"],
+  [
+    "/api/v1/robots-recipes/search-visible-no-training.json",
+    "application/json",
+  ],
   ["/robots.txt", "text/plain"],
   ["/sitemap.xml", "application/xml"],
   ["/llms.txt", "text/plain"],
@@ -53,6 +60,11 @@ const toolChecks = [
     "/api/v1/tools/lint-robots",
     { robotsText: "User-agent: GPTBot\nDisallow: /" },
     "blocked",
+  ],
+  [
+    "/api/v1/tools/generate-robots",
+    { preset: "search-visible-no-training" },
+    "robotsText",
   ],
 ];
 

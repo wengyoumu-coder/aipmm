@@ -29,6 +29,9 @@ deterministic tools:
 | `/` | Semantic HTML entry point with JSON-LD |
 | `/registry` | Human- and crawler-readable registry |
 | `/api/v1/registry.json` | Registry JSON |
+| `/robots-recipes` | AI robots.txt policy recipes |
+| `/robots-recipes.md` | All policy recipes as Markdown |
+| `/api/v1/robots-recipes.json` | Policy recipe JSON |
 | `/llms.txt` | Concise machine index |
 | `/llms-full.txt` | Complete registry in one text response |
 | `/openapi.json` | Callable API contract |

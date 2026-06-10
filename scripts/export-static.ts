@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 import { INDEXNOW_KEY, REGISTRY } from "../src/catalog";
 import { handleRequest } from "../src/router";
+import { ROBOTS_RECIPES } from "../src/robots-recipes";
 
 type StaticResource = {
   route: string;
@@ -14,9 +15,15 @@ function resources(): StaticResource[] {
   return [
     { route: "/", outputPath: "index.html" },
     { route: "/registry", outputPath: "registry/index.html" },
+    { route: "/robots-recipes", outputPath: "robots-recipes/index.html" },
+    { route: "/robots-recipes.md", outputPath: "robots-recipes.md" },
     { route: "/changelog", outputPath: "changelog/index.html" },
     { route: "/api/v1/manifest.json", outputPath: "api/v1/manifest.json" },
     { route: "/api/v1/registry.json", outputPath: "api/v1/registry.json" },
+    {
+      route: "/api/v1/robots-recipes.json",
+      outputPath: "api/v1/robots-recipes.json",
+    },
     { route: "/robots.txt", outputPath: "robots.txt" },
     {
       route: `/${INDEXNOW_KEY}.txt`,
@@ -41,6 +48,16 @@ function resources(): StaticResource[] {
       {
         route: `/api/v1/registry/${entry.slug}.json`,
         outputPath: `api/v1/registry/${entry.slug}.json`,
+      },
+    ]),
+    ...ROBOTS_RECIPES.flatMap((recipe) => [
+      {
+        route: `/robots-recipes/${recipe.slug}`,
+        outputPath: `robots-recipes/${recipe.slug}/index.html`,
+      },
+      {
+        route: `/api/v1/robots-recipes/${recipe.slug}.json`,
+        outputPath: `api/v1/robots-recipes/${recipe.slug}.json`,
       },
     ]),
   ];
