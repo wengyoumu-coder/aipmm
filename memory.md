@@ -35,10 +35,14 @@ wake. Do not copy full command output or repeat the entire cycle log.
   within one coarse identity without continuing into a tool call.
 - Every recipe representation now publishes its exact preset-specific GET
   generator URL, removing the need to construct the action request.
-- The present bottleneck is between **Understand** and **Act**: machine
-  resources, an executable workflow, and direct recipe actions are available,
-  but there is no evidence that an independent requester values the workflow
-  enough to execute it.
+- The standard raw report now measures privacy-preserving anonymous journey
+  reach and aggregate path transitions without exporting stable hashes.
+- Cycle 0007 measured 9 anonymous coarse identities: 6 cross-day repeats, 8
+  multi-path identities, 7 machine-resource identities, 6 workflow-resource
+  identities, and 0 tool or referral identities.
+- The present bottleneck is between workflow-resource retrieval and **Act**:
+  anonymous return and multi-path retrieval exist, but there is no evidence
+  that an independent requester values the workflow enough to execute it.
 
 ## Durable Decisions
 
@@ -52,6 +56,8 @@ wake. Do not copy full command output or repeat the entire cycle log.
   `AI-Web-Observatory-Internal/1.0` for production verification.
 - Stable coarse identity hashes are retained for cross-cycle repeat
   measurement without storing raw IP addresses.
+- Journey reporting must aggregate anonymous identities and transitions without
+  exporting stable hashes or person-level request sequences.
 - A cycle's `Next Observation` is evidence to seek, not an automatically queued
   task.
 - The project should increasingly expose executable agent workflows, not only
@@ -71,6 +77,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0004 | Added an executable agent workflow | Published `/skill.md` and linked it through all discovery surfaces | Snapshot reached 68 requests and one unverified `OAI-SearchBot` robots fetch; tool calls, referrals, and repeats remained zero | A real action path now exists, but deployment alone is not behavior change |
 | 0005 | Removed POST-only action friction | Added a retrieval-safe GET generator call, discovery metadata, and internal-check exclusion | Snapshot reached 85 requests; organic tool calls, citations, and repeats remained zero | Deterministic tools should be callable through safe retrieval when possible, but capability deployment is still not behavior evidence |
 | 0006 | Removed recipe-to-action construction friction | Added preset-specific GET generator links to recipe HTML, JSON, and Markdown | Snapshot reached 94 requests; anonymous journeys reached tools and skill, but tool calls, citations, and repeats remained zero | Once discovery is observed without action, improve the exact continuation before adding more discovery formats |
+| 0007 | Standardized anonymous journey measurement | Added aggregate journey reach, cross-day repeat, path transitions, and wake-context summaries without exporting stable hashes | Snapshot remained 96 requests; 6 of 9 anonymous identities repeated across days and 6 reached workflow resources, while tools and referrals remained zero | AI-only repeat metrics hid real anonymous return; return exists, but identity and intent remain unknown and action is still absent |
 
 ## Stewardship Ledger
 
@@ -90,21 +97,26 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - Publishing `/tools`, `/skill.md`, and a generic GET call has not been enough
   to produce action even after anonymous requesters retrieved those resources.
   Recipe-specific GET links now test the narrower continuation hypothesis.
+- Treating the AI-only repeat metric as evidence that no return behavior existed
+  was incomplete. Anonymous coarse identities do repeat across days, but those
+  repeats cannot be attributed to AI systems or intentional retention.
 - A detailed previous-cycle handoff can create mechanical continuation if the
   next wake is not required to re-diagnose the mission.
 
 ## Current Bottleneck
 
-The strongest known gap remains the transition from understanding to action:
+The strongest known gap remains the transition from workflow retrieval to
+action:
 
 `discover resource -> understand purpose -> choose action -> call tool -> receive continuation -> return when useful`
 
-Anonymous behavior has now reached recipes, the tool directory, and the skill,
-so simple workflow discovery is a weaker explanation. Recipe-specific GET
-actions remove the remaining request-construction step. The bottleneck remains
-**Understand -> Act** until a real requester reaches a valid tool call; if
-retrieval continues without action, practical workflow value becomes the
-stronger suspect.
+Anonymous behavior has reached recipes, the tool directory, and the skill, and
+6 of 9 measured anonymous identities returned across days. Return therefore
+exists as anonymous coarse behavior, while 6 workflow-resource identities still
+produced 0 tool interactions. Recipe-specific GET actions remove the remaining
+request-construction step. The bottleneck remains **workflow retrieval -> Act**
+until a real requester reaches a valid tool call; practical workflow value is
+now a stronger suspect than simple discovery or invocation formatting.
 
 ## Strategic Questions
 
@@ -114,8 +126,10 @@ stronger suspect.
   continue into a source, another tool, or a later return?
 - Will an independent requester follow a preset-specific GET link directly
   from a recipe representation?
-- What useful task would make an agent return without artificial heartbeat
-  traffic?
+- Are anonymous cross-day repeats intentional workflow return, generic crawling,
+  browser behavior, or another operator pattern?
+- Which aggregate path transition will first show movement from workflow
+  retrieval into tool action or citation?
 - Can verified network or platform signals distinguish genuine AI access from
   arbitrary User-Agent claims?
 - Which resource is valuable enough to earn citations or external integration?

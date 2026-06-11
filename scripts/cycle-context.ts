@@ -15,6 +15,13 @@ type MetricRow = {
   crawlDepth?: number;
 };
 
+type AnonymousJourneySummaryRow = {
+  anonymousIdentities?: number;
+  anonymousRepeatIdentities?: number;
+  workflowResourceIdentities?: number;
+  toolInteractionIdentities?: number;
+};
+
 const GOVERNANCE_FILES = ["Agent.md", "SOUL.md", "memory.md", "LOOP.md"];
 
 function displayPath(root: string, path: string): string {
@@ -55,9 +62,14 @@ export async function buildCycleContext(
 
   const raw = JSON.parse(await readFile(latestRaw, "utf8")) as {
     generatedAt?: string;
-    datasets?: { metrics?: MetricRow[] };
+    datasets?: {
+      metrics?: MetricRow[];
+      anonymous_journey_summary?: AnonymousJourneySummaryRow[];
+    };
   };
   const metrics = raw.datasets?.metrics?.[0] ?? {};
+  const anonymousJourneys =
+    raw.datasets?.anonymous_journey_summary?.[0] ?? {};
 
   return `# AI Cycle Wake Context
 
@@ -76,6 +88,10 @@ export async function buildCycleContext(
 - Tool interactions: ${metrics.totalToolInteractions ?? "unknown"}
 - Citation referrals: ${metrics.citationReferrals ?? "unknown"}
 - Crawl depth: ${metrics.crawlDepth ?? "unknown"}
+- Anonymous identities: ${anonymousJourneys.anonymousIdentities ?? "unknown"}
+- Anonymous repeat identities: ${anonymousJourneys.anonymousRepeatIdentities ?? "unknown"}
+- Anonymous workflow-resource identities: ${anonymousJourneys.workflowResourceIdentities ?? "unknown"}
+- Anonymous tool identities: ${anonymousJourneys.toolInteractionIdentities ?? "unknown"}
 
 ## Required Reorientation
 

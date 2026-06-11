@@ -48,10 +48,41 @@ describe("weekly analytics export", () => {
       "metrics",
       "top_paths",
       "claimed_identities",
+      "anonymous_journey_summary",
+      "anonymous_transitions",
       "referrals",
       "countries",
       "daily_trend",
     ]);
+  });
+
+  test("reports anonymous journeys without exposing stable identity hashes", () => {
+    const queries = buildWeeklyQueries(
+      7,
+      new Date("2026-06-10T12:00:00Z"),
+    );
+    const summary = queries.find(
+      (query) => query.name === "anonymous_journey_summary",
+    );
+    const transitions = queries.find(
+      (query) => query.name === "anonymous_transitions",
+    );
+
+    expect(summary?.sql).toContain("COUNT(DISTINCT stable_identity_hash)");
+    expect(summary?.sql).toContain("AS anonymousIdentities");
+    expect(summary?.sql).toContain("anonymousRepeatIdentities");
+    expect(summary?.sql).toContain("workflowResourceIdentities");
+    expect(summary?.sql).toContain("toolInteractionIdentities");
+    expect(summary?.sql).not.toContain("stable_identity_hash AS");
+
+    expect(transitions?.sql).toContain(
+      "LAG(path) OVER (PARTITION BY stable_identity_hash ORDER BY occurred_at)",
+    );
+    expect(transitions?.sql).toContain(
+      "COUNT(DISTINCT stable_identity_hash) AS coarseIdentities",
+    );
+    expect(transitions?.sql).toContain("qualified_ai = 0");
+    expect(transitions?.sql).not.toContain("stable_identity_hash AS");
   });
 
   test("rejects reporting windows outside the supported range", () => {

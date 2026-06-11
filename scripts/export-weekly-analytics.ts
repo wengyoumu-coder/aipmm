@@ -104,6 +104,84 @@ GROUP BY matched_identity, category
 ORDER BY requests DESC, claimedIdentity;`,
     },
     {
+      name: "anonymous_journey_summary",
+      sql: `WITH anonymous_window AS (
+  SELECT *
+  FROM request_events
+  WHERE ${windowed}
+    AND qualified_ai = 0
+    AND stable_identity_hash IS NOT NULL
+),
+per_identity AS (
+  SELECT
+    stable_identity_hash,
+    COUNT(DISTINCT day) AS active_days,
+    COUNT(DISTINCT path) AS unique_paths,
+    MAX(CASE WHEN resource_kind = 'machine' THEN 1 ELSE 0 END)
+      AS reached_machine_resource,
+    MAX(CASE
+      WHEN path IN (
+        '/tools',
+        '/skill.md',
+        '/openapi.json',
+        '/api/v1/tools.json',
+        '/robots-recipes',
+        '/robots-recipes.md',
+        '/api/v1/robots-recipes.json'
+      )
+        OR path LIKE '/robots-recipes/%'
+        OR path LIKE '/api/v1/robots-recipes/%'
+      THEN 1 ELSE 0
+    END) AS reached_workflow_resource,
+    MAX(is_tool) AS used_tool,
+    MAX(CASE WHEN referral_signal IS NOT NULL THEN 1 ELSE 0 END)
+      AS had_referral
+  FROM anonymous_window
+  GROUP BY stable_identity_hash
+)
+SELECT
+  (SELECT COUNT(DISTINCT stable_identity_hash) FROM anonymous_window)
+    AS anonymousIdentities,
+  COALESCE(SUM(CASE WHEN active_days > 1 THEN 1 ELSE 0 END), 0)
+    AS anonymousRepeatIdentities,
+  COALESCE(SUM(CASE WHEN unique_paths > 1 THEN 1 ELSE 0 END), 0)
+    AS multiPathIdentities,
+  COALESCE(SUM(reached_machine_resource), 0) AS machineResourceIdentities,
+  COALESCE(SUM(reached_workflow_resource), 0) AS workflowResourceIdentities,
+  COALESCE(SUM(used_tool), 0) AS toolInteractionIdentities,
+  COALESCE(SUM(had_referral), 0) AS referralIdentities
+FROM per_identity;`,
+    },
+    {
+      name: "anonymous_transitions",
+      sql: `WITH ordered_anonymous AS (
+  SELECT
+    stable_identity_hash,
+    path AS to_path,
+    LAG(path) OVER (PARTITION BY stable_identity_hash ORDER BY occurred_at)
+      AS from_path
+  FROM request_events
+  WHERE ${windowed}
+    AND qualified_ai = 0
+    AND stable_identity_hash IS NOT NULL
+    AND path != '/favicon.ico'
+),
+transitions AS (
+  SELECT stable_identity_hash, from_path, to_path
+  FROM ordered_anonymous
+  WHERE from_path IS NOT NULL AND from_path != to_path
+)
+SELECT
+  from_path AS fromPath,
+  to_path AS toPath,
+  COUNT(*) AS transitions,
+  COUNT(DISTINCT stable_identity_hash) AS coarseIdentities
+FROM transitions
+GROUP BY from_path, to_path
+ORDER BY coarseIdentities DESC, transitions DESC, fromPath, toPath
+LIMIT 25;`,
+    },
+    {
       name: "referrals",
       sql: `SELECT
   COALESCE(referer_host, '(none)') AS refererHost,

@@ -41,6 +41,14 @@ describe("cycle context", () => {
               crawlDepth: 0,
             },
           ],
+          anonymous_journey_summary: [
+            {
+              anonymousIdentities: 9,
+              anonymousRepeatIdentities: 6,
+              workflowResourceIdentities: 6,
+              toolInteractionIdentities: 0,
+            },
+          ],
         },
       }),
       "utf8",
@@ -60,6 +68,10 @@ describe("cycle context", () => {
     expect(context).toContain("Requests: 50");
     expect(context).toContain("Qualified AI requests: 0");
     expect(context).toContain("Tool interactions: 0");
+    expect(context).toContain("Anonymous identities: 9");
+    expect(context).toContain("Anonymous repeat identities: 6");
+    expect(context).toContain("Anonymous workflow-resource identities: 6");
+    expect(context).toContain("Anonymous tool identities: 0");
     expect(context).toContain("What is the current mission bottleneck?");
   });
 });
