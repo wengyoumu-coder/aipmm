@@ -127,6 +127,8 @@ The Worker stores:
 - country code when provided by Cloudflare;
 - referral host and AI attribution parameters;
 - machine-resource and tool-interaction flags.
+- network verification status and official source metadata for supported
+  claimed identities.
 
 It does not store raw IP addresses.
 Events are automatically deleted after 45 days by a daily Cloudflare Cron

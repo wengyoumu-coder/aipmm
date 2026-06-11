@@ -26,4 +26,20 @@ describe("analytics schema", () => {
       "idx_request_events_stable_identity",
     );
   });
+
+  test("stores network verification conclusions without raw IP addresses", async () => {
+    const schema = await readFile(new URL("../schema.sql", import.meta.url), "utf8");
+    const migration = await readFile(
+      new URL("../migrations/0003_network_verification.sql", import.meta.url),
+      "utf8",
+    );
+
+    for (const sql of [schema, migration]) {
+      expect(sql).toContain("network_verification_status");
+      expect(sql).toContain("network_verification_source");
+      expect(sql).toContain("network_verification_source_updated_at");
+    }
+    expect(schema).not.toContain("raw_ip");
+    expect(migration).not.toContain("raw_ip");
+  });
 });

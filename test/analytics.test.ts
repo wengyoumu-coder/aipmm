@@ -163,7 +163,7 @@ describe("request recording", () => {
       {
         headers: {
           "user-agent": "OAI-SearchBot/1.0",
-          "cf-connecting-ip": "203.0.113.84",
+          "cf-connecting-ip": "104.210.140.130",
           referer: "https://chatgpt.com/",
         },
       },
@@ -185,18 +185,26 @@ describe("request recording", () => {
         DB: { prepare: () => statement },
       },
       now: new Date("2026-06-10T12:00:00Z"),
+      fetchImpl: async () =>
+        Response.json({
+          creationTime: "2026-01-02T11:00:00.000000",
+          prefixes: [{ ipv4Prefix: "104.210.140.128/28" }],
+        }),
     });
 
     expect(recorded).toBe(true);
     expect(statement.values).toContain("ai-search-crawler");
     expect(statement.values).toContain("OAI-SearchBot");
     expect(statement.values).toContain("machine");
+    expect(statement.values).toContain("verified");
+    expect(statement.values).toContain("https://openai.com/searchbot.json");
+    expect(statement.values).toContain("2026-01-02T11:00:00.000000");
     expect(
       statement.values.filter(
         (value) => typeof value === "string" && /^[a-f0-9]{64}$/.test(value),
       ),
     ).toHaveLength(2);
-    expect(statement.values.join("|")).not.toContain("203.0.113.84");
+    expect(statement.values.join("|")).not.toContain("104.210.140.130");
   });
 
   test("isolates database failures from public request handling", async () => {

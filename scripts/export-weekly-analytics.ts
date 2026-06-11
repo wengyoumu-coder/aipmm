@@ -55,6 +55,9 @@ SELECT
   ${days} AS windowDays,
   COUNT(*) AS requests,
   COALESCE(SUM(qualified_ai), 0) AS qualifiedAiRequests,
+  COALESCE(SUM(CASE
+    WHEN network_verification_status = 'verified' THEN 1 ELSE 0
+  END), 0) AS verifiedAiRequests,
   COUNT(DISTINCT CASE
     WHEN qualified_ai = 1 THEN day || ':' || identity_hash
   END) AS qualifiedAiUniqueDaily,
@@ -102,6 +105,24 @@ FROM request_events
 WHERE ${windowed} AND matched_identity IS NOT NULL
 GROUP BY matched_identity, category
 ORDER BY requests DESC, claimedIdentity;`,
+    },
+    {
+      name: "identity_verification",
+      sql: `SELECT
+  matched_identity AS claimedIdentity,
+  network_verification_status AS verificationStatus,
+  network_verification_source AS verificationSource,
+  network_verification_source_updated_at AS verificationSourceUpdatedAt,
+  COUNT(*) AS requests,
+  COUNT(DISTINCT day) AS activeDays
+FROM request_events
+WHERE ${windowed} AND matched_identity IS NOT NULL
+GROUP BY
+  matched_identity,
+  network_verification_status,
+  network_verification_source,
+  network_verification_source_updated_at
+ORDER BY requests DESC, claimedIdentity, verificationStatus;`,
     },
     {
       name: "anonymous_journey_summary",

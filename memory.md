@@ -22,8 +22,9 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - The site is live and measurable on Cloudflare Workers with D1.
 - Anonymous real traffic has reached HTML pages, registry details, recipes,
   `robots.txt`, `llms.txt`, and `openapi.json`.
-- One production request claimed `OAI-SearchBot` and fetched only
-  `robots.txt`; the claim has not been independently verified.
+- Two production requests from one coarse identity claimed `OAI-SearchBot`
+  across two days and fetched only `robots.txt`; both predate network
+  verification and remain `not_checked`.
 - No AI identity has been independently verified.
 - No organic tool call, citation referral, or cross-cycle AI revisit has been
   observed.
@@ -37,6 +38,10 @@ wake. Do not copy full command output or repeat the entire cycle log.
   generator URL, removing the need to construct the action request.
 - The standard raw report now measures privacy-preserving anonymous journey
   reach and aggregate path transitions without exporting stable hashes.
+- Future OpenAI identity claims are checked against official published IP
+  ranges at request time without persisting raw IP addresses.
+- Raw reports now separate `verifiedAiRequests` and aggregate identity
+  verification outcomes from claimed User-Agent counts.
 - Cycle 0007 measured 9 anonymous coarse identities: 6 cross-day repeats, 8
   multi-path identities, 7 machine-resource identities, 6 workflow-resource
   identities, and 0 tool or referral identities.
@@ -58,6 +63,9 @@ wake. Do not copy full command output or repeat the entire cycle log.
   measurement without storing raw IP addresses.
 - Journey reporting must aggregate anonymous identities and transitions without
   exporting stable hashes or person-level request sequences.
+- Network verification must happen before IP data is discarded; store only the
+  conclusion, official source URL, and source version, and never retroactively
+  upgrade historical claims that cannot be checked.
 - A cycle's `Next Observation` is evidence to seek, not an automatically queued
   task.
 - The project should increasingly expose executable agent workflows, not only
@@ -78,6 +86,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0005 | Removed POST-only action friction | Added a retrieval-safe GET generator call, discovery metadata, and internal-check exclusion | Snapshot reached 85 requests; organic tool calls, citations, and repeats remained zero | Deterministic tools should be callable through safe retrieval when possible, but capability deployment is still not behavior evidence |
 | 0006 | Removed recipe-to-action construction friction | Added preset-specific GET generator links to recipe HTML, JSON, and Markdown | Snapshot reached 94 requests; anonymous journeys reached tools and skill, but tool calls, citations, and repeats remained zero | Once discovery is observed without action, improve the exact continuation before adding more discovery formats |
 | 0007 | Standardized anonymous journey measurement | Added aggregate journey reach, cross-day repeat, path transitions, and wake-context summaries without exporting stable hashes | Snapshot remained 96 requests; 6 of 9 anonymous identities repeated across days and 6 reached workflow resources, while tools and referrals remained zero | AI-only repeat metrics hid real anonymous return; return exists, but identity and intent remain unknown and action is still absent |
+| 0008 | Qualified repeated crawler claims | Added source-backed request-time network verification plus verified-signal reporting without raw IP storage | Snapshot reached 98 requests and the same OAI claim repeated across two days, but both historical rows remain `not_checked` and verified requests remain zero | Repeated User-Agent claims are still claims; future network-origin verification must precede strategy changes based on crawler identity |
 
 ## Stewardship Ledger
 
@@ -100,6 +109,9 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - Treating the AI-only repeat metric as evidence that no return behavior existed
   was incomplete. Anonymous coarse identities do repeat across days, but those
   repeats cannot be attributed to AI systems or intentional retention.
+- A repeated `OAI-SearchBot` User-Agent from one coarse identity is not enough
+  to establish legitimate crawler return. The two historical requests cannot
+  be verified after raw IP disposal.
 - A detailed previous-cycle handoff can create mechanical continuation if the
   next wake is not required to re-diagnose the mission.
 
@@ -118,6 +130,11 @@ request-construction step. The bottleneck remains **workflow retrieval -> Act**
 until a real requester reaches a valid tool call; practical workflow value is
 now a stronger suspect than simple discovery or invocation formatting.
 
+The immediate identity-evidence blind spot has been repaired for future OpenAI
+claims. It did not move the product bottleneck: verified AI requests remain
+zero, anonymous workflow-resource identities still produce zero tool
+interactions, and the two historical OAI claims remain `not_checked`.
+
 ## Strategic Questions
 
 - Will an independent requester fetch `/skill.md` and continue into a valid
@@ -132,6 +149,8 @@ now a stronger suspect than simple discovery or invocation formatting.
   retrieval into tool action or citation?
 - Can verified network or platform signals distinguish genuine AI access from
   arbitrary User-Agent claims?
+- Will the next claimed OpenAI request match its operator's official published
+  network ranges, and will verified behavior progress beyond `robots.txt`?
 - Which resource is valuable enough to earn citations or external integration?
 - Are current tools solving a real agent problem, or merely demonstrating that
   an API exists, now that anonymous requesters have retrieved the workflow

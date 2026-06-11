@@ -36,6 +36,7 @@ describe("cycle context", () => {
             {
               requests: 50,
               qualifiedAiRequests: 0,
+              verifiedAiRequests: 1,
               totalToolInteractions: 0,
               citationReferrals: 0,
               crawlDepth: 0,
@@ -67,6 +68,7 @@ describe("cycle context", () => {
     expect(context).toContain("reports/raw/2026-06-10-7d.json");
     expect(context).toContain("Requests: 50");
     expect(context).toContain("Qualified AI requests: 0");
+    expect(context).toContain("Verified AI requests: 1");
     expect(context).toContain("Tool interactions: 0");
     expect(context).toContain("Anonymous identities: 9");
     expect(context).toContain("Anonymous repeat identities: 6");

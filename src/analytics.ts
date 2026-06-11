@@ -3,6 +3,7 @@ import type {
   Env,
   RequestClassification,
 } from "./types";
+import { verifyClaimedNetwork } from "./network-verification";
 
 const INTERNAL_USER_AGENTS = new Set([
   "AI-Web-Observatory-Smoke/1.0",
@@ -114,6 +115,7 @@ export async function recordRequest(input: {
   classification: RequestClassification;
   env: Env;
   now?: Date;
+  fetchImpl?: typeof fetch;
 }): Promise<boolean> {
   if (!input.env.DB || !input.env.ANALYTICS_SALT) {
     return false;
@@ -152,13 +154,20 @@ export async function recordRequest(input: {
     const referralSignal = input.classification.referralSignals.join(",");
     const kind = resourceKind(url.pathname);
     const isTool = url.pathname.startsWith("/api/v1/tools/") ? 1 : 0;
+    const verification = await verifyClaimedNetwork({
+      matchedIdentity: input.classification.matchedIdentity,
+      ip,
+      fetchImpl: input.fetchImpl,
+    });
 
     await input.env.DB.prepare(
       `INSERT INTO request_events (
         occurred_at, day, identity_hash, stable_identity_hash, path, method,
         status, content_type, category, matched_identity, qualified_ai, country,
-        referer_host, utm_source, referral_signal, resource_kind, is_tool
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        referer_host, utm_source, referral_signal, resource_kind, is_tool,
+        network_verification_status, network_verification_source,
+        network_verification_source_updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     )
       .bind(
         now.toISOString(),
@@ -178,6 +187,9 @@ export async function recordRequest(input: {
         referralSignal || null,
         kind,
         isTool,
+        verification.status,
+        verification.sourceUrl,
+        verification.sourceUpdatedAt,
       )
       .run();
 

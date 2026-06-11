@@ -33,6 +33,20 @@ export type RegistryEntry = {
   verifiedOn: string;
 };
 
+export type NetworkVerificationStatus =
+  | "verified"
+  | "not_verified"
+  | "source_unavailable"
+  | "unsupported"
+  | "not_applicable"
+  | "not_checked";
+
+export type NetworkVerification = {
+  status: NetworkVerificationStatus;
+  sourceUrl: string | null;
+  sourceUpdatedAt: string | null;
+};
+
 export type D1RunResult = {
   success: boolean;
   meta?: Record<string, unknown>;

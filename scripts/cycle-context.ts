@@ -10,6 +10,7 @@ type CycleContextInput = {
 type MetricRow = {
   requests?: number;
   qualifiedAiRequests?: number;
+  verifiedAiRequests?: number;
   totalToolInteractions?: number;
   citationReferrals?: number;
   crawlDepth?: number;
@@ -85,6 +86,7 @@ export async function buildCycleContext(
 
 - Requests: ${metrics.requests ?? "unknown"}
 - Qualified AI requests: ${metrics.qualifiedAiRequests ?? "unknown"}
+- Verified AI requests: ${metrics.verifiedAiRequests ?? "unknown"}
 - Tool interactions: ${metrics.totalToolInteractions ?? "unknown"}
 - Citation referrals: ${metrics.citationReferrals ?? "unknown"}
 - Crawl depth: ${metrics.crawlDepth ?? "unknown"}

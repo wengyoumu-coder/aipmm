@@ -48,12 +48,33 @@ describe("weekly analytics export", () => {
       "metrics",
       "top_paths",
       "claimed_identities",
+      "identity_verification",
       "anonymous_journey_summary",
       "anonymous_transitions",
       "referrals",
       "countries",
       "daily_trend",
     ]);
+  });
+
+  test("separates verified requests from claimed identities", () => {
+    const queries = buildWeeklyQueries(
+      7,
+      new Date("2026-06-10T12:00:00Z"),
+    );
+    const metrics = queries.find((query) => query.name === "metrics");
+    const verification = queries.find(
+      (query) => query.name === "identity_verification",
+    );
+
+    expect(metrics?.sql).toContain("AS verifiedAiRequests");
+    expect(metrics?.sql).toContain(
+      "network_verification_status = 'verified'",
+    );
+    expect(verification?.sql).toContain("network_verification_status");
+    expect(verification?.sql).toContain("AS verificationStatus");
+    expect(verification?.sql).not.toContain("stable_identity_hash AS");
+    expect(verification?.sql).not.toContain("identity_hash AS");
   });
 
   test("reports anonymous journeys without exposing stable identity hashes", () => {
