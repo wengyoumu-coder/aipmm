@@ -29,17 +29,24 @@ describe("public routes", () => {
   test("serves the registry as JSON with source metadata", async () => {
     const response = await fetchPath("/api/v1/registry.json");
     const body = await response.json<{
+      updatedOn: string;
       count: number;
-      entries: Array<{ slug: string; sourceUrl: string }>;
+      entries: Array<{
+        slug: string;
+        sourceUrl: string;
+        verifiedOn: string;
+      }>;
     }>();
 
     expect(response.status).toBe(200);
     expect(response.headers.get("content-type")).toContain("application/json");
     expect(body.count).toBeGreaterThanOrEqual(8);
+    expect(body.updatedOn).toBe("2026-06-12");
     expect(body.entries).toContainEqual(
       expect.objectContaining({
         slug: "openai-oai-searchbot",
         sourceUrl: "https://developers.openai.com/api/docs/bots",
+        verifiedOn: "2026-06-10",
       }),
     );
   });
@@ -93,6 +100,9 @@ describe("public routes", () => {
     expect(body).toContain(`<loc>${origin}/</loc>`);
     expect(body).toContain(
       `<loc>${origin}/registry/openai-oai-searchbot</loc>`,
+    );
+    expect(body).toContain(
+      `<loc>${origin}/robots-recipes/search-visible-no-training.txt</loc>`,
     );
   });
 

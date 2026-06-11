@@ -4,6 +4,7 @@ import {
   INDEXNOW_KEY,
   LAUNCHED_AT,
   REGISTRY,
+  REGISTRY_VERIFIED_ON,
   UPDATED_ON,
 } from "./catalog";
 import { isAdminAuthorized, queryStats } from "./analytics";
@@ -23,6 +24,7 @@ import {
   recipeDecision,
   ROBOTS_RECIPES,
   robotsRecipeGeneratePath,
+  robotsRecipeRawPath,
   robotsRecipesMarkdown,
   type RobotsRecipe,
 } from "./robots-recipes";
@@ -74,7 +76,7 @@ function homepage(origin: string): string {
 <li><code>POST /api/v1/tools/generate-robots</code></li>
 </ul>
 </section>
-<p>Registry entries: ${REGISTRY.length}. Last verified: <time datetime="${UPDATED_ON}">${UPDATED_ON}</time>.</p>
+<p>Registry entries: ${REGISTRY.length}. Last verified: <time datetime="${REGISTRY_VERIFIED_ON}">${REGISTRY_VERIFIED_ON}</time>.</p>
 <p>Public experiment launched: <time datetime="${LAUNCHED_AT}">${LAUNCHED_AT}</time>.</p>
 </article>`;
 
@@ -206,12 +208,14 @@ function robotsRecipeIndex(origin: string): string {
   const items = ROBOTS_RECIPES.map(
     (recipe) => {
       const generatePath = robotsRecipeGeneratePath(recipe);
+      const rawPolicyPath = robotsRecipeRawPath(recipe);
       return `<li>
 <article>
 <h2><a href="/robots-recipes/${escapeHtml(recipe.slug)}">${escapeHtml(recipe.title)}</a></h2>
 <p>${escapeHtml(recipe.summary)}</p>
 <p>${escapeHtml(recipe.rationale)}</p>
 <p><a href="/api/v1/robots-recipes/${escapeHtml(recipe.slug)}.json">JSON representation</a></p>
+<p><a href="${escapeHtml(rawPolicyPath)}">Raw robots.txt policy</a></p>
 <p><a href="${escapeHtml(generatePath)}">Generate this policy with GET</a></p>
 </article>
 </li>`;
@@ -249,6 +253,7 @@ function robotsRecipeDetail(
   recipe: RobotsRecipe,
 ): string {
   const generatePath = robotsRecipeGeneratePath(recipe);
+  const rawPolicyPath = robotsRecipeRawPath(recipe);
   const policy = generateRobotsPolicy(recipe, {
     sitemap: `${origin}/sitemap.xml`,
   });
@@ -280,6 +285,7 @@ function robotsRecipeDetail(
 <h2>Machine continuation</h2>
 <ul>
 <li><a href="/api/v1/robots-recipes/${escapeHtml(recipe.slug)}.json">Recipe JSON</a></li>
+<li><a href="${escapeHtml(rawPolicyPath)}">Raw robots.txt policy</a></li>
 <li><a href="${escapeHtml(generatePath)}"><code>GET ${escapeHtml(generatePath)}</code></a></li>
 <li><code>POST /api/v1/tools/generate-robots</code> with <code>{"preset":"${escapeHtml(recipe.slug)}"}</code></li>
 <li><code>POST /api/v1/tools/lint-robots</code> to inspect a modified policy</li>
@@ -499,6 +505,10 @@ function publicUrls(origin: string): Array<{
       modified: UPDATED_ON,
     })),
     ...ROBOTS_RECIPES.map((recipe) => ({
+      url: `${origin}${robotsRecipeRawPath(recipe)}`,
+      modified: UPDATED_ON,
+    })),
+    ...ROBOTS_RECIPES.map((recipe) => ({
       url: `${origin}/api/v1/robots-recipes/${recipe.slug}.json`,
       modified: UPDATED_ON,
     })),
@@ -520,7 +530,7 @@ function conciseLlms(origin: string): string {
 
 > Source-linked registry and deterministic tools for AI access to the public web.
 
-Last verified: ${UPDATED_ON}
+Last verified: ${REGISTRY_VERIFIED_ON}
 
 ## Primary resources
 
@@ -1136,15 +1146,28 @@ export async function handleRequest(
       head,
     });
   } else if (url.pathname.startsWith("/robots-recipes/")) {
+    const rawSlug = url.pathname.slice("/robots-recipes/".length);
+    const isRawPolicy = rawSlug.endsWith(".txt");
     const recipe = findRobotsRecipe(
-      url.pathname.slice("/robots-recipes/".length),
+      isRawPolicy ? rawSlug.slice(0, -".txt".length) : rawSlug,
     );
-    response = recipe
-      ? createResponse(robotsRecipeDetail(origin, recipe), {
-          contentType: "text/html; charset=utf-8",
+    if (recipe && isRawPolicy) {
+      response = createResponse(
+        generateRobotsPolicy(recipe, {
+          sitemap: `${origin}/sitemap.xml`,
+        }),
+        {
+          contentType: "text/plain; charset=utf-8",
           head,
-        })
-      : createResponse(
+        },
+      );
+    } else if (recipe) {
+      response = createResponse(robotsRecipeDetail(origin, recipe), {
+        contentType: "text/html; charset=utf-8",
+        head,
+      });
+    } else {
+      response = createResponse(
           htmlDocument({
             title: "Not found - AI Web Observatory",
             description: "The requested robots recipe does not exist.",
@@ -1153,6 +1176,7 @@ export async function handleRequest(
           }),
           { status: 404, contentType: "text/html; charset=utf-8", head },
         );
+    }
   } else if (
     url.pathname === "/api/v1/manifest" ||
     url.pathname === "/api/v1/manifest.json"
@@ -1217,6 +1241,7 @@ export async function handleRequest(
           ...recipe,
           htmlUrl: `${origin}/robots-recipes/${recipe.slug}`,
           jsonUrl: `${origin}/api/v1/robots-recipes/${recipe.slug}.json`,
+          rawPolicyUrl: `${origin}${robotsRecipeRawPath(recipe)}`,
           generateUrl: `${origin}${robotsRecipeGeneratePath(recipe)}`,
         })),
       },
@@ -1243,6 +1268,7 @@ export async function handleRequest(
             continuations: {
               generateTool: `${origin}/api/v1/tools/generate-robots`,
               generateUrl: `${origin}${robotsRecipeGeneratePath(recipe)}`,
+              rawPolicyUrl: `${origin}${robotsRecipeRawPath(recipe)}`,
               lintTool: `${origin}/api/v1/tools/lint-robots`,
             },
           },

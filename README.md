@@ -32,6 +32,7 @@ deterministic tools:
 | `/robots-recipes` | AI robots.txt policy recipes |
 | `/robots-recipes.md` | All policy recipes as Markdown |
 | `/api/v1/robots-recipes.json` | Policy recipe JSON |
+| `/robots-recipes/{slug}.txt` | Directly reusable raw robots.txt policy |
 | `/llms.txt` | Concise machine index |
 | `/llms-full.txt` | Complete registry in one text response |
 | `/openapi.json` | Callable API contract |

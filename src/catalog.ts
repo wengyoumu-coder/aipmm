@@ -1,6 +1,7 @@
 import type { RegistryEntry } from "./types";
 
-export const UPDATED_ON = "2026-06-10";
+export const UPDATED_ON = "2026-06-12";
+export const REGISTRY_VERIFIED_ON = "2026-06-10";
 export const LAUNCHED_AT = "2026-06-10T11:49:05Z";
 export const INDEXNOW_KEY = "84072663bac3e2c61cb2e5c67a18746e";
 
@@ -16,7 +17,7 @@ export const REGISTRY: RegistryEntry[] = [
       "Search crawler used to surface websites in ChatGPT search results.",
     sourceUrl: "https://developers.openai.com/api/docs/bots",
     sourceTitle: "Overview of OpenAI Crawlers",
-    verifiedOn: UPDATED_ON,
+    verifiedOn: REGISTRY_VERIFIED_ON,
   },
   {
     slug: "openai-gptbot",
@@ -29,7 +30,7 @@ export const REGISTRY: RegistryEntry[] = [
       "Crawler controlled separately from OAI-SearchBot for potential model training use.",
     sourceUrl: "https://developers.openai.com/api/docs/bots",
     sourceTitle: "Overview of OpenAI Crawlers",
-    verifiedOn: UPDATED_ON,
+    verifiedOn: REGISTRY_VERIFIED_ON,
   },
   {
     slug: "openai-chatgpt-user",
@@ -42,7 +43,7 @@ export const REGISTRY: RegistryEntry[] = [
       "User-directed fetch identity used when a ChatGPT user requests access to a page.",
     sourceUrl: "https://developers.openai.com/api/docs/bots",
     sourceTitle: "Overview of OpenAI Crawlers",
-    verifiedOn: UPDATED_ON,
+    verifiedOn: REGISTRY_VERIFIED_ON,
   },
   {
     slug: "anthropic-claude-searchbot",
@@ -56,7 +57,7 @@ export const REGISTRY: RegistryEntry[] = [
     sourceUrl:
       "https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
     sourceTitle: "Anthropic web crawler controls",
-    verifiedOn: UPDATED_ON,
+    verifiedOn: REGISTRY_VERIFIED_ON,
   },
   {
     slug: "anthropic-claudebot",
@@ -70,7 +71,7 @@ export const REGISTRY: RegistryEntry[] = [
     sourceUrl:
       "https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
     sourceTitle: "Anthropic web crawler controls",
-    verifiedOn: UPDATED_ON,
+    verifiedOn: REGISTRY_VERIFIED_ON,
   },
   {
     slug: "anthropic-claude-user",
@@ -84,7 +85,7 @@ export const REGISTRY: RegistryEntry[] = [
     sourceUrl:
       "https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
     sourceTitle: "Anthropic web crawler controls",
-    verifiedOn: UPDATED_ON,
+    verifiedOn: REGISTRY_VERIFIED_ON,
   },
   {
     slug: "perplexity-perplexitybot",
@@ -98,7 +99,7 @@ export const REGISTRY: RegistryEntry[] = [
     sourceUrl:
       "https://docs.perplexity.ai/docs/resources/perplexity-crawlers",
     sourceTitle: "Perplexity Crawlers",
-    verifiedOn: UPDATED_ON,
+    verifiedOn: REGISTRY_VERIFIED_ON,
   },
   {
     slug: "perplexity-perplexity-user",
@@ -112,7 +113,7 @@ export const REGISTRY: RegistryEntry[] = [
     sourceUrl:
       "https://docs.perplexity.ai/docs/resources/perplexity-crawlers",
     sourceTitle: "Perplexity Crawlers",
-    verifiedOn: UPDATED_ON,
+    verifiedOn: REGISTRY_VERIFIED_ON,
   },
 ];
 
@@ -124,6 +125,13 @@ export type ChangeRecord = {
 };
 
 export const CHANGES: ChangeRecord[] = [
+  {
+    date: UPDATED_ON,
+    id: "raw-policy-artifacts",
+    title: "Directly reusable robots.txt policy artifacts",
+    summary:
+      "Published every documented policy recipe as a canonical text/plain artifact linked from HTML, JSON, Markdown, sitemap, and static exports.",
+  },
   {
     date: "2026-06-11",
     id: "recipe-specific-get-links",
@@ -146,21 +154,21 @@ export const CHANGES: ChangeRecord[] = [
       "Published a compact skill guide that chains the sourced registry and robots policy tools into one auditable agent workflow.",
   },
   {
-    date: UPDATED_ON,
+    date: REGISTRY_VERIFIED_ON,
     id: "tool-catalog",
     title: "Tool catalog and example-driven discovery",
     summary:
       "Published HTML and JSON tool directories with example requests, then linked them through discovery resources.",
   },
   {
-    date: UPDATED_ON,
+    date: REGISTRY_VERIFIED_ON,
     id: "robots-policy-recipes",
     title: "AI robots.txt policy recipes and generator",
     summary:
       "Published five deterministic policy recipes in HTML, JSON, and Markdown, plus a generation and linting tool.",
   },
   {
-    date: UPDATED_ON,
+    date: REGISTRY_VERIFIED_ON,
     id: "initial-registry",
     title: "Initial AI web identity registry",
     summary:

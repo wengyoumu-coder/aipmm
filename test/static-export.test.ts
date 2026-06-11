@@ -30,6 +30,15 @@ describe("static site export", () => {
       stat(
         join(
           outputDir,
+          "robots-recipes",
+          "search-visible-no-training.txt",
+        ),
+      ),
+    ).resolves.toBeDefined();
+    await expect(
+      stat(
+        join(
+          outputDir,
           "api",
           "v1",
           "registry",

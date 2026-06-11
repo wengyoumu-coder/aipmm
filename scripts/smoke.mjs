@@ -25,6 +25,10 @@ const resources = [
     "/api/v1/robots-recipes/search-visible-no-training.json",
     "application/json",
   ],
+  [
+    "/robots-recipes/search-visible-no-training.txt",
+    "text/plain",
+  ],
   ["/robots.txt", "text/plain"],
   ["/sitemap.xml", "application/xml"],
   ["/llms.txt", "text/plain"],

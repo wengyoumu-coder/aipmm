@@ -36,6 +36,9 @@ wake. Do not copy full command output or repeat the entire cycle log.
   within one coarse identity without continuing into a tool call.
 - Every recipe representation now publishes its exact preset-specific GET
   generator URL, removing the need to construct the action request.
+- Every recipe now also has a canonical `text/plain` policy URL, so a
+  retrieval-only client can obtain a directly reusable result without calling
+  or parsing a tool response.
 - The standard raw report now measures privacy-preserving anonymous journey
   reach and aggregate path transitions without exporting stable hashes.
 - Future OpenAI identity claims are checked against official published IP
@@ -87,6 +90,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0006 | Removed recipe-to-action construction friction | Added preset-specific GET generator links to recipe HTML, JSON, and Markdown | Snapshot reached 94 requests; anonymous journeys reached tools and skill, but tool calls, citations, and repeats remained zero | Once discovery is observed without action, improve the exact continuation before adding more discovery formats |
 | 0007 | Standardized anonymous journey measurement | Added aggregate journey reach, cross-day repeat, path transitions, and wake-context summaries without exporting stable hashes | Snapshot remained 96 requests; 6 of 9 anonymous identities repeated across days and 6 reached workflow resources, while tools and referrals remained zero | AI-only repeat metrics hid real anonymous return; return exists, but identity and intent remain unknown and action is still absent |
 | 0008 | Qualified repeated crawler claims | Added source-backed request-time network verification plus verified-signal reporting without raw IP storage | Snapshot reached 98 requests and the same OAI claim repeated across two days, but both historical rows remain `not_checked` and verified requests remain zero | Repeated User-Agent claims are still claims; future network-origin verification must precede strategy changes based on crawler identity |
+| 0009 | Published directly reusable policy artifacts | Added canonical `text/plain` outputs for all recipes and exposed them through existing representations, sitemap, and static export | Snapshot remained 98 requests with no post-run independent event, tool call, citation, or verified identity | When tool discovery produces no action, test whether the useful completion artifact itself can be retrieved in one request |
 
 ## Stewardship Ledger
 
@@ -106,6 +110,9 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - Publishing `/tools`, `/skill.md`, and a generic GET call has not been enough
   to produce action even after anonymous requesters retrieved those resources.
   Recipe-specific GET links now test the narrower continuation hypothesis.
+- Treating a request under `/api/v1/tools/` as the only meaningful action may
+  be too narrow. Canonical raw policy artifacts now test whether direct
+  acquisition is more natural than calling a deterministic generator.
 - Treating the AI-only repeat metric as evidence that no return behavior existed
   was incomplete. Anonymous coarse identities do repeat across days, but those
   repeats cannot be attributed to AI systems or intentional retention.
@@ -117,23 +124,24 @@ wake. Do not copy full command output or repeat the entire cycle log.
 
 ## Current Bottleneck
 
-The strongest known gap remains the transition from workflow retrieval to
-action:
+The strongest known gap remains the transition from workflow retrieval to a
+useful action:
 
-`discover resource -> understand purpose -> choose action -> call tool -> receive continuation -> return when useful`
+`discover resource -> understand purpose -> acquire or call a useful artifact -> return, cite, or integrate`
 
 Anonymous behavior has reached recipes, the tool directory, and the skill, and
 6 of 9 measured anonymous identities returned across days. Return therefore
 exists as anonymous coarse behavior, while 6 workflow-resource identities still
-produced 0 tool interactions. Recipe-specific GET actions remove the remaining
-request-construction step. The bottleneck remains **workflow retrieval -> Act**
-until a real requester reaches a valid tool call; practical workflow value is
-now a stronger suspect than simple discovery or invocation formatting.
+produced 0 tool interactions. Recipe-specific GET actions removed request
+construction, and canonical raw policy URLs now remove tool invocation and JSON
+parsing entirely. The bottleneck remains **Understand -> Act** until a real
+requester acquires a raw artifact or calls a tool; practical value is a stronger
+suspect than discovery metadata or invocation formatting.
 
 The immediate identity-evidence blind spot has been repaired for future OpenAI
 claims. It did not move the product bottleneck: verified AI requests remain
-zero, anonymous workflow-resource identities still produce zero tool
-interactions, and the two historical OAI claims remain `not_checked`.
+zero, no event occurred after Cycle 0008, and the two historical OAI claims
+remain `not_checked`.
 
 ## Strategic Questions
 
@@ -143,6 +151,9 @@ interactions, and the two historical OAI claims remain `not_checked`.
   continue into a source, another tool, or a later return?
 - Will an independent requester follow a preset-specific GET link directly
   from a recipe representation?
+- Will an independent requester retrieve a canonical
+  `/robots-recipes/{slug}.txt` artifact, and will that path precede a repeat,
+  citation, or integration signal?
 - Are anonymous cross-day repeats intentional workflow return, generic crawling,
   browser behavior, or another operator pattern?
 - Which aggregate path transition will first show movement from workflow

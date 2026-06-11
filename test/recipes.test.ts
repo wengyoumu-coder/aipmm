@@ -62,7 +62,11 @@ describe("robots recipe routes", () => {
     const htmlBody = await html.text();
     const jsonBody = await json.json<{
       count: number;
-      recipes: Array<{ slug: string; generateUrl: string }>;
+      recipes: Array<{
+        slug: string;
+        generateUrl: string;
+        rawPolicyUrl: string;
+      }>;
     }>();
     const markdownBody = await markdown.text();
 
@@ -78,6 +82,8 @@ describe("robots recipe routes", () => {
         generateUrl:
           `${origin}/api/v1/tools/generate-robots` +
           "?preset=search-visible-no-training",
+        rawPolicyUrl:
+          `${origin}/robots-recipes/search-visible-no-training.txt`,
       }),
     );
     expect(markdown.headers.get("content-type")).toContain("text/markdown");
@@ -86,6 +92,9 @@ describe("robots recipe routes", () => {
     );
     expect(markdownBody).toContain(
       "GET https://observatory.example/api/v1/tools/generate-robots?preset=search-visible-no-training",
+    );
+    expect(markdownBody).toContain(
+      "Raw policy: https://observatory.example/robots-recipes/search-visible-no-training.txt",
     );
   });
 
@@ -100,7 +109,7 @@ describe("robots recipe routes", () => {
     const jsonBody = await json.json<{
       recipe: { slug: string };
       robotsText: string;
-      continuations: { generateUrl: string };
+      continuations: { generateUrl: string; rawPolicyUrl: string };
     }>();
 
     expect(htmlBody).toContain("User-agent: OAI-SearchBot");
@@ -108,11 +117,34 @@ describe("robots recipe routes", () => {
     expect(htmlBody).toContain(
       'href="/api/v1/tools/generate-robots?preset=search-visible-no-training"',
     );
+    expect(htmlBody).toContain(
+      'href="/robots-recipes/search-visible-no-training.txt"',
+    );
     expect(jsonBody.recipe.slug).toBe("search-visible-no-training");
     expect(jsonBody.robotsText).toContain("User-agent: GPTBot");
     expect(jsonBody.continuations.generateUrl).toBe(
       `${origin}/api/v1/tools/generate-robots` +
         "?preset=search-visible-no-training",
+    );
+    expect(jsonBody.continuations.rawPolicyUrl).toBe(
+      `${origin}/robots-recipes/search-visible-no-training.txt`,
+    );
+  });
+
+  test("serves a directly reusable raw robots policy", async () => {
+    const response = await fetchPath(
+      "/robots-recipes/search-visible-no-training.txt",
+    );
+    const body = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("text/plain");
+    expect(body).toContain(
+      "# AI Web Observatory recipe: search-visible-no-training",
+    );
+    expect(body).toContain("User-agent: OAI-SearchBot\nAllow: /");
+    expect(body).toContain(
+      `Sitemap: ${origin}/sitemap.xml`,
     );
   });
 

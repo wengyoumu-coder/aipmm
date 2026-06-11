@@ -59,6 +59,10 @@ function resources(): StaticResource[] {
         outputPath: `robots-recipes/${recipe.slug}/index.html`,
       },
       {
+        route: `/robots-recipes/${recipe.slug}.txt`,
+        outputPath: `robots-recipes/${recipe.slug}.txt`,
+      },
+      {
         route: `/api/v1/robots-recipes/${recipe.slug}.json`,
         outputPath: `api/v1/robots-recipes/${recipe.slug}.json`,
       },
