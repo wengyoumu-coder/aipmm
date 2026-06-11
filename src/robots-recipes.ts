@@ -119,9 +119,14 @@ Allow: /${sitemap}
 `;
 }
 
+export function robotsRecipeGeneratePath(recipe: RobotsRecipe): string {
+  return `/api/v1/tools/generate-robots?preset=${encodeURIComponent(recipe.slug)}`;
+}
+
 export function robotsRecipesMarkdown(origin: string): string {
   const recipes = ROBOTS_RECIPES.map((recipe) => {
     const policy = generateRobotsPolicy(recipe);
+    const generateUrl = `${origin}${robotsRecipeGeneratePath(recipe)}`;
     return `## ${recipe.title}
 
 - Slug: \`${recipe.slug}\`
@@ -129,6 +134,7 @@ export function robotsRecipesMarkdown(origin: string): string {
 - Rationale: ${recipe.rationale}
 - HTML: ${origin}/robots-recipes/${recipe.slug}
 - JSON: ${origin}/api/v1/robots-recipes/${recipe.slug}.json
+- Generate: GET ${generateUrl}
 
 \`\`\`text
 ${policy.trim()}

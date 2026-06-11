@@ -160,7 +160,11 @@ describe("public routes", () => {
       }),
     );
     expect(feed.headers.get("content-type")).toContain("application/rss+xml");
-    expect(await feed.text()).toContain("<rss version=\"2.0\">");
+    const feedBody = await feed.text();
+    expect(feedBody).toContain("<rss version=\"2.0\">");
+    expect(feedBody).toContain(
+      "Recipe-specific retrieval-safe generation links",
+    );
     expect(openapi.openapi).toBe("3.1.0");
     expect(openapi.paths).toHaveProperty(
       "/api/v1/tools/classify-user-agent",

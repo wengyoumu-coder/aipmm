@@ -59,20 +59,33 @@ describe("robots recipe routes", () => {
     const html = await fetchPath("/robots-recipes");
     const json = await fetchPath("/api/v1/robots-recipes.json");
     const markdown = await fetchPath("/robots-recipes.md");
+    const htmlBody = await html.text();
     const jsonBody = await json.json<{
       count: number;
-      recipes: Array<{ slug: string }>;
+      recipes: Array<{ slug: string; generateUrl: string }>;
     }>();
+    const markdownBody = await markdown.text();
 
     expect(html.status).toBe(200);
-    expect(await html.text()).toContain("AI robots.txt policy recipes");
+    expect(htmlBody).toContain("AI robots.txt policy recipes");
+    expect(htmlBody).toContain(
+      'href="/api/v1/tools/generate-robots?preset=search-visible-no-training"',
+    );
     expect(jsonBody.count).toBe(5);
     expect(jsonBody.recipes).toContainEqual(
-      expect.objectContaining({ slug: "search-visible-no-training" }),
+      expect.objectContaining({
+        slug: "search-visible-no-training",
+        generateUrl:
+          `${origin}/api/v1/tools/generate-robots` +
+          "?preset=search-visible-no-training",
+      }),
     );
     expect(markdown.headers.get("content-type")).toContain("text/markdown");
-    expect(await markdown.text()).toContain(
+    expect(markdownBody).toContain(
       "## Search visibility without training crawlers",
+    );
+    expect(markdownBody).toContain(
+      "GET https://observatory.example/api/v1/tools/generate-robots?preset=search-visible-no-training",
     );
   });
 
@@ -87,12 +100,20 @@ describe("robots recipe routes", () => {
     const jsonBody = await json.json<{
       recipe: { slug: string };
       robotsText: string;
+      continuations: { generateUrl: string };
     }>();
 
     expect(htmlBody).toContain("User-agent: OAI-SearchBot");
     expect(htmlBody).toContain("/registry/openai-oai-searchbot");
+    expect(htmlBody).toContain(
+      'href="/api/v1/tools/generate-robots?preset=search-visible-no-training"',
+    );
     expect(jsonBody.recipe.slug).toBe("search-visible-no-training");
     expect(jsonBody.robotsText).toContain("User-agent: GPTBot");
+    expect(jsonBody.continuations.generateUrl).toBe(
+      `${origin}/api/v1/tools/generate-robots` +
+        "?preset=search-visible-no-training",
+    );
   });
 
   test("generates and lints a selected policy through the API tool", async () => {

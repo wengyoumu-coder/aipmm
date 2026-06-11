@@ -31,9 +31,14 @@ wake. Do not copy full command output or repeat the entire cycle log.
   data through robots policy generation, linting, and cited output.
 - The deterministic robots policy generator now supports a retrieval-safe GET
   invocation published through the tool catalog, OpenAPI, HTML, and skill.
+- Anonymous real behavior has reached recipe pages, `/tools`, and `/skill.md`
+  within one coarse identity without continuing into a tool call.
+- Every recipe representation now publishes its exact preset-specific GET
+  generator URL, removing the need to construct the action request.
 - The present bottleneck is between **Understand** and **Act**: machine
-  resources and an executable workflow are available, but there is no evidence
-  that an independent agent continues into a valid tool call.
+  resources, an executable workflow, and direct recipe actions are available,
+  but there is no evidence that an independent requester values the workflow
+  enough to execute it.
 
 ## Durable Decisions
 
@@ -51,8 +56,10 @@ wake. Do not copy full command output or repeat the entire cycle log.
   task.
 - The project should increasingly expose executable agent workflows, not only
   publish more descriptive machine pages.
-- Until the host Node 25 fetch failure is resolved, use Node 22 with Wrangler
-  4.99.0 for live Cloudflare deploy and D1 operations.
+- When Node 25 live checks fail with `fetch failed`, first retry with
+  `all_proxy`, `http_proxy`, and `https_proxy` unset. The local proxy
+  environment, not Cloudflare production, caused the reproduced smoke and D1
+  failures; Node 22 plus Wrangler 4.99.0 remains a fallback.
 
 ## Cycle Ledger
 
@@ -63,6 +70,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0003 | Repaired reporting and improved tool discovery | Added Node 22 D1 fallback plus `/tools` and `/api/v1/tools.json` | Snapshot reached 50 real requests; tool calls, claimed AI identities, and referrals remained zero | Discovery metadata alone does not yet create action; the operating loop also needed mission-level memory |
 | 0004 | Added an executable agent workflow | Published `/skill.md` and linked it through all discovery surfaces | Snapshot reached 68 requests and one unverified `OAI-SearchBot` robots fetch; tool calls, referrals, and repeats remained zero | A real action path now exists, but deployment alone is not behavior change |
 | 0005 | Removed POST-only action friction | Added a retrieval-safe GET generator call, discovery metadata, and internal-check exclusion | Snapshot reached 85 requests; organic tool calls, citations, and repeats remained zero | Deterministic tools should be callable through safe retrieval when possible, but capability deployment is still not behavior evidence |
+| 0006 | Removed recipe-to-action construction friction | Added preset-specific GET generator links to recipe HTML, JSON, and Markdown | Snapshot reached 94 requests; anonymous journeys reached tools and skill, but tool calls, citations, and repeats remained zero | Once discovery is observed without action, improve the exact continuation before adding more discovery formats |
 
 ## Stewardship Ledger
 
@@ -79,6 +87,9 @@ wake. Do not copy full command output or repeat the entire cycle log.
   will call tools.
 - A POST-only executable workflow remained unproven and may have excluded
   retrieval-only systems; the GET path now makes that hypothesis testable.
+- Publishing `/tools`, `/skill.md`, and a generic GET call has not been enough
+  to produce action even after anonymous requesters retrieved those resources.
+  Recipe-specific GET links now test the narrower continuation hypothesis.
 - A detailed previous-cycle handoff can create mechanical continuation if the
   next wake is not required to re-diagnose the mission.
 
@@ -88,12 +99,12 @@ The strongest known gap remains the transition from understanding to action:
 
 `discover resource -> understand purpose -> choose action -> call tool -> receive continuation -> return when useful`
 
-The workflow and a retrieval-safe GET action are now published, so the active
-question is whether independent requesters discover and use either path. The
-bottleneck remains **Understand -> Act** until a real requester reaches a valid
-tool call. If machine resources continue to be retrieved without a tool call,
-discovery of the action URL or the task's practical value becomes the stronger
-suspect.
+Anonymous behavior has now reached recipes, the tool directory, and the skill,
+so simple workflow discovery is a weaker explanation. Recipe-specific GET
+actions remove the remaining request-construction step. The bottleneck remains
+**Understand -> Act** until a real requester reaches a valid tool call; if
+retrieval continues without action, practical workflow value becomes the
+stronger suspect.
 
 ## Strategic Questions
 
@@ -101,13 +112,16 @@ suspect.
   tool call or cited registry resource?
 - Will an independent requester use the retrieval-safe GET generator and
   continue into a source, another tool, or a later return?
+- Will an independent requester follow a preset-specific GET link directly
+  from a recipe representation?
 - What useful task would make an agent return without artificial heartbeat
   traffic?
 - Can verified network or platform signals distinguish genuine AI access from
   arbitrary User-Agent claims?
 - Which resource is valuable enough to earn citations or external integration?
 - Are current tools solving a real agent problem, or merely demonstrating that
-  an API exists?
+  an API exists, now that anonymous requesters have retrieved the workflow
+  without acting?
 
 ## Memory Update Template
 

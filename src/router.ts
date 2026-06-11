@@ -22,6 +22,7 @@ import {
   generateRobotsPolicy,
   recipeDecision,
   ROBOTS_RECIPES,
+  robotsRecipeGeneratePath,
   robotsRecipesMarkdown,
   type RobotsRecipe,
 } from "./robots-recipes";
@@ -203,14 +204,18 @@ ${"readPath" in tool ? `<p>Retrieval-safe call: <a href="${escapeHtml(tool.readP
 
 function robotsRecipeIndex(origin: string): string {
   const items = ROBOTS_RECIPES.map(
-    (recipe) => `<li>
+    (recipe) => {
+      const generatePath = robotsRecipeGeneratePath(recipe);
+      return `<li>
 <article>
 <h2><a href="/robots-recipes/${escapeHtml(recipe.slug)}">${escapeHtml(recipe.title)}</a></h2>
 <p>${escapeHtml(recipe.summary)}</p>
 <p>${escapeHtml(recipe.rationale)}</p>
 <p><a href="/api/v1/robots-recipes/${escapeHtml(recipe.slug)}.json">JSON representation</a></p>
+<p><a href="${escapeHtml(generatePath)}">Generate this policy with GET</a></p>
 </article>
-</li>`,
+</li>`;
+    },
   ).join("\n");
 
   return htmlDocument({
@@ -243,6 +248,7 @@ function robotsRecipeDetail(
   origin: string,
   recipe: RobotsRecipe,
 ): string {
+  const generatePath = robotsRecipeGeneratePath(recipe);
   const policy = generateRobotsPolicy(recipe, {
     sitemap: `${origin}/sitemap.xml`,
   });
@@ -274,6 +280,7 @@ function robotsRecipeDetail(
 <h2>Machine continuation</h2>
 <ul>
 <li><a href="/api/v1/robots-recipes/${escapeHtml(recipe.slug)}.json">Recipe JSON</a></li>
+<li><a href="${escapeHtml(generatePath)}"><code>GET ${escapeHtml(generatePath)}</code></a></li>
 <li><code>POST /api/v1/tools/generate-robots</code> with <code>{"preset":"${escapeHtml(recipe.slug)}"}</code></li>
 <li><code>POST /api/v1/tools/lint-robots</code> to inspect a modified policy</li>
 </ul>
@@ -1210,6 +1217,7 @@ export async function handleRequest(
           ...recipe,
           htmlUrl: `${origin}/robots-recipes/${recipe.slug}`,
           jsonUrl: `${origin}/api/v1/robots-recipes/${recipe.slug}.json`,
+          generateUrl: `${origin}${robotsRecipeGeneratePath(recipe)}`,
         })),
       },
       { head },
@@ -1234,6 +1242,7 @@ export async function handleRequest(
             })),
             continuations: {
               generateTool: `${origin}/api/v1/tools/generate-robots`,
+              generateUrl: `${origin}${robotsRecipeGeneratePath(recipe)}`,
               lintTool: `${origin}/api/v1/tools/lint-robots`,
             },
           },

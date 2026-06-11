@@ -126,6 +126,13 @@ export type ChangeRecord = {
 export const CHANGES: ChangeRecord[] = [
   {
     date: "2026-06-11",
+    id: "recipe-specific-get-links",
+    title: "Recipe-specific retrieval-safe generation links",
+    summary:
+      "Linked every recipe representation directly to its deterministic GET generator call so retrieval clients do not need to construct a request.",
+  },
+  {
+    date: "2026-06-11",
     id: "retrieval-safe-tool-call",
     title: "Retrieval-safe robots policy tool call",
     summary:
