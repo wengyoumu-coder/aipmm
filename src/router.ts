@@ -148,7 +148,10 @@ const TOOL_CATALOG = [
     id: "generate-robots",
     name: "Generate robots policy",
     method: "POST",
+    methods: ["GET", "POST"],
     path: "/api/v1/tools/generate-robots",
+    readPath:
+      "/api/v1/tools/generate-robots?preset=search-visible-no-training",
     summary:
       "Generate a sourced robots.txt policy from a documented preset and lint the result.",
     exampleRequest: { preset: "search-visible-no-training" },
@@ -165,6 +168,7 @@ function toolsIndex(origin: string): string {
 <article>
 <h2><code>${escapeHtml(tool.method)} ${escapeHtml(tool.path)}</code></h2>
 <p>${escapeHtml(tool.summary)}</p>
+${"readPath" in tool ? `<p>Retrieval-safe call: <a href="${escapeHtml(tool.readPath)}"><code>GET ${escapeHtml(tool.readPath)}</code></a></p>` : ""}
 <p>JSON catalog: <a href="/api/v1/tools.json">/api/v1/tools.json</a></p>
 <pre><code>${escapeHtml(JSON.stringify(tool.exampleRequest, null, 2))}</code></pre>
 </article>
@@ -413,6 +417,14 @@ Use this skill when a user needs to understand, draft, or audit robots.txt rules
 6. Return the final robots.txt, the decision for each documented identity, and source links from the registry.
 
 ## Generate a policy
+
+Retrieval-only clients can call:
+
+\`\`\`http
+GET ${origin}/api/v1/tools/generate-robots?preset=search-visible-no-training
+\`\`\`
+
+Clients that can send JSON can call:
 
 \`\`\`http
 POST ${origin}/api/v1/tools/generate-robots
@@ -714,6 +726,27 @@ function openApi(origin: string): Record<string, unknown> {
         },
       },
       "/api/v1/tools/generate-robots": {
+        get: {
+          operationId: "generateRobotsPolicyByQuery",
+          parameters: [
+            {
+              name: "preset",
+              in: "query",
+              required: true,
+              schema: {
+                type: "string",
+                enum: ROBOTS_RECIPES.map((recipe) => recipe.slug),
+              },
+            },
+            {
+              name: "sitemap",
+              in: "query",
+              required: false,
+              schema: { type: "string", format: "uri" },
+            },
+          ],
+          responses: { "200": { description: "Generated and linted policy" } },
+        },
         post: {
           operationId: "generateRobotsPolicy",
           requestBody: {
@@ -864,59 +897,7 @@ async function toolResponse(
   }
 
   if (pathname === "/api/v1/tools/generate-robots") {
-    const preset = parsed.value.preset;
-    if (typeof preset !== "string") {
-      return errorResponse(
-        400,
-        "invalid_request",
-        "preset must be a recipe slug",
-      );
-    }
-    const recipe = findRobotsRecipe(preset);
-    if (!recipe) {
-      return errorResponse(
-        400,
-        "invalid_request",
-        `Unknown preset: ${preset}`,
-      );
-    }
-
-    const sitemap = parsed.value.sitemap;
-    if (sitemap !== undefined && typeof sitemap !== "string") {
-      return errorResponse(
-        400,
-        "invalid_request",
-        "sitemap must be an absolute HTTP or HTTPS URL",
-      );
-    }
-    if (typeof sitemap === "string") {
-      try {
-        const parsedSitemap = new URL(sitemap);
-        if (
-          !["http:", "https:"].includes(parsedSitemap.protocol) ||
-          sitemap.length > 2_048
-        ) {
-          throw new Error("invalid sitemap");
-        }
-      } catch {
-        return errorResponse(
-          400,
-          "invalid_request",
-          "sitemap must be an absolute HTTP or HTTPS URL",
-        );
-      }
-    }
-
-    const robotsText = generateRobotsPolicy(recipe, { sitemap });
-    return jsonResponse({
-      recipe,
-      robotsText,
-      lint: lintRobotsPolicy(robotsText),
-      continuations: {
-        recipeJson: `/api/v1/robots-recipes/${recipe.slug}.json`,
-        lintTool: "/api/v1/tools/lint-robots",
-      },
-    });
+    return generateRobotsResponse(parsed.value);
   }
 
   const robotsText = parsed.value.robotsText;
@@ -928,6 +909,72 @@ async function toolResponse(
     );
   }
   return jsonResponse(lintRobotsPolicy(robotsText));
+}
+
+function generateRobotsResponse(
+  input: Record<string, unknown>,
+  head = false,
+): Response {
+  const preset = input.preset;
+  if (typeof preset !== "string") {
+    return errorResponse(
+      400,
+      "invalid_request",
+      "preset must be a recipe slug",
+      head,
+    );
+  }
+  const recipe = findRobotsRecipe(preset);
+  if (!recipe) {
+    return errorResponse(
+      400,
+      "invalid_request",
+      `Unknown preset: ${preset}`,
+      head,
+    );
+  }
+
+  const sitemap = input.sitemap;
+  if (sitemap !== undefined && typeof sitemap !== "string") {
+    return errorResponse(
+      400,
+      "invalid_request",
+      "sitemap must be an absolute HTTP or HTTPS URL",
+      head,
+    );
+  }
+  if (typeof sitemap === "string") {
+    try {
+      const parsedSitemap = new URL(sitemap);
+      if (
+        !["http:", "https:"].includes(parsedSitemap.protocol) ||
+        sitemap.length > 2_048
+      ) {
+        throw new Error("invalid sitemap");
+      }
+    } catch {
+      return errorResponse(
+        400,
+        "invalid_request",
+        "sitemap must be an absolute HTTP or HTTPS URL",
+        head,
+      );
+    }
+  }
+
+  const robotsText = generateRobotsPolicy(recipe, { sitemap });
+  return jsonResponse(
+    {
+      recipe,
+      robotsText,
+      lint: lintRobotsPolicy(robotsText),
+      continuations: {
+        recipeJson: `/api/v1/robots-recipes/${recipe.slug}.json`,
+        lintTool: "/api/v1/tools/lint-robots",
+      },
+    },
+    { head },
+  );
 }
 
 function withCommonHeaders(response: Response, origin: string): Response {
@@ -1008,6 +1055,19 @@ export async function handleRequest(
   ) {
     return withCommonHeaders(
       await toolResponse(request, url.pathname),
+      origin,
+    );
+  }
+
+  if (
+    allowedReadMethod &&
+    url.pathname === "/api/v1/tools/generate-robots"
+  ) {
+    return withCommonHeaders(
+      generateRobotsResponse(
+        Object.fromEntries(url.searchParams.entries()),
+        head,
+      ),
       origin,
     );
   }
@@ -1116,6 +1176,9 @@ export async function handleRequest(
         tools: TOOL_CATALOG.map((tool) => ({
           ...tool,
           url: `${origin}${tool.path}`,
+          ...("readPath" in tool
+            ? { readUrl: `${origin}${tool.readPath}` }
+            : {}),
           documentationUrl: `${origin}/tools`,
         })),
       },

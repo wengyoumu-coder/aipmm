@@ -126,6 +126,13 @@ export type ChangeRecord = {
 export const CHANGES: ChangeRecord[] = [
   {
     date: "2026-06-11",
+    id: "retrieval-safe-tool-call",
+    title: "Retrieval-safe robots policy tool call",
+    summary:
+      "Added a deterministic GET invocation for policy generation so retrieval-only clients can execute the workflow without a POST request.",
+  },
+  {
+    date: "2026-06-11",
     id: "agent-skill-workflow",
     title: "Executable AI web access policy skill",
     summary:

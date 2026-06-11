@@ -14,6 +14,10 @@ const resources = [
   ["/api/v1/manifest.json", "application/json"],
   ["/api/v1/registry.json", "application/json"],
   ["/api/v1/tools.json", "application/json"],
+  [
+    "/api/v1/tools/generate-robots?preset=search-visible-no-training",
+    "application/json",
+  ],
   ["/api/v1/robots-recipes.json", "application/json"],
   ["/registry/openai-oai-searchbot", "text/html"],
   ["/api/v1/registry/openai-oai-searchbot.json", "application/json"],

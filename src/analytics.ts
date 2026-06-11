@@ -4,6 +4,11 @@ import type {
   RequestClassification,
 } from "./types";
 
+const INTERNAL_USER_AGENTS = new Set([
+  "AI-Web-Observatory-Smoke/1.0",
+  "AI-Web-Observatory-Internal/1.0",
+]);
+
 export function normalizeNetworkPrefix(ip: string): string {
   const ipv4 = ip.split(".");
   if (
@@ -120,7 +125,7 @@ export async function recordRequest(input: {
     const url = new URL(input.request.url);
     const userAgent = input.request.headers.get("user-agent") ?? "";
     if (
-      userAgent === "AI-Web-Observatory-Smoke/1.0" ||
+      INTERNAL_USER_AGENTS.has(userAgent) ||
       url.pathname.startsWith("/api/admin/")
     ) {
       return false;

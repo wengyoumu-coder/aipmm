@@ -121,7 +121,13 @@ describe("public routes", () => {
     }>();
     const tools = await (await fetchPath("/api/v1/tools.json")).json<{
       name: string;
-      tools: Array<{ id: string; method: string; exampleRequest: unknown }>;
+      tools: Array<{
+        id: string;
+        method: string;
+        methods?: string[];
+        exampleRequest: unknown;
+        readUrl?: string;
+      }>;
     }>();
     const feed = await fetchPath("/changelog.xml");
     const openapi = await (await fetchPath("/openapi.json")).json<{
@@ -144,12 +150,24 @@ describe("public routes", () => {
       }),
     );
     expect(tools.tools[0]).toHaveProperty("exampleRequest");
+    expect(tools.tools).toContainEqual(
+      expect.objectContaining({
+        id: "generate-robots",
+        methods: ["GET", "POST"],
+        readUrl:
+          `${origin}/api/v1/tools/generate-robots` +
+          "?preset=search-visible-no-training",
+      }),
+    );
     expect(feed.headers.get("content-type")).toContain("application/rss+xml");
     expect(await feed.text()).toContain("<rss version=\"2.0\">");
     expect(openapi.openapi).toBe("3.1.0");
     expect(openapi.paths).toHaveProperty(
       "/api/v1/tools/classify-user-agent",
     );
+    expect(
+      openapi.paths["/api/v1/tools/generate-robots"],
+    ).toHaveProperty("get");
     expect(card.name).toBe("AI Web Observatory");
     expect(card.skills).toContainEqual(
       expect.objectContaining({ id: "classify-user-agent" }),

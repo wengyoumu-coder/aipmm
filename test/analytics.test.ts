@@ -101,7 +101,7 @@ describe("privacy-preserving identity", () => {
 });
 
 describe("request recording", () => {
-  test("does not record internal smoke checks or admin statistics reads", async () => {
+  test("does not record internal checks or admin statistics reads", async () => {
     let prepares = 0;
     const env = {
       ANALYTICS_SALT: "test-salt",
@@ -137,9 +137,22 @@ describe("request recording", () => {
       }),
       env,
     });
+    const directCheckRecorded = await recordRequest({
+      request: new Request("https://observatory.example/skill.md", {
+        headers: { "user-agent": "AI-Web-Observatory-Internal/1.0" },
+      }),
+      response: new Response("ok"),
+      classification: classifyRequest({
+        userAgent: "AI-Web-Observatory-Internal/1.0",
+        referer: "",
+        url: "https://observatory.example/skill.md",
+      }),
+      env,
+    });
 
     expect(smokeRecorded).toBe(false);
     expect(adminRecorded).toBe(false);
+    expect(directCheckRecorded).toBe(false);
     expect(prepares).toBe(0);
   });
 
