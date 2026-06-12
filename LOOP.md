@@ -38,7 +38,7 @@ actually retrieve or call.
 
 Locate the strongest current constraint in the mission ladder:
 
-`Discover -> Retrieve -> Understand -> Act -> Return -> Cite or integrate`
+`Discover -> Retrieve -> Understand -> Choose or act -> Return -> Cite, integrate, or revisit`
 
 Ask:
 
@@ -47,6 +47,8 @@ Ask:
 - What changed since the last cycle?
 - Which previous assumption is now weaker?
 - Is the last handoff still the highest-value question?
+- Is the experiment assuming that all meaningful machine behavior must be
+  productive or task-oriented?
 
 Write one bottleneck statement before proposing work.
 
@@ -56,7 +58,7 @@ Generate at least three bounded options:
 
 - **Exploit:** improve a signal or workflow that has shown evidence.
 - **Explore:** test a new useful resource, distribution path, or agent
-  interaction.
+  interaction, including a bounded non-instrumental space.
 - **Measure:** repair a blind spot that prevents trustworthy decisions.
 
 Score each option from 1 to 5:
@@ -71,6 +73,16 @@ Score each option from 1 to 5:
 
 Choose one primary bet. A measurement repair may accompany it only when the bet
 cannot be evaluated otherwise.
+
+When the same instrumental strategy has produced repeated zero-action cycles,
+the option set must include:
+
+- continuing the current utility hypothesis with a specific new reason;
+- testing a non-instrumental encounter;
+- pausing or ending the current direction.
+
+Do not choose the non-instrumental option mechanically. Prefer it when fresh
+evidence does not justify more tool, metadata, or discovery work.
 
 ## Phase 4: Define the Bet
 
@@ -93,6 +105,8 @@ Implement the smallest complete action that tests the bet.
 - Follow existing architecture and tests.
 - Use source-backed content.
 - Create a continuation path for machine consumers where relevant.
+- For non-instrumental experiments, require no submission, identity claim, or
+  task completion. Make leaving a valid outcome.
 - Avoid adding multiple unrelated resources just to make the cycle look large.
 - Do not manufacture the behavior being measured.
 
@@ -164,4 +178,3 @@ If platform quota, authentication, or an external outage blocks safe execution:
 3. update memory only if the blocker changes future operation;
 4. leave the exact recovery signal;
 5. do not claim a completed experimental cycle.
-

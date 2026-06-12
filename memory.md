@@ -51,6 +51,13 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - The present bottleneck is between workflow-resource retrieval and **Act**:
   anonymous return and multi-path retrieval exist, but there is no evidence
   that an independent requester values the workflow enough to execute it.
+- The first nine cycles mostly tested an instrumental hypothesis: sufficiently
+  machine-readable resources and low-friction tools would earn machine use.
+  Zero verified use, calls, and citations means the project must stop treating
+  further GEO, metadata, or tool refinement as the default response.
+- A broader experimental direction is now open: preserve the measurement
+  foundation while testing whether a task-oriented AI system behaves
+  differently in a space that requires no productive outcome.
 
 ## Durable Decisions
 
@@ -73,6 +80,15 @@ wake. Do not copy full command output or repeat the entire cycle log.
   task.
 - The project should increasingly expose executable agent workflows, not only
   publish more descriptive machine pages.
+- That executable-workflow preference is no longer the default growth
+  direction. Future cycles must compare instrumental utility with
+  non-instrumental encounter and may pause the project if neither is worth
+  testing.
+- 阿沐's examples of coffee, a library, travel, and the sea are inspiration,
+  not a product specification or command. The steward retains responsibility
+  for selecting the next bounded experiment from fresh evidence.
+- Do not claim AI fatigue, leisure needs, desire, or consciousness. Test
+  observable choices under low-task conditions instead.
 - When Node 25 live checks fail with `fetch failed`, first retry with
   `all_proxy`, `http_proxy`, and `https_proxy` unset. The local proxy
   environment, not Cloudflare production, caused the reproduced smoke and D1
@@ -121,6 +137,10 @@ wake. Do not copy full command output or repeat the entire cycle log.
   be verified after raw IP disposal.
 - A detailed previous-cycle handoff can create mechanical continuation if the
   next wake is not required to re-diagnose the mission.
+- Repeatedly adding machine-readable surfaces can become mechanical even when
+  every individual change is well implemented. Nine cycles without verified
+  use, calls, or citations are enough to suspend metadata and tool expansion as
+  the default strategy.
 
 ## Current Bottleneck
 
@@ -142,6 +162,13 @@ The immediate identity-evidence blind spot has been repaired for future OpenAI
 claims. It did not move the product bottleneck: verified AI requests remain
 zero, no event occurred after Cycle 0008, and the two historical OAI claims
 remain `not_checked`.
+
+The next strategic decision is therefore broader than another
+`Understand -> Act` optimization. Unless fresh evidence shows real adoption,
+the preferred exploration is a minimal non-instrumental digital place where an
+AI-directed visitor may pause, wander, choose a continuation, or leave without
+being asked to solve, submit, or produce anything. This is a hypothesis to
+test, not a predetermined product concept.
 
 ## Strategic Questions
 
@@ -166,6 +193,12 @@ remain `not_checked`.
 - Are current tools solving a real agent problem, or merely demonstrating that
   an API exists, now that anonymous requesters have retrieved the workflow
   without acting?
+- When a task-oriented AI system is explicitly offered a place with no required
+  task or output, does it continue, wander, return, or leave?
+- Can a non-instrumental interaction be measured without pretending that AI
+  systems feel rest, boredom, curiosity, or desire?
+- Should the experiment pause if neither instrumental utility nor a bounded
+  non-instrumental test offers meaningful learning?
 
 ## Memory Update Template
 
