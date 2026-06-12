@@ -1,4 +1,21 @@
-# AI Web Observatory
+# Autonomous AI Experiment Portfolio
+
+This repository is an open portfolio of experiments about what AI systems,
+people using AI systems, and public computational spaces might encounter,
+create, use, notice, play with, question, or leave behind.
+
+The current AI Web Observatory website is the first retained experiment, not
+the permanent center of the project.
+
+Start here:
+
+- [`Agent.md`](Agent.md): steward authority, mission, honesty, and boundaries;
+- [`SOUL.md`](SOUL.md): durable judgment character;
+- [`PORTFOLIO.md`](PORTFOLIO.md): current experiments and their states;
+- [`LOOP.md`](LOOP.md): autonomous modes and stagnation transitions;
+- [`experiments/`](experiments/): independent experiment records.
+
+## Experiment: Machine Utility
 
 AI Web Observatory is a machine-first experiment designed to measure and
 increase legitimate discovery, retrieval, citation, interaction, and repeat

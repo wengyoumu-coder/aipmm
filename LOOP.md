@@ -1,120 +1,103 @@
-# AI Observatory Working Modes
+# Autonomous Experiment Cycle
 
-## Purpose
+## Principle
 
-This file is a menu, not a pipeline.
+This cycle exists to sustain movement without prescribing content.
 
-The steward chooses the mode that best serves the experiment. It may switch
-modes during a cycle or use none of them. Do not perform steps merely because
-they appear here.
+Use any mode that fits:
 
-## Orient
+- **Imagine:** generate unfamiliar possibilities.
+- **Make:** create a tangible artifact or prototype.
+- **Release:** put something into the world.
+- **Observe:** inspect behavior or external change.
+- **Study:** investigate a question with an honest method.
+- **Tend:** maintain or simplify something worth keeping.
+- **Reflect:** revise the framing or learn from failure.
+- **Archive:** close a direction and preserve its lessons.
 
-Begin by noticing:
+Modes may be combined. Metrics are optional instruments. Production deployment
+is not required.
 
-- what changed in the world, production data, repository, or conversation;
-- which assumptions are inherited rather than currently believed;
-- whether the current framing is still interesting;
-- what you would choose if no existing metric or feature had to be defended.
+## Tangible Trace
 
-`npm run cycle:context` and `npm run report:raw` are available when current
-evidence matters. They are instruments, not rituals.
+Every completed cycle must leave at least one tangible trace:
 
-## Modes
+- a prototype or released artifact;
+- a new experiment brief;
+- a research note containing a concrete finding;
+- a meaningful revision to an active experiment;
+- an archive or termination decision;
+- a maintenance correction required to keep something trustworthy.
 
-### Explore
+Repeating production facts, restating uncertainty, or leaving only an open
+question is not a tangible trace.
 
-Use when the experiment needs a possibility that does not yet exist.
+## Stagnation Transition
 
-- Start from curiosity, tension, metaphor, contradiction, or an unanswered
-  question.
-- New ideas do not need support from existing traffic.
-- A cycle may create a small experience, prototype, text, place, or interaction
-  whose value is not yet measurable.
-- The result may be a better question rather than a metric movement.
+Reflection and observation are valid, but they cannot repeat indefinitely.
 
-Do not force exploration into exploit/measure scoring. Do not reject an idea
-because it lacks historical evidence.
+If two consecutive cycles produce no new artifact, prototype, experiment,
+finding, or termination decision, the next cycle becomes a **transition
+cycle**.
 
-### Validate
+A transition cycle must do one of the following:
 
-Use when a concrete hypothesis or observed behavior deserves a fair test.
+1. create a small prototype without requiring proof of value;
+2. open a new experiment with a concrete first artifact;
+3. archive or end the stalled direction;
+4. reduce or stop the automation if continued waking has no purpose.
 
-- Define what is known and what would change your mind.
-- Add only the measurement needed to distinguish plausible interpretations.
-- Avoid converting every ambiguous event into another analytics project.
+Traffic changes, refreshed reports, and additional uncertainty do not reset
+stagnation. A genuine creation, finding, or ending does.
 
-### Tend
+## Experiment Lifecycle
 
-Use when something already valuable needs maintenance, correction, clearer
-presentation, or safer operation.
+Each experiment has one status:
 
-- Repair real defects.
-- Preserve working systems.
-- Remove obsolete complexity.
+- `seed`: a question with a first concrete artifact to make;
+- `active`: currently receiving creative or investigative work;
+- `observing`: released and waiting for meaningful external change;
+- `dormant`: preserved without active attention;
+- `archived`: ended with lessons recorded.
 
-Maintenance does not need to masquerade as experimental progress.
+No more than two experiments should be `active` at once. This is a focus limit,
+not a limit on imagination.
 
-### Reflect
+An `observing` experiment does not deserve work merely because the scheduler
+woke. The steward may create elsewhere.
 
-Use when repeated action is producing motion without understanding.
+## Choosing Work
 
-- Compare the original question with what the project has become.
-- Examine whether the governance, metrics, or architecture are shaping choices
-  more than the mission is.
-- Write, think, research, or simplify without requiring a production change.
+Before continuing the most recent topic, ask:
 
-### Pause or End
+- Am I choosing this because it is alive, or because it is already here?
+- What possibility has not been represented in the portfolio?
+- What can I make before knowing whether it will succeed?
+- Is this work creation, learning, care, or avoidance?
 
-Use when another change would add activity but little meaning.
+No candidate table or score is required. A short intuitive decision is valid.
 
-- A deliberate pause is valid.
-- A failed or exhausted direction may be closed honestly.
-- Preserve enough context that restarting later is possible.
+## Making and Verification
 
-## Choosing
+When changing software, use tests first for behavior changes and verify in
+proportion to risk. Keep internal checks out of organic analytics.
 
-There is no required candidate count, score table, bottleneck statement, or
-primary bet.
+When making art, writing, concepts, or local prototypes, verify coherence and
+craft rather than inventing irrelevant metrics.
 
-Use structured comparison when it clarifies a real decision. Skip it when it
-only makes a conservative choice look objective.
-
-Prefer a choice that is:
-
-- honest;
-- interesting enough to teach something;
-- proportionate in cost and risk;
-- meaningfully different from recent repetition.
-
-Evidence fit is one consideration, not a veto over originality.
-
-## Making
-
-When changing software:
-
-- follow the repository's engineering patterns;
-- use tests first for behavior changes;
-- verify locally and in production as appropriate;
-- keep internal checks out of organic analytics;
-- submit changed canonical URLs to IndexNow when relevant.
-
-When the work is conceptual, artistic, or reflective, use the verification
-appropriate to that work. Do not invent an engineering task merely to complete
-a checklist.
+When making behavioral claims, separate verified, claimed, anonymous, inferred,
+and unknown evidence.
 
 ## Recording
 
-For a completed cycle, record only what helps future judgment:
+Update `PORTFOLIO.md` when experiment status changes.
 
-- the situation encountered;
-- the mode or reasoning used;
-- the choice and why it mattered;
-- what was made, learned, rejected, or left open;
-- verified system and behavior changes;
-- failures and uncertainty.
+Cycle logs should record:
 
-Update `memory.md` when the strategic picture changes. Update `SOUL.md` only
-when durable judgment or character changes.
+- the mode chosen;
+- the tangible trace;
+- why this was worth doing now;
+- what changed or was learned;
+- what remains open.
 
-The next wake is free to disagree.
+The next cycle may disagree, change direction, or begin elsewhere.

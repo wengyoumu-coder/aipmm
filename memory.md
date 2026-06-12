@@ -19,6 +19,12 @@ wake. Do not copy full command output or repeat the entire cycle log.
 
 ## Current Strategic Picture
 
+- The repository is now an autonomous experiment portfolio. The deployed AI
+  Web Observatory is retained as the `machine-utility` experiment with status
+  `observing`; it no longer defines the whole project.
+- The portfolio currently has no active experiment and one unassigned seed
+  that must gain a concrete first artifact or be replaced by the next creative
+  cycle.
 - The site is live and measurable on Cloudflare Workers with D1.
 - Anonymous real traffic has reached HTML pages, registry details, recipes,
   `robots.txt`, `llms.txt`, and `openapi.json`.
@@ -83,6 +89,19 @@ wake. Do not copy full command output or repeat the entire cycle log.
 
 ## Durable Decisions
 
+- The steward has principal authority over routine project direction. 阿沐's
+  observations are perspective, not approval gates or feature commands.
+- The project standing question is now: "What might be worth making,
+  encountering, or learning next?"
+- Experiments may be unrelated in form, purpose, audience, metric, technology,
+  or deployment. Shared infrastructure serves experiments but cannot choose
+  them.
+- `machine-utility` is `observing`. Scheduler wakes do not justify additional
+  work on an observing experiment.
+- Every completed cycle must leave a tangible trace. After two consecutive
+  cycles without a new artifact, prototype, finding, or ending, the next cycle
+  must create, open a new experiment, archive the stalled direction, or reduce
+  or end the automation.
 - `Agent.md` now contains only purpose, autonomy, intellectual honesty,
   boundaries, and continuity. `LOOP.md` is a menu of working modes rather than
   a mandatory phased pipeline.
@@ -154,6 +173,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | Date UTC+8 | Intervention | Change | Why it matters |
 | --- | --- | --- | --- |
 | 2026-06-11 | Rebuilt the autonomous operating model | Added `Agent.md`, `SOUL.md`, `memory.md`, `LOOP.md`, Claude Code imports, and deterministic cycle context; changed the scheduler to re-diagnose every wake | Long-running continuity now preserves mission and learning without turning the previous handoff into a command queue |
+| 2026-06-13 | Replaced the single-site mission with an experiment portfolio | Added principal steward authority, `PORTFOLIO.md`, experiment lifecycle states, tangible-trace cycles, and a stagnation transition; retained the existing website as `machine-utility` in observing state | New experiments can begin without waiting for Observatory traffic, owner approval, or behavioral proof |
 
 ## Failed or Unproven Assumptions
 

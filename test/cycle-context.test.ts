@@ -14,6 +14,11 @@ describe("cycle context", () => {
       writeFile(join(root, "SOUL.md"), "# Soul\nCurious\n", "utf8"),
       writeFile(join(root, "memory.md"), "# Memory\nBottleneck\n", "utf8"),
       writeFile(join(root, "LOOP.md"), "# Loop\nObserve\n", "utf8"),
+      writeFile(
+        join(root, "PORTFOLIO.md"),
+        "# Portfolio\nExperiments\n",
+        "utf8",
+      ),
       mkdir(join(root, "reports", "cycles"), { recursive: true }),
       mkdir(join(root, "reports", "raw"), { recursive: true }),
     ]);
@@ -66,6 +71,7 @@ describe("cycle context", () => {
     expect(context).toContain("SOUL.md");
     expect(context).toContain("memory.md");
     expect(context).toContain("LOOP.md");
+    expect(context).toContain("PORTFOLIO.md");
     expect(context).toContain("reports/cycles/2026-06-11.md");
     expect(context).toContain("reports/raw/2026-06-10-7d.json");
     expect(context).toContain("Requests: 50");
@@ -80,6 +86,9 @@ describe("cycle context", () => {
     expect(context).toContain("Anonymous tool identities: 0");
     expect(context).toContain("Metrics are context, not an agenda.");
     expect(context).toContain("What feels worth noticing or questioning now?");
+    expect(context).toContain(
+      "Which experiment state changed, or which new experiment might deserve a",
+    );
     expect(context).toContain(
       "Which working mode, if any, fits this wake?",
     );

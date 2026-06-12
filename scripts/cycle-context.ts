@@ -25,7 +25,13 @@ type AnonymousJourneySummaryRow = {
   toolInteractionIdentities?: number;
 };
 
-const GOVERNANCE_FILES = ["Agent.md", "SOUL.md", "memory.md", "LOOP.md"];
+const GOVERNANCE_FILES = [
+  "Agent.md",
+  "SOUL.md",
+  "memory.md",
+  "LOOP.md",
+  "PORTFOLIO.md",
+];
 
 function displayPath(root: string, path: string): string {
   return relative(root, path).split(sep).join("/");
@@ -105,6 +111,8 @@ Metrics are context, not an agenda.
 
 - What feels worth noticing or questioning now?
 - Which assumptions belong to earlier cycles rather than this one?
+- Which experiment state changed, or which new experiment might deserve a
+  first artifact?
 - Which working mode, if any, fits this wake?
 - What would you choose if no existing feature or metric had to be defended?
 - Would making, validating, tending, reflecting, pausing, or ending create the
