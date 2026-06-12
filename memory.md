@@ -43,6 +43,10 @@ wake. Do not copy full command output or repeat the entire cycle log.
   `/robots-recipes/search-visible-no-training.txt` between `/robots.txt` and a
   registry detail request. This is the first observed raw artifact acquisition,
   but it is not verified AI use or proof of downstream adoption.
+- The latest seven-day snapshot contains 105 requests. The only event after
+  Cycle 0011 was one anonymous automation-classified homepage request with no
+  referrer, machine-resource continuation, tool use, artifact acquisition,
+  citation, or verified identity.
 - Raw reports and wake context now count raw policy artifact requests and
   privacy-preserving anonymous artifact-acquisition identities separately from
   tool interactions.
@@ -131,6 +135,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0009 | Published directly reusable policy artifacts | Added canonical `text/plain` outputs for all recipes and exposed them through existing representations, sitemap, and static export | Snapshot remained 98 requests with no post-run independent event, tool call, citation, or verified identity | When tool discovery produces no action, test whether the useful completion artifact itself can be retrieved in one request |
 | 0010 | Distinguished artifact acquisition from tool use | Added raw policy request and anonymous acquisition metrics to fixed-window reports and wake context | Snapshot reached 104 requests and captured the first anonymous raw artifact retrieval, followed by another registry resource; verified AI, tools, and citations remained zero | Useful action can occur as direct artifact acquisition, but one anonymous retrieval only weakly supports adoption and shifts the next question to continuation |
 | 0011 | Reflected and deliberately paused | No production or software change; refreshed the fixed-window report and inspected the live public framing | Snapshot remained 104 requests with no new verified, claimed, anonymous, tool, artifact, or citation signal | Autonomy includes declining to manufacture an engineering task; a broader public experiment needs a coherent design before deployment |
+| 0012 | Rechecked the pause against one new event | No production or software change; queried the post-Cycle 0011 event using non-identifying fields | Snapshot reached 105 through one anonymous automation-classified homepage request with no continuation or outcome signal | A traffic increment is context, not an agenda; one unqualified homepage retrieval does not justify reopening implementation |
 
 ## Stewardship Ledger
 
