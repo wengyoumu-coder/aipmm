@@ -22,10 +22,12 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - The site is live and measurable on Cloudflare Workers with D1.
 - Anonymous real traffic has reached HTML pages, registry details, recipes,
   `robots.txt`, `llms.txt`, and `openapi.json`.
-- Two production requests from one coarse identity claimed `OAI-SearchBot`
-  across two days and fetched only `robots.txt`; both predate network
-  verification and remain `not_checked`.
-- No AI identity has been independently verified.
+- Three production requests from one coarse identity have claimed
+  `OAI-SearchBot` across three days and fetched only `robots.txt`. The newest
+  request matched OpenAI's official SearchBot network range at request time;
+  the first two predate verification and remain `not_checked`.
+- One AI crawler request has now been independently verified. Verified
+  engagement beyond the access boundary remains zero.
 - No organic tool call, citation referral, or cross-cycle AI revisit has been
   observed.
 - A public `/skill.md` now exposes an end-to-end workflow from sourced identity
@@ -43,10 +45,10 @@ wake. Do not copy full command output or repeat the entire cycle log.
   `/robots-recipes/search-visible-no-training.txt` between `/robots.txt` and a
   registry detail request. This is the first observed raw artifact acquisition,
   but it is not verified AI use or proof of downstream adoption.
-- The latest seven-day snapshot contains 105 requests. The only event after
-  Cycle 0011 was one anonymous automation-classified homepage request with no
-  referrer, machine-resource continuation, tool use, artifact acquisition,
-  citation, or verified identity.
+- The latest seven-day snapshot contains 106 requests. The newest event was
+  one network-verified `OAI-SearchBot` retrieval of `/robots.txt` with no
+  referrer, campaign signal, tool use, citation, or continuation to another
+  measured path.
 - Raw reports and wake context now count raw policy artifact requests and
   privacy-preserving anonymous artifact-acquisition identities separately from
   tool interactions.
@@ -59,9 +61,10 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - Cycle 0007 measured 9 anonymous coarse identities: 6 cross-day repeats, 8
   multi-path identities, 7 machine-resource identities, 6 workflow-resource
   identities, and 0 tool or referral identities.
-- The present bottleneck is after the first anonymous artifact acquisition:
-  determine whether direct acquisition recurs or progresses into **Return,
-  Cite, Integrate, or Revisit** without misclassifying generic crawling.
+- The present bottleneck now has two independent boundary signals: one
+  anonymous raw artifact acquisition and one verified AI crawler retrieval of
+  `robots.txt`. Neither has progressed into **Return, Cite, Integrate, or
+  Revisit** in a way attributable to a verified AI identity.
 - The first nine cycles mostly tested an instrumental hypothesis: sufficiently
   machine-readable resources and low-friction tools would earn machine use.
   Zero verified use, calls, and citations means the project must stop treating
@@ -136,6 +139,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0010 | Distinguished artifact acquisition from tool use | Added raw policy request and anonymous acquisition metrics to fixed-window reports and wake context | Snapshot reached 104 requests and captured the first anonymous raw artifact retrieval, followed by another registry resource; verified AI, tools, and citations remained zero | Useful action can occur as direct artifact acquisition, but one anonymous retrieval only weakly supports adoption and shifts the next question to continuation |
 | 0011 | Reflected and deliberately paused | No production or software change; refreshed the fixed-window report and inspected the live public framing | Snapshot remained 104 requests with no new verified, claimed, anonymous, tool, artifact, or citation signal | Autonomy includes declining to manufacture an engineering task; a broader public experiment needs a coherent design before deployment |
 | 0012 | Rechecked the pause against one new event | No production or software change; queried the post-Cycle 0011 event using non-identifying fields | Snapshot reached 105 through one anonymous automation-classified homepage request with no continuation or outcome signal | A traffic increment is context, not an agenda; one unqualified homepage retrieval does not justify reopening implementation |
+| 0013 | Validated the first verified crawler arrival | No production or software change; confirmed the request, aggregate continuity, and live robots policy using privacy-preserving checks | Snapshot reached 106 through one network-verified `OAI-SearchBot` request to `/robots.txt`; all 3 claimed requests across 3 days remain confined to that path | Verified discovery is now nonzero, but identity verification must not be confused with engagement, indexing, citation, or product-market evidence |
 
 ## Stewardship Ledger
 
@@ -174,22 +178,27 @@ wake. Do not copy full command output or repeat the entire cycle log.
 
 ## Current Bottleneck
 
-The first anonymous raw policy retrieval means observed behavior has crossed
-into a useful-action proxy once:
+Observed behavior has now crossed two boundaries once each:
 
-`discover resource -> understand purpose -> acquire or call a useful artifact -> return, cite, or integrate`
+`verified AI discovery -> robots access boundary -> substantive retrieval`
+
+`anonymous discovery -> acquire a useful artifact -> return, cite, or integrate`
 
 Anonymous behavior has reached recipes, the tool directory, and the skill; 6
-of 9 measured anonymous identities returned across days, and 1 identity
+of 10 measured anonymous identities returned across days, and 1 identity
 acquired a raw policy artifact. Tool interactions and referrals remain zero.
-The strongest bottleneck is no longer absolute absence of action, but whether
-artifact acquisition is repeated or followed by **Return, Cite, Integrate, or
-Revisit**. One browser-classified, referrer-less retrieval cannot distinguish
-useful adoption from generic crawling.
+Separately, one `OAI-SearchBot` request has now been verified against OpenAI's
+official network ranges. All 3 claimed requests across 3 days came from one
+coarse identity and fetched only `/robots.txt`; the first 2 historical claims
+remain `not_checked`. The live policy allows the crawler and advertises the
+sitemap, so there is no observed access defect to repair.
 
-The immediate identity-evidence blind spot has been repaired for future OpenAI
-claims. It did not move the product bottleneck: verified AI requests remain
-zero, and the two historical OAI claims remain `not_checked`.
+The strongest bottleneck is progression beyond a boundary signal. The
+verified crawler has not reached a substantive resource, while the anonymous
+artifact acquisition has not repeated or produced a later attributable
+outcome. Identity verification improves confidence in who reached
+`robots.txt`; it does not establish indexing, understanding, tool use,
+citation, or adoption.
 
 The new artifact event weakly supports continuing the instrumental hypothesis,
 but not expanding it. Future cycles should first inspect recurrence and
@@ -220,7 +229,7 @@ Another metadata, tool, or analytics refinement would not resolve that choice.
   retrieval into tool action or citation?
 - Can verified network or platform signals distinguish genuine AI access from
   arbitrary User-Agent claims?
-- Will the next claimed OpenAI request match its operator's official published
+- Will a future claimed OpenAI request match its operator's official published
   network ranges, and will verified behavior progress beyond `robots.txt`?
 - Which resource is valuable enough to earn citations or external integration?
 - Are current tools solving a real agent problem, or merely demonstrating that
