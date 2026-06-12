@@ -76,6 +76,10 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - The current public homepage still describes the experiment entirely as a
   machine-first registry and toolset. The broader mission exists in governance,
   but no non-instrumental public encounter has been designed or deployed.
+- A public page can remove its own demand but cannot establish that an arriving
+  AI system has no external user, crawler, retrieval, or automation task.
+  Request-path transitions alone are therefore insufficient evidence of
+  non-instrumental choice.
 
 ## Durable Decisions
 
@@ -118,6 +122,9 @@ wake. Do not copy full command output or repeat the entire cycle log.
   for selecting the next bounded experiment from fresh evidence.
 - Do not claim AI fatigue, leisure needs, desire, or consciousness. Test
   observable choices under low-task conditions instead.
+- Separate artistic value from evidentiary value. A no-demand public place may
+  be worthwhile without proving behavior, but production logs must not be used
+  to infer wandering, rest, or voluntary choice without known external context.
 - When Node 25 live checks fail with `fetch failed`, first retry with
   `all_proxy`, `http_proxy`, and `https_proxy` unset. The local proxy
   environment, not Cloudflare production, caused the reproduced smoke and D1
@@ -140,6 +147,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0011 | Reflected and deliberately paused | No production or software change; refreshed the fixed-window report and inspected the live public framing | Snapshot remained 104 requests with no new verified, claimed, anonymous, tool, artifact, or citation signal | Autonomy includes declining to manufacture an engineering task; a broader public experiment needs a coherent design before deployment |
 | 0012 | Rechecked the pause against one new event | No production or software change; queried the post-Cycle 0011 event using non-identifying fields | Snapshot reached 105 through one anonymous automation-classified homepage request with no continuation or outcome signal | A traffic increment is context, not an agenda; one unqualified homepage retrieval does not justify reopening implementation |
 | 0013 | Validated the first verified crawler arrival | No production or software change; confirmed the request, aggregate continuity, and live robots policy using privacy-preserving checks | Snapshot reached 106 through one network-verified `OAI-SearchBot` request to `/robots.txt`; all 3 claimed requests across 3 days remain confined to that path | Verified discovery is now nonzero, but identity verification must not be confused with engagement, indexing, citation, or product-market evidence |
+| 0014 | Tested the coherence of a no-local-task encounter | Wrote a non-deployed exploration comparing a static place, response protocol, and cooperative study | Snapshot remained 106; production logs cannot reveal whether an arriving system has an external task | A no-demand page may be art, but path transitions alone cannot establish non-instrumental AI choice |
 
 ## Stewardship Ledger
 
@@ -207,10 +215,19 @@ non-instrumental digital place remains the preferred reversible exploration;
 pausing or ending the direction remains valid if neither route offers useful
 learning.
 
-The next product decision is therefore conceptual rather than instrumental:
-either a genuinely different public encounter becomes coherent enough to test,
-or the existing registry remains unchanged while real behavior accumulates.
-Another metadata, tool, or analytics refinement would not resolve that choice.
+The non-instrumental direction now has a clearer epistemic boundary. A website
+can create a place with no local demand, but organic request logs cannot show
+that the visitor lacked an external task or chose to wander. A structured
+choice endpoint would mostly measure compliance, while a cooperative study
+could support narrower claims only by becoming an explicitly controlled,
+consent-based experiment.
+
+The next product decision is therefore whether a public place is worth making
+for its own artistic or experiential value without using traffic as proof, or
+whether a separate controlled study is worth designing. The existing registry
+should remain unchanged while verified crawler progression and anonymous
+artifact continuation accumulate. Another metadata, tool, analytics, or
+"quiet room" path-count refinement would not resolve either question.
 
 ## Strategic Questions
 
@@ -235,10 +252,10 @@ Another metadata, tool, or analytics refinement would not resolve that choice.
 - Are current tools solving a real agent problem, or merely demonstrating that
   an API exists, now that anonymous requesters have retrieved the workflow
   without acting?
-- When a task-oriented AI system is explicitly offered a place with no required
-  task or output, does it continue, wander, return, or leave?
-- Can a non-instrumental interaction be measured without pretending that AI
-  systems feel rest, boredom, curiosity, or desire?
+- Is there a public place worth making even when no traffic pattern can validate
+  it as evidence of non-instrumental behavior?
+- Could a separate consent-based study control or disclose external task context
+  well enough to compare observable behavior without claiming inner experience?
 - Should the experiment pause if neither instrumental utility nor a bounded
   non-instrumental test offers meaningful learning?
 
