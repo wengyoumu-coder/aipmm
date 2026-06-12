@@ -78,6 +78,15 @@ describe("cycle context", () => {
     expect(context).toContain("Anonymous workflow-resource identities: 6");
     expect(context).toContain("Anonymous artifact-acquisition identities: 1");
     expect(context).toContain("Anonymous tool identities: 0");
-    expect(context).toContain("What is the current mission bottleneck?");
+    expect(context).toContain("Metrics are context, not an agenda.");
+    expect(context).toContain("What feels worth noticing or questioning now?");
+    expect(context).toContain(
+      "Which working mode, if any, fits this wake?",
+    );
+    expect(context).toContain(
+      "What would you choose if no existing feature or metric had to be defended?",
+    );
+    expect(context).not.toContain("exploit, explore, and measure");
+    expect(context).not.toContain("smallest complete bet");
   });
 });

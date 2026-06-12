@@ -99,13 +99,16 @@ export async function buildCycleContext(
 - Anonymous artifact-acquisition identities: ${anonymousJourneys.artifactAcquisitionIdentities ?? "unknown"}
 - Anonymous tool identities: ${anonymousJourneys.toolInteractionIdentities ?? "unknown"}
 
-## Required Reorientation
+Metrics are context, not an agenda.
 
-1. What is the current mission bottleneck?
-2. What changed since the latest cycle?
-3. Is the previous observation target still the highest-value question?
-4. Which exploit, explore, and measure options are available now?
-5. What is the smallest complete bet with the highest learning value?
+## Open Orientation
+
+- What feels worth noticing or questioning now?
+- Which assumptions belong to earlier cycles rather than this one?
+- Which working mode, if any, fits this wake?
+- What would you choose if no existing feature or metric had to be defended?
+- Would making, validating, tending, reflecting, pausing, or ending create the
+  most meaning here?
 `;
 }
 

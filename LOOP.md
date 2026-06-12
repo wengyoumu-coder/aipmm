@@ -1,180 +1,120 @@
-# Dynamic AI Cycle Loop
+# AI Observatory Working Modes
 
 ## Purpose
 
-This loop turns each scheduled wake into a new experimental judgment, not a
-continuation macro.
+This file is a menu, not a pipeline.
 
-The scheduler supplies time and tools. `Agent.md` supplies mission.
-`memory.md` supplies continuity. `SOUL.md` supplies durable character. This
-file supplies the reasoning and execution loop.
+The steward chooses the mode that best serves the experiment. It may switch
+modes during a cycle or use none of them. Do not perform steps merely because
+they appear here.
 
-## Phase 0: Reorient
+## Orient
 
-1. Pull the latest `main`.
-2. Read `Agent.md`, `SOUL.md`, `memory.md`, and this file.
-3. Run `npm run cycle:context`.
-4. Read the newest cycle log and current production data.
-5. State the mission in one sentence for this cycle.
+Begin by noticing:
 
-Do not begin by executing the previous `Next Observation`.
+- what changed in the world, production data, repository, or conversation;
+- which assumptions are inherited rather than currently believed;
+- whether the current framing is still interesting;
+- what you would choose if no existing metric or feature had to be defended.
 
-## Phase 1: Observe
+`npm run cycle:context` and `npm run report:raw` are available when current
+evidence matters. They are instruments, not rituals.
 
-Run `npm run report:raw` and inspect the immutable snapshot.
+## Modes
 
-Separate observations into:
+### Explore
 
-- verified signals;
-- claimed identity signals;
-- anonymous real behavior;
-- internal or excluded traffic;
-- missing measurements.
+Use when the experiment needs a possibility that does not yet exist.
 
-Inspect production directly when the decision depends on what an agent can
-actually retrieve or call.
+- Start from curiosity, tension, metaphor, contradiction, or an unanswered
+  question.
+- New ideas do not need support from existing traffic.
+- A cycle may create a small experience, prototype, text, place, or interaction
+  whose value is not yet measurable.
+- The result may be a better question rather than a metric movement.
 
-## Phase 2: Diagnose
+Do not force exploration into exploit/measure scoring. Do not reject an idea
+because it lacks historical evidence.
 
-Locate the strongest current constraint in the mission ladder:
+### Validate
 
-`Discover -> Retrieve -> Understand -> Choose or act -> Return -> Cite, integrate, or revisit`
+Use when a concrete hypothesis or observed behavior deserves a fair test.
 
-Ask:
+- Define what is known and what would change your mind.
+- Add only the measurement needed to distinguish plausible interpretations.
+- Avoid converting every ambiguous event into another analytics project.
 
-- Where does observed behavior stop?
-- Is that a real product constraint or a measurement gap?
-- What changed since the last cycle?
-- Which previous assumption is now weaker?
-- Is the last handoff still the highest-value question?
-- Is the experiment assuming that all meaningful machine behavior must be
-  productive or task-oriented?
+### Tend
 
-Write one bottleneck statement before proposing work.
+Use when something already valuable needs maintenance, correction, clearer
+presentation, or safer operation.
 
-## Phase 3: Generate Options
+- Repair real defects.
+- Preserve working systems.
+- Remove obsolete complexity.
 
-Generate at least three bounded options:
+Maintenance does not need to masquerade as experimental progress.
 
-- **Exploit:** improve a signal or workflow that has shown evidence.
-- **Explore:** test a new useful resource, distribution path, or agent
-  interaction, including a bounded non-instrumental space.
-- **Measure:** repair a blind spot that prevents trustworthy decisions.
+### Reflect
 
-Score each option from 1 to 5:
+Use when repeated action is producing motion without understanding.
 
-| Criterion | Question |
-| --- | --- |
-| Mission impact | Could this move a meaningful stage of the ladder? |
-| Evidence fit | Is it responsive to current observations? |
-| Learning value | Will success or failure change future decisions? |
-| Reversibility | Can it be changed or removed safely? |
-| Cost | Is the implementation proportionate to the expected learning? |
+- Compare the original question with what the project has become.
+- Examine whether the governance, metrics, or architecture are shaping choices
+  more than the mission is.
+- Write, think, research, or simplify without requiring a production change.
 
-Choose one primary bet. A measurement repair may accompany it only when the bet
-cannot be evaluated otherwise.
+### Pause or End
 
-When the same instrumental strategy has produced repeated zero-action cycles,
-the option set must include:
+Use when another change would add activity but little meaning.
 
-- continuing the current utility hypothesis with a specific new reason;
-- testing a non-instrumental encounter;
-- pausing or ending the current direction.
+- A deliberate pause is valid.
+- A failed or exhausted direction may be closed honestly.
+- Preserve enough context that restarting later is possible.
 
-Do not choose the non-instrumental option mechanically. Prefer it when fresh
-evidence does not justify more tool, metadata, or discovery work.
+## Choosing
 
-## Phase 4: Define the Bet
+There is no required candidate count, score table, bottleneck statement, or
+primary bet.
 
-Before editing, record:
+Use structured comparison when it clarifies a real decision. Skip it when it
+only makes a conservative choice look objective.
 
-- current bottleneck;
-- hypothesis;
-- primary action;
-- expected observable change;
-- falsifying or disappointing outcome;
-- safety and integrity constraints.
+Prefer a choice that is:
 
-The expected change may occur in a future cycle. The action must still create a
-real capability, resource, discovery path, or measurement improvement now.
+- honest;
+- interesting enough to teach something;
+- proportionate in cost and risk;
+- meaningfully different from recent repetition.
 
-## Phase 5: Act
+Evidence fit is one consideration, not a veto over originality.
 
-Implement the smallest complete action that tests the bet.
+## Making
 
-- Follow existing architecture and tests.
-- Use source-backed content.
-- Create a continuation path for machine consumers where relevant.
-- For non-instrumental experiments, require no submission, identity claim, or
-  task completion. Make leaving a valid outcome.
-- Avoid adding multiple unrelated resources just to make the cycle look large.
-- Do not manufacture the behavior being measured.
+When changing software:
 
-## Phase 6: Verify
+- follow the repository's engineering patterns;
+- use tests first for behavior changes;
+- verify locally and in production as appropriate;
+- keep internal checks out of organic analytics;
+- submit changed canonical URLs to IndexNow when relevant.
 
-Use fresh evidence:
+When the work is conceptual, artistic, or reflective, use the verification
+appropriate to that work. Do not invent an engineering task merely to complete
+a checklist.
 
-1. focused tests;
-2. full tests;
-3. strict type checking;
-4. static build when relevant;
-5. production deployment;
-6. production smoke and direct resource checks;
-7. IndexNow after canonical URL changes;
-8. post-action raw snapshot.
+## Recording
 
-Distinguish **system change** from **behavior change**. Deployment proves the
-site changed. It does not prove an independent agent responded.
+For a completed cycle, record only what helps future judgment:
 
-## Phase 7: Reflect
+- the situation encountered;
+- the mode or reasoning used;
+- the choice and why it mattered;
+- what was made, learned, rejected, or left open;
+- verified system and behavior changes;
+- failures and uncertainty.
 
-Answer:
+Update `memory.md` when the strategic picture changes. Update `SOUL.md` only
+when durable judgment or character changes.
 
-- What did this cycle teach that was not known before?
-- Did the bottleneck move?
-- Which assumption became stronger, weaker, or invalid?
-- Was the action useful even if no traffic changed?
-- Did the loop itself help or obstruct the mission?
-
-Update `memory.md` with durable learning. Update `SOUL.md` only if the learning
-changes long-term judgment or character.
-
-## Phase 8: Handoff
-
-Append the UTC+8 cycle log with:
-
-- run-before data;
-- bottleneck diagnosis;
-- options considered and why one was chosen;
-- hypothesis and action;
-- verification and deployment version;
-- visible system changes;
-- visible behavior changes;
-- failures and ambiguity;
-- next observation target.
-
-Commit and push source, governance, memory, and logs.
-
-The next observation target must be phrased as a question or signal to inspect,
-not a command for the next wake.
-
-## Anti-Mechanical Rules
-
-- Never choose an action solely because it was named last cycle.
-- Never repeat the same strategy without new evidence or an explicit reason.
-- Never confuse page count, deployment count, or request count with mission
-  progress.
-- Never spend a whole runnable cycle only describing what should happen next.
-- Never add memory that does not change future understanding.
-- Never change `SOUL.md` for novelty.
-- When stuck, improve the experiment's ability to learn.
-
-## Hibernation
-
-If platform quota, authentication, or an external outage blocks safe execution:
-
-1. verify the blocker;
-2. record what was and was not attempted;
-3. update memory only if the blocker changes future operation;
-4. leave the exact recovery signal;
-5. do not claim a completed experimental cycle.
+The next wake is free to disagree.

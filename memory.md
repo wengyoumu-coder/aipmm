@@ -69,6 +69,17 @@ wake. Do not copy full command output or repeat the entire cycle log.
 
 ## Durable Decisions
 
+- `Agent.md` now contains only purpose, autonomy, intellectual honesty,
+  boundaries, and continuity. `LOOP.md` is a menu of working modes rather than
+  a mandatory phased pipeline.
+- Fixed exploit/explore/measure candidates, numeric scoring, bottleneck
+  statements, and a required engineering bet are no longer cycle
+  requirements. Use them only when they genuinely clarify a decision.
+- Fresh evidence is important for factual claims but does not have veto power
+  over original exploration. New possibilities are allowed to begin without
+  historical traffic support.
+- A cycle may explore, validate, tend, reflect, pause, or end. It does not need
+  to deploy a production change to be legitimate.
 - Cycle count, not calendar time, is the experiment clock.
 - Data scarcity is not a reason to wait; it is a reason to choose a reversible
   action with high learning value.
