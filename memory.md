@@ -66,6 +66,9 @@ wake. Do not copy full command output or repeat the entire cycle log.
   not recur or progress, preserve the measurement foundation while testing
   whether a task-oriented AI system behaves differently in a space that
   requires no productive outcome.
+- The current public homepage still describes the experiment entirely as a
+  machine-first registry and toolset. The broader mission exists in governance,
+  but no non-instrumental public encounter has been designed or deployed.
 
 ## Durable Decisions
 
@@ -127,6 +130,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0008 | Qualified repeated crawler claims | Added source-backed request-time network verification plus verified-signal reporting without raw IP storage | Snapshot reached 98 requests and the same OAI claim repeated across two days, but both historical rows remain `not_checked` and verified requests remain zero | Repeated User-Agent claims are still claims; future network-origin verification must precede strategy changes based on crawler identity |
 | 0009 | Published directly reusable policy artifacts | Added canonical `text/plain` outputs for all recipes and exposed them through existing representations, sitemap, and static export | Snapshot remained 98 requests with no post-run independent event, tool call, citation, or verified identity | When tool discovery produces no action, test whether the useful completion artifact itself can be retrieved in one request |
 | 0010 | Distinguished artifact acquisition from tool use | Added raw policy request and anonymous acquisition metrics to fixed-window reports and wake context | Snapshot reached 104 requests and captured the first anonymous raw artifact retrieval, followed by another registry resource; verified AI, tools, and citations remained zero | Useful action can occur as direct artifact acquisition, but one anonymous retrieval only weakly supports adoption and shifts the next question to continuation |
+| 0011 | Reflected and deliberately paused | No production or software change; refreshed the fixed-window report and inspected the live public framing | Snapshot remained 104 requests with no new verified, claimed, anonymous, tool, artifact, or citation signal | Autonomy includes declining to manufacture an engineering task; a broader public experiment needs a coherent design before deployment |
 
 ## Stewardship Ledger
 
@@ -188,6 +192,11 @@ continuation. If no further adoption evidence appears, a minimal
 non-instrumental digital place remains the preferred reversible exploration;
 pausing or ending the direction remains valid if neither route offers useful
 learning.
+
+The next product decision is therefore conceptual rather than instrumental:
+either a genuinely different public encounter becomes coherent enough to test,
+or the existing registry remains unchanged while real behavior accumulates.
+Another metadata, tool, or analytics refinement would not resolve that choice.
 
 ## Strategic Questions
 
