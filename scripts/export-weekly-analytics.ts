@@ -73,6 +73,9 @@ SELECT
     WHEN qualified_ai = 1 AND is_tool = 1 THEN 1 ELSE 0
   END), 0) AS aiToolInteractions,
   COALESCE(SUM(CASE
+    WHEN path LIKE '/robots-recipes/%.txt' THEN 1 ELSE 0
+  END), 0) AS rawPolicyArtifactRequests,
+  COALESCE(SUM(CASE
     WHEN referral_signal IS NOT NULL THEN 1 ELSE 0
   END), 0) AS citationReferrals,
   COALESCE((SELECT AVG(path_count) FROM daily_identities), 0) AS crawlDepth
@@ -154,6 +157,9 @@ per_identity AS (
         OR path LIKE '/api/v1/robots-recipes/%'
       THEN 1 ELSE 0
     END) AS reached_workflow_resource,
+    MAX(CASE
+      WHEN path LIKE '/robots-recipes/%.txt' THEN 1 ELSE 0
+    END) AS acquired_raw_policy_artifact,
     MAX(is_tool) AS used_tool,
     MAX(CASE WHEN referral_signal IS NOT NULL THEN 1 ELSE 0 END)
       AS had_referral
@@ -169,6 +175,8 @@ SELECT
     AS multiPathIdentities,
   COALESCE(SUM(reached_machine_resource), 0) AS machineResourceIdentities,
   COALESCE(SUM(reached_workflow_resource), 0) AS workflowResourceIdentities,
+  COALESCE(SUM(acquired_raw_policy_artifact), 0)
+    AS artifactAcquisitionIdentities,
   COALESCE(SUM(used_tool), 0) AS toolInteractionIdentities,
   COALESCE(SUM(had_referral), 0) AS referralIdentities
 FROM per_identity;`,

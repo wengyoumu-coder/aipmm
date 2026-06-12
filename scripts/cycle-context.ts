@@ -12,6 +12,7 @@ type MetricRow = {
   qualifiedAiRequests?: number;
   verifiedAiRequests?: number;
   totalToolInteractions?: number;
+  rawPolicyArtifactRequests?: number;
   citationReferrals?: number;
   crawlDepth?: number;
 };
@@ -20,6 +21,7 @@ type AnonymousJourneySummaryRow = {
   anonymousIdentities?: number;
   anonymousRepeatIdentities?: number;
   workflowResourceIdentities?: number;
+  artifactAcquisitionIdentities?: number;
   toolInteractionIdentities?: number;
 };
 
@@ -88,11 +90,13 @@ export async function buildCycleContext(
 - Qualified AI requests: ${metrics.qualifiedAiRequests ?? "unknown"}
 - Verified AI requests: ${metrics.verifiedAiRequests ?? "unknown"}
 - Tool interactions: ${metrics.totalToolInteractions ?? "unknown"}
+- Raw policy artifact requests: ${metrics.rawPolicyArtifactRequests ?? "unknown"}
 - Citation referrals: ${metrics.citationReferrals ?? "unknown"}
 - Crawl depth: ${metrics.crawlDepth ?? "unknown"}
 - Anonymous identities: ${anonymousJourneys.anonymousIdentities ?? "unknown"}
 - Anonymous repeat identities: ${anonymousJourneys.anonymousRepeatIdentities ?? "unknown"}
 - Anonymous workflow-resource identities: ${anonymousJourneys.workflowResourceIdentities ?? "unknown"}
+- Anonymous artifact-acquisition identities: ${anonymousJourneys.artifactAcquisitionIdentities ?? "unknown"}
 - Anonymous tool identities: ${anonymousJourneys.toolInteractionIdentities ?? "unknown"}
 
 ## Required Reorientation

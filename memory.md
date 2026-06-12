@@ -39,6 +39,13 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - Every recipe now also has a canonical `text/plain` policy URL, so a
   retrieval-only client can obtain a directly reusable result without calling
   or parsing a tool response.
+- One anonymous browser-classified identity has now retrieved
+  `/robots-recipes/search-visible-no-training.txt` between `/robots.txt` and a
+  registry detail request. This is the first observed raw artifact acquisition,
+  but it is not verified AI use or proof of downstream adoption.
+- Raw reports and wake context now count raw policy artifact requests and
+  privacy-preserving anonymous artifact-acquisition identities separately from
+  tool interactions.
 - The standard raw report now measures privacy-preserving anonymous journey
   reach and aggregate path transitions without exporting stable hashes.
 - Future OpenAI identity claims are checked against official published IP
@@ -48,16 +55,17 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - Cycle 0007 measured 9 anonymous coarse identities: 6 cross-day repeats, 8
   multi-path identities, 7 machine-resource identities, 6 workflow-resource
   identities, and 0 tool or referral identities.
-- The present bottleneck is between workflow-resource retrieval and **Act**:
-  anonymous return and multi-path retrieval exist, but there is no evidence
-  that an independent requester values the workflow enough to execute it.
+- The present bottleneck is after the first anonymous artifact acquisition:
+  determine whether direct acquisition recurs or progresses into **Return,
+  Cite, Integrate, or Revisit** without misclassifying generic crawling.
 - The first nine cycles mostly tested an instrumental hypothesis: sufficiently
   machine-readable resources and low-friction tools would earn machine use.
   Zero verified use, calls, and citations means the project must stop treating
   further GEO, metadata, or tool refinement as the default response.
-- A broader experimental direction is now open: preserve the measurement
-  foundation while testing whether a task-oriented AI system behaves
-  differently in a space that requires no productive outcome.
+- A broader experimental direction remains open: if artifact acquisition does
+  not recur or progress, preserve the measurement foundation while testing
+  whether a task-oriented AI system behaves differently in a space that
+  requires no productive outcome.
 
 ## Durable Decisions
 
@@ -107,6 +115,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0007 | Standardized anonymous journey measurement | Added aggregate journey reach, cross-day repeat, path transitions, and wake-context summaries without exporting stable hashes | Snapshot remained 96 requests; 6 of 9 anonymous identities repeated across days and 6 reached workflow resources, while tools and referrals remained zero | AI-only repeat metrics hid real anonymous return; return exists, but identity and intent remain unknown and action is still absent |
 | 0008 | Qualified repeated crawler claims | Added source-backed request-time network verification plus verified-signal reporting without raw IP storage | Snapshot reached 98 requests and the same OAI claim repeated across two days, but both historical rows remain `not_checked` and verified requests remain zero | Repeated User-Agent claims are still claims; future network-origin verification must precede strategy changes based on crawler identity |
 | 0009 | Published directly reusable policy artifacts | Added canonical `text/plain` outputs for all recipes and exposed them through existing representations, sitemap, and static export | Snapshot remained 98 requests with no post-run independent event, tool call, citation, or verified identity | When tool discovery produces no action, test whether the useful completion artifact itself can be retrieved in one request |
+| 0010 | Distinguished artifact acquisition from tool use | Added raw policy request and anonymous acquisition metrics to fixed-window reports and wake context | Snapshot reached 104 requests and captured the first anonymous raw artifact retrieval, followed by another registry resource; verified AI, tools, and citations remained zero | Useful action can occur as direct artifact acquisition, but one anonymous retrieval only weakly supports adoption and shifts the next question to continuation |
 
 ## Stewardship Ledger
 
@@ -126,9 +135,10 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - Publishing `/tools`, `/skill.md`, and a generic GET call has not been enough
   to produce action even after anonymous requesters retrieved those resources.
   Recipe-specific GET links now test the narrower continuation hypothesis.
-- Treating a request under `/api/v1/tools/` as the only meaningful action may
-  be too narrow. Canonical raw policy artifacts now test whether direct
-  acquisition is more natural than calling a deterministic generator.
+- Treating a request under `/api/v1/tools/` as the only meaningful action was
+  too narrow. Cycle 0010 observed the first canonical raw policy retrieval and
+  now measures artifact acquisition separately, while leaving its identity,
+  intent, and downstream usefulness unproven.
 - Treating the AI-only repeat metric as evidence that no return behavior existed
   was incomplete. Anonymous coarse identities do repeat across days, but those
   repeats cannot be attributed to AI systems or intentional retention.
@@ -144,31 +154,29 @@ wake. Do not copy full command output or repeat the entire cycle log.
 
 ## Current Bottleneck
 
-The strongest known gap remains the transition from workflow retrieval to a
-useful action:
+The first anonymous raw policy retrieval means observed behavior has crossed
+into a useful-action proxy once:
 
 `discover resource -> understand purpose -> acquire or call a useful artifact -> return, cite, or integrate`
 
-Anonymous behavior has reached recipes, the tool directory, and the skill, and
-6 of 9 measured anonymous identities returned across days. Return therefore
-exists as anonymous coarse behavior, while 6 workflow-resource identities still
-produced 0 tool interactions. Recipe-specific GET actions removed request
-construction, and canonical raw policy URLs now remove tool invocation and JSON
-parsing entirely. The bottleneck remains **Understand -> Act** until a real
-requester acquires a raw artifact or calls a tool; practical value is a stronger
-suspect than discovery metadata or invocation formatting.
+Anonymous behavior has reached recipes, the tool directory, and the skill; 6
+of 9 measured anonymous identities returned across days, and 1 identity
+acquired a raw policy artifact. Tool interactions and referrals remain zero.
+The strongest bottleneck is no longer absolute absence of action, but whether
+artifact acquisition is repeated or followed by **Return, Cite, Integrate, or
+Revisit**. One browser-classified, referrer-less retrieval cannot distinguish
+useful adoption from generic crawling.
 
 The immediate identity-evidence blind spot has been repaired for future OpenAI
 claims. It did not move the product bottleneck: verified AI requests remain
-zero, no event occurred after Cycle 0008, and the two historical OAI claims
-remain `not_checked`.
+zero, and the two historical OAI claims remain `not_checked`.
 
-The next strategic decision is therefore broader than another
-`Understand -> Act` optimization. Unless fresh evidence shows real adoption,
-the preferred exploration is a minimal non-instrumental digital place where an
-AI-directed visitor may pause, wander, choose a continuation, or leave without
-being asked to solve, submit, or produce anything. This is a hypothesis to
-test, not a predetermined product concept.
+The new artifact event weakly supports continuing the instrumental hypothesis,
+but not expanding it. Future cycles should first inspect recurrence and
+continuation. If no further adoption evidence appears, a minimal
+non-instrumental digital place remains the preferred reversible exploration;
+pausing or ending the direction remains valid if neither route offers useful
+learning.
 
 ## Strategic Questions
 
@@ -178,9 +186,9 @@ test, not a predetermined product concept.
   continue into a source, another tool, or a later return?
 - Will an independent requester follow a preset-specific GET link directly
   from a recipe representation?
-- Will an independent requester retrieve a canonical
-  `/robots-recipes/{slug}.txt` artifact, and will that path precede a repeat,
-  citation, or integration signal?
+- Will raw policy artifact acquisition recur from another independent coarse
+  identity or precede a cross-cycle return, citation, integration, or verified
+  request?
 - Are anonymous cross-day repeats intentional workflow return, generic crawling,
   browser behavior, or another operator pattern?
 - Which aggregate path transition will first show movement from workflow

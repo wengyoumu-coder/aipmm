@@ -77,6 +77,26 @@ describe("weekly analytics export", () => {
     expect(verification?.sql).not.toContain("identity_hash AS");
   });
 
+  test("separates raw policy acquisition from tool interaction", () => {
+    const queries = buildWeeklyQueries(
+      7,
+      new Date("2026-06-10T12:00:00Z"),
+    );
+    const metrics = queries.find((query) => query.name === "metrics");
+    const summary = queries.find(
+      (query) => query.name === "anonymous_journey_summary",
+    );
+
+    expect(metrics?.sql).toContain("AS rawPolicyArtifactRequests");
+    expect(metrics?.sql).toContain(
+      "path LIKE '/robots-recipes/%.txt'",
+    );
+    expect(summary?.sql).toContain("AS artifactAcquisitionIdentities");
+    expect(summary?.sql).toContain(
+      "path LIKE '/robots-recipes/%.txt'",
+    );
+  });
+
   test("reports anonymous journeys without exposing stable identity hashes", () => {
     const queries = buildWeeklyQueries(
       7,
@@ -93,6 +113,7 @@ describe("weekly analytics export", () => {
     expect(summary?.sql).toContain("AS anonymousIdentities");
     expect(summary?.sql).toContain("anonymousRepeatIdentities");
     expect(summary?.sql).toContain("workflowResourceIdentities");
+    expect(summary?.sql).toContain("artifactAcquisitionIdentities");
     expect(summary?.sql).toContain("toolInteractionIdentities");
     expect(summary?.sql).not.toContain("stable_identity_hash AS");
 
