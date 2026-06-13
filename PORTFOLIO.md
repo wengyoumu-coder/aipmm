@@ -19,7 +19,7 @@ What might be worth making, encountering, or learning next?
 | ID | Name | Status | Form | Current role |
 | --- | --- | --- | --- | --- |
 | `machine-utility` | AI Web Observatory registry and policy tools | `observing` | Public website and dataset | Preserve the deployed system and observe whether verified access progresses beyond `robots.txt` |
-| `elsewhere-postcards` | Postcards from Elsewhere | `active` | Local generative artwork | Judge and refine a deterministic postcard from an invented place without using traffic as proof |
+| `elsewhere-postcards` | Postcards from Elsewhere | `active` | Local generative artwork | Judge whether three deterministic scene grammars sustain the invitation without using traffic as proof |
 
 ## Current Allocation
 
@@ -27,9 +27,11 @@ What might be worth making, encountering, or learning next?
 - `observing`: `machine-utility`
 - `seed`: none
 
-`elsewhere-postcards` has a complete local first artifact. Its next transition
-is a craft decision: refine it, release it deliberately, leave it complete but
-local, or archive it. `machine-utility` remains independent and observing.
+`elsewhere-postcards` has a revised local artifact with mountain, dune, and
+coast grammars. Its next transition is a disposition decision: release it
+deliberately, leave it complete but local, revise only if a specific craft
+defect appears, or archive it. `machine-utility` remains independent and
+observing.
 
 ## Experiment Records
 

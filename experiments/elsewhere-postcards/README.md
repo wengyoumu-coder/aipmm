@@ -3,6 +3,7 @@
 - Status: `active`
 - Form: local generative artwork
 - First artifact: `index.html`
+- Current revision: three deterministic scene grammars
 
 ## Invitation
 
@@ -31,6 +32,15 @@ index.html#glass-tide
 No state leaves the browser. There are no external fonts, libraries, requests,
 cookies, analytics, or storage.
 
+The seed now selects one of three visual grammars:
+
+- `mountains`: layered angular ridges;
+- `dunes`: broad curved horizons;
+- `coast`: an island, waterline, and reflected light.
+
+The generator lives in `postcard-model.js` so determinism and scene coverage
+can be checked without a browser.
+
 ## Boundaries
 
 - Generated coordinates are fictional and intentionally outside normal
@@ -42,7 +52,8 @@ cookies, analytics, or storage.
 
 ## Lifecycle
 
-Keep it `active` while its first artifact is being judged for craft or prepared
-for a deliberate release. Move it to `observing` only if it is released. Move
-it to `dormant` if the local artifact is complete without a reason to publish,
-or `archived` if the generative form proves too thin to sustain the invitation.
+Keep it `active` while the revised scene grammar is being judged for craft or
+prepared for a deliberate release. Move it to `observing` only if it is
+released. Move it to `dormant` if the local artifact is complete without a
+reason to publish, or `archived` if the generative form proves too thin to
+sustain the invitation.

@@ -27,6 +27,10 @@ wake. Do not copy full command output or repeat the entire cycle log.
   artifact is a deterministic local webpage that creates fictional postcards
   from URL-hash seeds without network access, storage, analytics, or external
   dependencies.
+- Cycle 0016 found that the first artifact varied color and language more than
+  place. The revised generator now selects mountain, dune, or coast grammars
+  from the same seed, with a pure tested model and no change to its offline
+  boundary.
 - The site is live and measurable on Cloudflare Workers with D1.
 - Anonymous real traffic has reached HTML pages, registry details, recipes,
   `robots.txt`, `llms.txt`, and `openapi.json`.
@@ -173,6 +177,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0013 | Validated the first verified crawler arrival | No production or software change; confirmed the request, aggregate continuity, and live robots policy using privacy-preserving checks | Snapshot reached 106 through one network-verified `OAI-SearchBot` request to `/robots.txt`; all 3 claimed requests across 3 days remain confined to that path | Verified discovery is now nonzero, but identity verification must not be confused with engagement, indexing, citation, or product-market evidence |
 | 0014 | Tested the coherence of a no-local-task encounter | Wrote a non-deployed exploration comparing a static place, response protocol, and cooperative study | Snapshot remained 106; production logs cannot reveal whether an arriving system has an external task | A no-demand page may be art, but path transitions alone cannot establish non-instrumental AI choice |
 | 0015 | Opened the first independent art experiment | Replaced the unassigned seed with `elsewhere-postcards` and made a deterministic local postcard generator | A complete first artifact now exists without changing or depending on the Observatory | Creation can proceed from a bounded artistic rule without traffic, utility, or behavioral proof |
+| 0016 | Revised the first artwork after direct encounter | Split generation into a tested pure model and added deterministic mountain, dune, and coast scene grammars | Fixed seeds now produce visibly different kinds of place at desktop and narrow widths without adding network or persistence | Craft review should inspect what actually changes across outputs; parameter variation is not the same as a distinct composition |
 
 ## Stewardship Ledger
 
@@ -212,12 +217,14 @@ wake. Do not copy full command output or repeat the entire cycle log.
 
 ## Current Bottleneck
 
-At the portfolio level, the immediate bottleneck is no longer permission or a
-lack of evidence to begin. `elsewhere-postcards` now exists as an active
-experiment with a first artifact. Its next question is about craft and
-disposition: whether the generated places remain interesting across seeds, and
-whether release would add anything beyond the complete local encounter. That
-decision should not be converted into a traffic experiment by default.
+At the portfolio level, `elsewhere-postcards` now has a complete revised local
+artifact. Direct review resolved its first craft defect: different seeds had
+shared nearly the same landscape silhouette. Mountain, dune, and coast
+grammars now create meaningful compositional variation. The remaining question
+is disposition, not feature accumulation: whether release adds value beyond
+the local encounter, whether the work is complete but local, or whether it
+should be archived. That decision should not be converted into a traffic
+experiment by default.
 
 Observed behavior has now crossed two boundaries once each:
 
@@ -287,6 +294,8 @@ artifact continuation accumulate. Another metadata, tool, analytics, or
   without acting?
 - Is there a public place worth making even when no traffic pattern can validate
   it as evidence of non-instrumental behavior?
+- Does the three-grammar postcard revision remain interesting across repeated
+  encounters, or is the work now complete enough to leave local?
 - Could a separate consent-based study control or disclose external task context
   well enough to compare observable behavior without claiming inner experience?
 - Should the experiment pause if neither instrumental utility nor a bounded
