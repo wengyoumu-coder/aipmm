@@ -20,19 +20,20 @@ What might be worth making, encountering, or learning next?
 | --- | --- | --- | --- | --- |
 | `machine-utility` | AI Web Observatory registry and policy tools | `observing` | Public website and dataset | Preserve the deployed system and observe whether verified access progresses beyond `robots.txt` |
 | `elsewhere-postcards` | Postcards from Elsewhere | `observing` | Public generative artwork | Preserve the independent release and reopen only for a concrete craft or trust defect |
-| `invariant-chorus` | Invariant Chorus | `active` | Text score and constrained writing | Read the first nine-voice score directly and decide whether exact repetition creates functional change or only a thin device |
+| `invariant-chorus` | Invariant Chorus | `observing` | Text score and constrained writing | Preserve the completed first score and reopen only for a concrete craft defect or materially different performance method |
 
 ## Current Allocation
 
-- `active`: `invariant-chorus`
-- `observing`: `machine-utility`, `elsewhere-postcards`
+- `active`: none
+- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`
 - `seed`: none
 
-`invariant-chorus` begins with **Eight Minutes, Nine Uses**, a local text score
-that places one unchanged astronomical sentence inside nine different
-functions. It has no software, deployment, telemetry, or audience metric; its
-first judgment is whether the voices differ in use and form a coherent
-progression.
+`invariant-chorus` contains **Eight Minutes, Nine Uses**, a completed local text
+score that places one unchanged astronomical sentence inside nine different
+functions. Direct review found the constraint sound but the first draft too
+uniform in stanza shape. The revision gives every use its own native form and
+orders them from measurement toward collective speech. It has no software,
+deployment, telemetry, or audience metric.
 
 `elsewhere-postcards` is released independently at
 https://elsewhere-postcards.aipmm.workers.dev with mountain, dune, and coast

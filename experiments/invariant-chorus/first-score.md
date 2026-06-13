@@ -4,87 +4,100 @@ A score for one unchanged sentence.
 
 ## 1. Ephemeris
 
-Record the departure as unobserved.
+**Entry:** local morning
 
-Light from the Sun takes about eight minutes to reach Earth.
+**Departure:** unobserved
 
-Enter the arrival under local morning.
-The table does not hurry it.
+**Transit:** Light from the Sun takes about eight minutes to reach Earth.
 
-## 2. Station Announcement
+**Arrival:** recorded at the bright edge of the table
 
-Attention on every platform:
+The entry marks receipt, not origin.
 
-Light from the Sun takes about eight minutes to reach Earth.
+## 2. Error Message
+
+```text
+NOTICE 08M: SOURCE NOT LOCAL
+STATUS: transmission in progress
+MESSAGE: Light from the Sun takes about eight minutes to reach Earth.
+RETRY: unavailable
+ACTION: continue with received illumination
+```
+
+## 3. Maintenance Log
+
+| Field | Reading |
+| --- | --- |
+| Source | stable |
+| Route | unobstructed |
+| Latency | nominal |
+| Transit | Light from the Sun takes about eight minutes to reach Earth. |
+| Action taken | cleaned the window |
+
+## 4. Station Announcement
+
+*[Two-tone chime]*
+
+Attention on every platform. Light from the Sun takes about eight minutes to reach Earth.
 
 Please stand behind the yellow line.
 No connection can be held for daylight.
 
-## 3. Recipe
+## 5. Recipe
 
-Set an empty bowl where the window can find it.
+**Yield:** one visible rim
 
-Light from the Sun takes about eight minutes to reach Earth.
+**Ingredients**
 
-Add nothing.
-Serve when the rim becomes visible.
+- one empty bowl
+- one east-facing window
+- nothing else
 
-## 4. Error Message
+**Method**
 
-`NOTICE 08M: SOURCE NOT LOCAL`
+1. Set the bowl where the window can find it.
+2. Light from the Sun takes about eight minutes to reach Earth.
+3. Add nothing.
+4. Serve when the rim becomes visible.
 
-Light from the Sun takes about eight minutes to reach Earth.
+## 6. Museum Label
 
-Retrying will not shorten transit.
-Continue with the received illumination? `[Y/n]`
+**DAYLIGHT, RECEIVED SPECIMEN**
 
-## 5. Treaty Article
+- **Material:** electromagnetic radiation and ordinary dust
+- **Transit note:** Light from the Sun takes about eight minutes to reach Earth.
+- **Collection status:** source not acquired
+- **Display term:** temporary
 
-The parties recognize a shared delay:
+Please do not touch the window.
 
-Light from the Sun takes about eight minutes to reach Earth.
+## 7. Treaty Article
 
-No border shall claim the interval.
-No clock shall make the light arrive alone.
+**Article V - Common Transit**
 
-## 6. Lullaby
+1. The parties recognize a shared delay.
+2. Light from the Sun takes about eight minutes to reach Earth.
+3. No border shall claim the interval.
+4. No clock shall make the light arrive alone.
+
+## 8. Lullaby
 
 Close your eyes before the room is dark.
-
-Light from the Sun takes about eight minutes to reach Earth.
-
 Morning has already left its first address.
+
+Light from the Sun takes about eight minutes to reach Earth.
+
 It is crossing the quiet without waking you.
-
-## 7. Maintenance Log
-
-Source: stable.
-
-Route: unobstructed.
-
-Light from the Sun takes about eight minutes to reach Earth.
-
-Latency: nominal.
-
-Action taken: cleaned the window.
-
-## 8. Museum Label
-
-**Object:** Daylight, received specimen
-
-**Material:** Electromagnetic radiation and ordinary dust
-
-Light from the Sun takes about eight minutes to reach Earth.
-
-The institution did not acquire the source.
-This portion is on temporary display.
+Sleep until the message warms the floor.
 
 ## 9. Chorus
 
-Say it once for distance.
-Say it again for everything distance changes.
+**ONE VOICE:** Say it for distance.
 
-Light from the Sun takes about eight minutes to reach Earth.
+**ANOTHER:** Say it for everything distance changes.
 
-The sentence arrives unchanged.
-We do not.
+**ALL:** Light from the Sun takes about eight minutes to reach Earth.
+
+**ONE VOICE:** The sentence arrives unchanged.
+
+**ALL:** We do not.

@@ -1,6 +1,6 @@
 # Invariant Chorus
 
-- Status: `active`
+- Status: `observing`
 - Form: text score and constrained writing experiment
 - First artifact: `first-score.md`
 - First work: **Eight Minutes, Nine Uses**
@@ -13,8 +13,8 @@ the same?
 ## Invitation
 
 Read one factual sentence as it passes through nine different functions. It is
-measurement, announcement, instruction, failure, law, comfort, maintenance,
-display, and shared speech without changing its words.
+measurement, failure, maintenance, announcement, instruction, display, law,
+comfort, and shared speech without changing its words.
 
 The invariant in the first score is:
 
@@ -28,7 +28,14 @@ what a reader is being asked to do with it.
 
 `first-score.md` is both a score and its first written performance. Every
 numbered voice contains the invariant exactly once. The order moves from
-institutional measurement toward collective repetition.
+measurement through technical, public, domestic, cultural, legal, and intimate
+uses before ending in collective repetition.
+
+Direct review found that the first draft's functions differed, but its repeated
+stanza shape flattened those differences and its order doubled back between
+registers. The completed revision gives each voice its native structure:
+ephemeris entry, error block, maintenance table, announcement, recipe, museum
+label, treaty clauses, lullaby, and scored chorus.
 
 ## Boundaries
 
@@ -42,10 +49,8 @@ institutional measurement toward collective repetition.
 
 ## Lifecycle
 
-The experiment is `active` while direct reading tests whether the nine voices
-are genuinely different in function and form a coherent progression.
-
-Move it to `observing` if the first score is complete enough to preserve
-without revision. Add another performance only if it tests a materially
-different invariant or performance method. Archive it if exact repetition
-proves to be a thin device rather than a useful compositional constraint.
+The experiment is `observing`. The revised first score is complete enough to
+preserve without further work. Reopen it only if direct reading reveals a
+concrete craft defect or a new performance tests a materially different
+invariant or method. Archive it if later work shows that exact repetition
+cannot support more than this single composition.
