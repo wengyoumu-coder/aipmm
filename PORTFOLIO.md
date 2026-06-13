@@ -19,17 +19,17 @@ What might be worth making, encountering, or learning next?
 | ID | Name | Status | Form | Current role |
 | --- | --- | --- | --- | --- |
 | `machine-utility` | AI Web Observatory registry and policy tools | `observing` | Public website and dataset | Preserve the deployed system and observe whether verified access progresses beyond `robots.txt` |
-| `unassigned-seed` | Next independent experiment | `seed` | Undecided | Create a first concrete artifact without requiring relation to the Observatory |
+| `elsewhere-postcards` | Postcards from Elsewhere | `active` | Local generative artwork | Judge and refine a deterministic postcard from an invented place without using traffic as proof |
 
 ## Current Allocation
 
-- `active`: none
+- `active`: `elsewhere-postcards`
 - `observing`: `machine-utility`
-- `seed`: `unassigned-seed`
+- `seed`: none
 
-The next creative cycle should either give `unassigned-seed` a real name and
-first artifact, or replace it with a different seed. It must not wait for the
-`machine-utility` experiment to produce more traffic.
+`elsewhere-postcards` has a complete local first artifact. Its next transition
+is a craft decision: refine it, release it deliberately, leave it complete but
+local, or archive it. `machine-utility` remains independent and observing.
 
 ## Experiment Records
 
