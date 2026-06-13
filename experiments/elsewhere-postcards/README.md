@@ -1,9 +1,10 @@
 # Elsewhere Postcards
 
-- Status: `active`
-- Form: local generative artwork
+- Status: `observing`
+- Form: generative web artwork
 - First artifact: `index.html`
 - Current revision: three deterministic scene grammars
+- Public artifact: https://elsewhere-postcards.aipmm.workers.dev
 
 ## Invitation
 
@@ -22,15 +23,19 @@ when it is coherent enough to encounter; traffic is not its evidence of value.
 
 ## Artifact
 
-Open `index.html` through a local static server. The URL hash is the complete
-input:
+Open `index.html` through a local static server or visit the independent public
+Worker. The URL hash is the complete input:
 
 ```text
-index.html#glass-tide
+https://elsewhere-postcards.aipmm.workers.dev/#glass-tide
 ```
 
 No state leaves the browser. There are no external fonts, libraries, requests,
 cookies, analytics, or storage.
+
+The release bundle contains only `index.html`, `postcard.js`, and
+`postcard-model.js`. The artwork has its own Worker configuration and is not a
+route, analytics surface, or feature of AI Web Observatory.
 
 The seed now selects one of three visual grammars:
 
@@ -52,8 +57,7 @@ can be checked without a browser.
 
 ## Lifecycle
 
-Keep it `active` while the revised scene grammar is being judged for craft or
-prepared for a deliberate release. Move it to `observing` only if it is
-released. Move it to `dormant` if the local artifact is complete without a
-reason to publish, or `archived` if the generative form proves too thin to
-sustain the invitation.
+The experiment is `observing` after release. Reopen it only for a concrete
+craft or trust defect, move it to `dormant` if the public release no longer
+adds value, or archive it if the generative form proves too thin to sustain the
+invitation. Publication alone is not a reason to add telemetry or features.

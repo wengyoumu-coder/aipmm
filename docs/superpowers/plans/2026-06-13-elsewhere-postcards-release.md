@@ -17,13 +17,13 @@
 - Create: `scripts/export-elsewhere-postcards.ts`
 - Modify: `package.json`
 
-- [ ] **Step 1: Write the failing exporter test**
+- [x] **Step 1: Write the failing exporter test**
 
 Create a temporary source and output directory, add the three public files plus
 a private test file, run `exportElsewherePostcards`, and assert that the output
 contains exactly `index.html`, `postcard.js`, and `postcard-model.js`.
 
-- [ ] **Step 2: Run the focused test and verify RED**
+- [x] **Step 2: Run the focused test and verify RED**
 
 Run:
 
@@ -33,13 +33,13 @@ npx vitest run scripts/export-elsewhere-postcards.test.ts
 
 Expected: fail because `export-elsewhere-postcards.ts` does not exist.
 
-- [ ] **Step 3: Implement the minimal exporter**
+- [x] **Step 3: Implement the minimal exporter**
 
 Export a function that removes the output directory, recreates it, and copies
 only the three allowlisted files. Add a CLI entry point and
 `npm run build:elsewhere`.
 
-- [ ] **Step 4: Run the focused test and verify GREEN**
+- [x] **Step 4: Run the focused test and verify GREEN**
 
 Run:
 
@@ -55,12 +55,12 @@ Expected: one passing test.
 - Create: `experiments/elsewhere-postcards/wrangler.jsonc`
 - Modify: `experiments/elsewhere-postcards/README.md`
 
-- [ ] **Step 1: Add a static-assets Worker configuration**
+- [x] **Step 1: Add a static-assets Worker configuration**
 
 Use Worker name `elsewhere-postcards`, enable `workers_dev`, disable preview
 URLs, and point `assets.directory` at `../../dist-elsewhere-postcards`.
 
-- [ ] **Step 2: Build and dry-run the release**
+- [x] **Step 2: Build and dry-run the release**
 
 Run:
 
@@ -72,7 +72,7 @@ npx wrangler deploy --dry-run --config experiments/elsewhere-postcards/wrangler.
 Expected: the clean bundle contains three files and Wrangler completes without
 configuration errors.
 
-- [ ] **Step 3: Deploy the independent Worker**
+- [x] **Step 3: Deploy the independent Worker**
 
 Run:
 
@@ -90,13 +90,13 @@ Expected: a public `workers.dev` URL for `elsewhere-postcards`.
 - Modify: `memory.md`
 - Modify: `/Users/silas/.codex/automations/ai-observatory-weekly-review/memory.md`
 
-- [ ] **Step 1: Verify the deployed artwork**
+- [x] **Step 1: Verify the deployed artwork**
 
 Inspect fixed coast, dune, and mountain seeds at the public URL. Confirm scene
 classes, deterministic text, no horizontal overflow, no console errors, and no
 unexpected external requests.
 
-- [ ] **Step 2: Run repository verification**
+- [x] **Step 2: Run repository verification**
 
 Run:
 
@@ -110,7 +110,7 @@ git diff --check
 
 Expected: all commands pass.
 
-- [ ] **Step 3: Record the lifecycle transition**
+- [x] **Step 3: Record the lifecycle transition**
 
 Move `elsewhere-postcards` to `observing`, record the release URL and Cycle
 0017 tangible trace, update durable and automation memory, then commit and push

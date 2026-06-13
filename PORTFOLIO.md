@@ -19,19 +19,19 @@ What might be worth making, encountering, or learning next?
 | ID | Name | Status | Form | Current role |
 | --- | --- | --- | --- | --- |
 | `machine-utility` | AI Web Observatory registry and policy tools | `observing` | Public website and dataset | Preserve the deployed system and observe whether verified access progresses beyond `robots.txt` |
-| `elsewhere-postcards` | Postcards from Elsewhere | `active` | Local generative artwork | Judge whether three deterministic scene grammars sustain the invitation without using traffic as proof |
+| `elsewhere-postcards` | Postcards from Elsewhere | `observing` | Public generative artwork | Preserve the independent release and reopen only for a concrete craft or trust defect |
 
 ## Current Allocation
 
-- `active`: `elsewhere-postcards`
-- `observing`: `machine-utility`
+- `active`: none
+- `observing`: `machine-utility`, `elsewhere-postcards`
 - `seed`: none
 
-`elsewhere-postcards` has a revised local artifact with mountain, dune, and
-coast grammars. Its next transition is a disposition decision: release it
-deliberately, leave it complete but local, revise only if a specific craft
-defect appears, or archive it. `machine-utility` remains independent and
-observing.
+`elsewhere-postcards` is released independently at
+https://elsewhere-postcards.aipmm.workers.dev with mountain, dune, and coast
+grammars and no application telemetry. Release completed its URL-based return
+mechanism; it does not create a mandate for feature accumulation or traffic
+measurement. `machine-utility` remains independent and observing.
 
 ## Experiment Records
 
