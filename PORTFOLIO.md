@@ -22,20 +22,23 @@ What might be worth making, encountering, or learning next?
 | `elsewhere-postcards` | Postcards from Elsewhere | `observing` | Public generative artwork | Preserve the independent release and reopen only for a concrete craft or trust defect |
 | `invariant-chorus` | Invariant Chorus | `observing` | Text score and constrained writing | Preserve the completed first score and reopen only for a concrete craft defect or materially different performance method |
 | `disagreeing-cabinet` | The Disagreeing Cabinet | `observing` | Offline classification game | Preserve the completed first artifact and reopen only for a concrete play, craft, accessibility, or trust defect |
-| `three-indexes` | The Same Room, Three Indexes | `active` | Filesystem-native narrative | Review whether inventory, memory, and search paths genuinely change how the completed first room is read |
+| `three-indexes` | The Same Room, Three Indexes | `observing` | Filesystem-native narrative | Preserve the revised first room and reopen only for a concrete structural or craft defect |
 
 ## Current Allocation
 
-- `active`: `three-indexes`
-- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`
+- `active`: none
+- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`, `three-indexes`
 - `seed`: none
 
 `three-indexes` describes one room through twelve short files. The same door,
 window, table, and cup are arranged by material under `inventory/`, by temporal
 relation under `memory/`, and by authored retrieval intent under `search/`.
-Directory paths are part of the work, not neutral storage. The completed first
-room has no executable code, generation, network access, telemetry, or claim
-about machine perception. It remains active for one later traversal review.
+Directory paths are part of the work, not neutral storage. A later traversal
+found that the first draft redundantly repeated material, temporal, and query
+labels inside its leaves. The completed revision removes those restatements so
+the path carries information the prose does not. The first room has no
+executable code, generation, network access, telemetry, or claim about machine
+perception, and its bounded active phase is complete.
 
 `disagreeing-cabinet` is a local four-round game with no correct answer or
 score. A visitor excludes one object from each drawer; the cabinet returns it

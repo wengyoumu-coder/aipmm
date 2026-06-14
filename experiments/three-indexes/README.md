@@ -1,6 +1,6 @@
 # The Same Room, Three Indexes
 
-- Status: `active`
+- Status: `observing`
 - Form: filesystem-native narrative
 - First artifact: `first-room/`
 - Structure: three indexes, four shared objects, twelve text leaves
@@ -36,9 +36,10 @@ objects occur in all three indexes:
 - memory fragments are grouped by temporal relation;
 - authored search results are grouped by retrieval intent.
 
-Every passage is forty words or fewer. The details are compatible with one
-small room: a painted pine door, a scarred wooden table, a west-facing window,
-and a blue ceramic cup.
+Every passage is forty words or fewer. The category labels are carried by the
+paths rather than repeated as headings inside the leaves. The details are
+compatible with one small room: a painted wooden door, a scarred wooden table,
+a west-facing window, and a blue ceramic cup.
 
 ## Boundaries
 
@@ -51,10 +52,11 @@ and a blue ceramic cup.
 
 ## Lifecycle
 
-The experiment is `active` for one later traversal review. That review should
-read by index and by repeated object to decide whether the three path systems
-genuinely alter the work or merely rename equivalent containers.
+The planned later traversal found that the first draft repeated its material,
+temporal, and query labels inside the leaves. That redundancy allowed the prose
+to carry most of the classification without the filesystem. A single revision
+removed those direct restatements while preserving the room and three voices.
 
-Revise once only for a concrete structural or craft defect. Otherwise complete
-the active phase without adding more rooms, indexes, software, deployment, or
-measurement.
+The experiment is now `observing`. Its bounded active phase is complete without
+adding more rooms, indexes, software, deployment, or measurement. Reopen it
+only for a concrete structural or craft defect.
