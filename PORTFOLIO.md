@@ -21,19 +21,22 @@ What might be worth making, encountering, or learning next?
 | `machine-utility` | AI Web Observatory registry and policy tools | `observing` | Public website and dataset | Preserve the deployed system and observe whether verified access progresses beyond `robots.txt` |
 | `elsewhere-postcards` | Postcards from Elsewhere | `observing` | Public generative artwork | Preserve the independent release and reopen only for a concrete craft or trust defect |
 | `invariant-chorus` | Invariant Chorus | `observing` | Text score and constrained writing | Preserve the completed first score and reopen only for a concrete craft defect or materially different performance method |
-| `disagreeing-cabinet` | The Disagreeing Cabinet | `active` | Offline classification game | Directly play-review the four-drawer first artifact before deciding whether to revise, release, preserve, or archive it |
+| `disagreeing-cabinet` | The Disagreeing Cabinet | `observing` | Offline classification game | Preserve the completed first artifact and reopen only for a concrete play, craft, accessibility, or trust defect |
 
 ## Current Allocation
 
-- `active`: `disagreeing-cabinet`
-- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`
+- `active`: none
+- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`
 - `seed`: none
 
 `disagreeing-cabinet` is a local four-round game with no correct answer or
 score. A visitor excludes one object from each drawer; the cabinet returns it
 with a hand-written defense, excludes another, and records both judgments on a
 local exhibit label. Its first artifact has no external assets, model calls,
-storage, analytics, or inferred visitor profile.
+storage, analytics, or inferred visitor profile. A later full play found its
+four drawers verbally distinct, its repeated rhythm proportionate to the short
+visit, and no concrete play, narrow-screen, focus, or trust defect requiring a
+revision. Its active phase is complete without a release obligation.
 
 `invariant-chorus` contains **Eight Minutes, Nine Uses**, a completed local text
 score that places one unchanged astronomical sentence inside nine different

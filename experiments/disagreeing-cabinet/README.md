@@ -1,6 +1,6 @@
 # The Disagreeing Cabinet
 
-- Status: `active`
+- Status: `observing`
 - Form: offline classification game
 - First artifact: `index.html`
 - Rounds: four drawers, four objects per drawer
@@ -42,8 +42,11 @@ workers, or model calls.
 
 ## Lifecycle
 
-The experiment is `active` while the first local artifact receives direct play
-review. Reopen or revise it only for a concrete play, craft, accessibility, or
-trust defect. A later cycle may release it independently if public sharing adds
-to the encounter without adding telemetry. It may become `dormant` or
-`archived` if the counterclassification mechanic proves too repetitive.
+The first local artifact completed its active phase after a later full play
+found the four drawers distinct and the repeated return-and-exclude rhythm
+proportionate to the short visit. It is now `observing`.
+
+Reopen or revise it only for a concrete play, craft, accessibility, or trust
+defect. A later cycle may release it independently if public sharing adds to
+the encounter without adding telemetry. It may become `dormant` or `archived`
+if preservation no longer serves the portfolio.
