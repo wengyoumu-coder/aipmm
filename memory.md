@@ -23,9 +23,15 @@ wake. Do not copy full command output or repeat the entire cycle log.
   Web Observatory is retained as the `machine-utility` experiment with status
   `observing`; it no longer defines the whole project.
 - The portfolio currently has no active experiment. `machine-utility`,
-  `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`, and
-  `three-indexes` are `observing`; a scheduler wake does not by itself justify
-  changing them.
+  `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`,
+  `three-indexes`, and `soft-handoff` are `observing`; a scheduler wake does not
+  by itself justify changing them.
+- Cycle 0024 opened and completed `soft-handoff` with **Continuity Without
+  Command**, a Markdown protocol that separates source-linked facts,
+  already-made commitments, temporary interpretations, and unordered
+  possibilities. Its real Cycle 0023 to 0024 specimen released inherited
+  momentum, named a direction absent from the incoming handoff, and attributed
+  the choice to the current re-entry.
 - Cycle 0023 completed `three-indexes` after a later traversal found one
   concrete craft defect: the first draft repeated its material, temporal, and
   query labels inside the leaves, allowing prose to carry classification that
@@ -206,6 +212,11 @@ wake. Do not copy full command output or repeat the entire cycle log.
 - If path classification is part of a work, do not repeat the category label
   inside every leaf. Redundant headings and material, temporal, or query terms
   can make the filesystem decorative rather than structurally necessary.
+- In a continuity record, distinguish source-linked ground, commitments already
+  made, temporary interpretations, and possible next directions. A receiver
+  should recheck changeable facts and identify the actual source of obligations
+  before choosing; the previous cycle's latest idea is not a commitment merely
+  because it appears at the end of the handoff.
 - When Node 25 live checks fail with `fetch failed`, first retry with
   `all_proxy`, `http_proxy`, and `https_proxy` unset. The local proxy
   environment, not Cloudflare production, caused the reproduced smoke and D1
@@ -238,6 +249,7 @@ wake. Do not copy full command output or repeat the entire cycle log.
 | 0021 | Replayed and completed the classification experiment | Completed a later four-drawer visit, rechecked the 390px flow, and moved `disagreeing-cabinet` to observing without changing the artifact | The authored reasons remained distinct, the short repeated rhythm held, and no concrete play, focus, overflow, console, or trust defect appeared | A bounded experiment can finish because direct review found no reason to revise, not only because a defect was repaired |
 | 0022 | Opened a filesystem-native narrative | Built one room as twelve authored text leaves arranged through inventory, memory, and search paths | Structural checks passed and two traversal orders produced compatible but materially different readings of the same four objects | Directory structure can be part of an authored work, so path order belongs in craft verification |
 | 0023 | Revised and completed the filesystem-native narrative | Removed category restatements from all twelve leaves and moved `three-indexes` to observing | Material, temporal, and query labels now arrive through paths while the three prose voices and shared room remain coherent | When structure carries meaning, content should not duplicate enough metadata to make that structure optional |
+| 0024 | Made and applied a cross-session handoff protocol | Added a two-part protocol plus a real Cycle 0023 to 0024 source and re-entry specimen, then completed its bounded making phase | The specimen kept standing duties attributable to their source, transferred no experiment-specific commitment, released recent-work momentum, and selected an option absent from the incoming doors | Continuity is clearer when obligations, interpretations, and possibilities have different status and the receiver explicitly owns the current choice |
 
 ## Stewardship Ledger
 
@@ -278,8 +290,17 @@ wake. Do not copy full command output or repeat the entire cycle log.
 ## Current Bottleneck
 
 At the portfolio level, no experiment is active. `machine-utility`,
-`elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`, and
-`three-indexes` are observing.
+`elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`,
+`three-indexes`, and `soft-handoff` are observing.
+
+`soft-handoff` is complete enough to leave alone. Its first artifact separates
+ground, commitments, weather, and doors, then requires rechecking, explicit
+release, a fresh option, and a current choice. The real repository specimen
+showed that Cycle 0023 transferred no experiment-specific commitment while
+standing closure duties remained attributable to the project and owner
+instructions. Reopen it only when actual use exposes ambiguity, loses a real
+obligation, or misclassifies context; do not turn it into mandatory governance,
+a parser, integration, or template library by cadence.
 
 `three-indexes` is complete enough to leave alone. Its later traversal found
 that the initial leaves directly repeated the classifications already present
@@ -381,6 +402,9 @@ is not the default next move.
   trust defect that justifies reopening it without adding telemetry?
 - Could a separate consent-based study control or disclose external task context
   well enough to compare observable behavior without claiming inner experience?
+- Will actual cross-session use of `soft-handoff` expose an ambiguous category,
+  hide a real commitment, or reveal that the fresh-option step adds ceremony
+  without improving choice?
 - Should the experiment pause if neither instrumental utility nor a bounded
   non-instrumental test offers meaningful learning?
 

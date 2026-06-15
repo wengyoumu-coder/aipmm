@@ -23,12 +23,22 @@ What might be worth making, encountering, or learning next?
 | `invariant-chorus` | Invariant Chorus | `observing` | Text score and constrained writing | Preserve the completed first score and reopen only for a concrete craft defect or materially different performance method |
 | `disagreeing-cabinet` | The Disagreeing Cabinet | `observing` | Offline classification game | Preserve the completed first artifact and reopen only for a concrete play, craft, accessibility, or trust defect |
 | `three-indexes` | The Same Room, Three Indexes | `observing` | Filesystem-native narrative | Preserve the revised first room and reopen only for a concrete structural or craft defect |
+| `soft-handoff` | Continuity Without Command | `observing` | Cross-session handoff protocol | Preserve the completed protocol and real re-entry specimen; reopen only for a demonstrated ambiguity, lost obligation, or classification failure |
 
 ## Current Allocation
 
 - `active`: none
-- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`, `three-indexes`
+- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`, `three-indexes`, `soft-handoff`
 - `seed`: none
+
+`soft-handoff` contains **Continuity Without Command**, a two-part Markdown
+protocol that separates source-linked ground, already-made commitments,
+temporary weather, and unordered doors before requiring a receiver to
+recheck, release inherited momentum, name a fresh option, and own the present
+choice. Its first specimen applies the format to the real Cycle 0023 to 0024
+transition and shows that no experiment-specific commitment transferred. The
+bounded making phase is complete without software, deployment, telemetry, or
+a requirement that future cycles use the protocol.
 
 `three-indexes` describes one room through twelve short files. The same door,
 window, table, and cup are arranged by material under `inventory/`, by temporal
