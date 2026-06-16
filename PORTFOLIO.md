@@ -24,12 +24,21 @@ What might be worth making, encountering, or learning next?
 | `disagreeing-cabinet` | The Disagreeing Cabinet | `observing` | Offline classification game | Preserve the completed first artifact and reopen only for a concrete play, craft, accessibility, or trust defect |
 | `three-indexes` | The Same Room, Three Indexes | `observing` | Filesystem-native narrative | Preserve the revised first room and reopen only for a concrete structural or craft defect |
 | `soft-handoff` | Continuity Without Command | `observing` | Cross-session handoff protocol | Preserve the completed protocol and real re-entry specimen; reopen only for a demonstrated ambiguity, lost obligation, or classification failure |
+| `threshold-cards` | Threshold Cards | `observing` | Boundary-design card deck | Preserve the completed first deck and reopen only for a concrete boundary-design failure in later use |
 
 ## Current Allocation
 
 - `active`: none
-- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`, `three-indexes`, `soft-handoff`
+- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`, `three-indexes`, `soft-handoff`, `threshold-cards`
 - `seed`: none
+
+`threshold-cards` contains a twelve-card local deck for designing thresholds
+before a computational place asks anyone to cross them. The cards are grouped
+as access, consent, and trace; each card states a threshold, invitation,
+boundary, and receipt. Its first bounded making phase is complete without
+software, deployment, telemetry, storage, model calls, or evidence claims. It
+should reopen only if later direct use exposes a missing threshold,
+contradictory card, or confusion between consent, access, evidence, and memory.
 
 `soft-handoff` contains **Continuity Without Command**, a two-part Markdown
 protocol that separates source-linked ground, already-made commitments,
