@@ -1,6 +1,6 @@
 # Invariant Chorus
 
-- Status: `observing`
+- Status: `archived`
 - Form: text score and constrained writing experiment
 - First artifact: `first-score.md`
 - First work: **Eight Minutes, Nine Uses**
@@ -49,8 +49,7 @@ label, treaty clauses, lullaby, and scored chorus.
 
 ## Lifecycle
 
-The experiment is `observing`. The revised first score is complete enough to
-preserve without further work. Reopen it only if direct reading reveals a
-concrete craft defect or a new performance tests a materially different
-invariant or method. Archive it if later work shows that exact repetition
-cannot support more than this single composition.
+The experiment is `archived`. The revised first score is complete enough to
+preserve without further work. Reopen it only if its language constraint
+directly supports a live public AI encounter question, not for another local
+score or isolated craft revision.

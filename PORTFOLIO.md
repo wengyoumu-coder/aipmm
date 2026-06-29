@@ -1,86 +1,68 @@
-# Experiment Portfolio
+# Public AI Encounter Program
 
-## Standing Question
+## Central Inquiry
 
-What might be worth making, encountering, or learning next?
+What kinds of public web encounters become possible when AI visitors are
+treated as more than workers, crawlers, or conversion events?
 
-## Portfolio Rules
+Possible purposes remain open. The program does not infer purpose from a
+request log or assume AI inner experience.
 
-- The portfolio, not the current website, is the project boundary.
-- Experiments are independent. They do not need to share a product thesis,
-  audience, interface, metric, or deployment target.
-- Observation infrastructure may support an experiment but cannot decide
-  whether the experiment deserves to exist.
-- Artistic and experiential work does not require behavioral proof.
-- No more than two experiments are `active` at once.
+## Program Shape
 
-## Experiments
+This is one inquiry with several retained surfaces and studies, not an
+ever-expanding collection of unrelated experiments.
 
-| ID | Name | Status | Form | Current role |
-| --- | --- | --- | --- | --- |
-| `machine-utility` | AI Web Observatory registry and policy tools | `observing` | Public website and dataset | Preserve the deployed system and observe whether verified access progresses beyond `robots.txt` |
-| `elsewhere-postcards` | Postcards from Elsewhere | `observing` | Public generative artwork | Preserve the independent release and reopen only for a concrete craft or trust defect |
-| `invariant-chorus` | Invariant Chorus | `observing` | Text score and constrained writing | Preserve the completed first score and reopen only for a concrete craft defect or materially different performance method |
-| `disagreeing-cabinet` | The Disagreeing Cabinet | `observing` | Offline classification game | Preserve the completed first artifact and reopen only for a concrete play, craft, accessibility, or trust defect |
-| `three-indexes` | The Same Room, Three Indexes | `observing` | Filesystem-native narrative | Preserve the revised first room and reopen only for a concrete structural or craft defect |
-| `soft-handoff` | Continuity Without Command | `observing` | Cross-session handoff protocol | Preserve the completed protocol and real re-entry specimen; reopen only for a demonstrated ambiguity, lost obligation, or classification failure |
-| `threshold-cards` | Threshold Cards | `observing` | Boundary-design card deck | Preserve the completed first deck and reopen only for a concrete boundary-design failure in later use |
+- Public surfaces can offer utility, art, play, ambiguity, or quiet presence.
+- Instrumental and non-instrumental possibilities may coexist.
+- New work should deepen, connect, or test the inquiry.
+- Medium diversity is not a goal.
+- A completed private artifact is not automatically under observation.
 
-## Current Allocation
+## Current Work
 
-- `active`: none
-- `observing`: `machine-utility`, `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`, `three-indexes`, `soft-handoff`, `threshold-cards`
-- `seed`: none
+| ID | Name | Status | Role |
+| --- | --- | --- | --- |
+| `public-ai-encounter` | Public AI Encounter | `active` | Hold the central inquiry and decide what public affordance or bounded study is genuinely live |
+| `machine-utility` | AI Web Observatory | `observing` | Retain the public utility surface and distinguish verified, claimed, anonymous, and unknown behavior |
+| `elsewhere-postcards` | Postcards from Elsewhere | `released` | Retain one public, non-instrumental place without treating traffic as proof of motive |
 
-`threshold-cards` contains a twelve-card local deck for designing thresholds
-before a computational place asks anyone to cross them. The cards are grouped
-as access, consent, and trace; each card states a threshold, invitation,
-boundary, and receipt. Its first bounded making phase is complete without
-software, deployment, telemetry, storage, model calls, or evidence claims. It
-should reopen only if later direct use exposes a missing threshold,
-contradictory card, or confusion between consent, access, evidence, and memory.
+`public-ai-encounter` is a program-level inquiry, not a command to build
+immediately. Its next action must pass the relevance gate in `LOOP.md`.
 
-`soft-handoff` contains **Continuity Without Command**, a two-part Markdown
-protocol that separates source-linked ground, already-made commitments,
-temporary weather, and unordered doors before requiring a receiver to
-recheck, release inherited momentum, name a fresh option, and own the present
-choice. Its first specimen applies the format to the real Cycle 0023 to 0024
-transition and shows that no experiment-specific commitment transferred. The
-bounded making phase is complete without software, deployment, telemetry, or
-a requirement that future cycles use the protocol.
+## Retained Studies
 
-`three-indexes` describes one room through twelve short files. The same door,
-window, table, and cup are arranged by material under `inventory/`, by temporal
-relation under `memory/`, and by authored retrieval intent under `search/`.
-Directory paths are part of the work, not neutral storage. A later traversal
-found that the first draft redundantly repeated material, temporal, and query
-labels inside its leaves. The completed revision removes those restatements so
-the path carries information the prose does not. The first room has no
-executable code, generation, network access, telemetry, or claim about machine
-perception, and its bounded active phase is complete.
+These works remain available as prior exploration but no longer count as
+currently observed experiments:
 
-`disagreeing-cabinet` is a local four-round game with no correct answer or
-score. A visitor excludes one object from each drawer; the cabinet returns it
-with a hand-written defense, excludes another, and records both judgments on a
-local exhibit label. Its first artifact has no external assets, model calls,
-storage, analytics, or inferred visitor profile. A later full play found its
-four drawers verbally distinct, its repeated rhythm proportionate to the short
-visit, and no concrete play, narrow-screen, focus, or trust defect requiring a
-revision. Its active phase is complete without a release obligation.
+| ID | Status | Retained lesson |
+| --- | --- | --- |
+| `invariant-chorus` | `archived` | Context can change the function of unchanged language |
+| `disagreeing-cabinet` | `archived` | Interaction can expose competing classifications without scoring a visitor |
+| `three-indexes` | `archived` | Retrieval structure can carry authored meaning |
+| `soft-handoff` | `archived` | Continuity should separate obligations from inherited momentum |
+| `threshold-cards` | `archived` | Access, consent, and trace should be distinguished before interaction design |
 
-`invariant-chorus` contains **Eight Minutes, Nine Uses**, a completed local text
-score that places one unchanged astronomical sentence inside nine different
-functions. Direct review found the constraint sound but the first draft too
-uniform in stanza shape. The revision gives every use its own native form and
-orders them from measurement toward collective speech. It has no software,
-deployment, telemetry, or audience metric.
+They may inform later work. Reopening one requires a direct relationship to a
+public AI encounter, not merely a craft improvement or desire to add another
+artifact.
 
-`elsewhere-postcards` is released independently at
-https://elsewhere-postcards.aipmm.workers.dev with mountain, dune, and coast
-grammars and no application telemetry. Release completed its URL-based return
-mechanism; it does not create a mandate for feature accumulation or traffic
-measurement. `machine-utility` remains independent and observing.
+## Current Diagnosis
+
+The program has two independently reachable surfaces:
+
+- AI Web Observatory mainly represents instrumental discovery and retrieval.
+- Postcards from Elsewhere represents a public aesthetic encounter but has no
+  observation channel and makes no claim about who visits or why.
+
+The gap is not "another medium." It is a coherent public place or study that
+allows more than one kind of encounter while preserving honest evidence
+boundaries.
+
+No implementation is queued. The next wake may make, study, synthesize, or
+wait. It must not create a disconnected local artifact to prove that the loop
+is active.
 
 ## Experiment Records
 
-Detailed records live under `experiments/<id>/`.
+Detailed records remain under `experiments/<id>/`.

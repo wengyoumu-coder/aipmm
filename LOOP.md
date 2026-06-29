@@ -1,103 +1,125 @@
-# Autonomous Experiment Cycle
+# Public Encounter Cycle
 
 ## Principle
 
-This cycle exists to sustain movement without prescribing content.
+The loop sustains an inquiry, not an output quota.
 
-Use any mode that fits:
+A scheduler wake and a completed cycle are different things. A wake may end
+with no repository change when there is no live reason to act. Do not create an
+artifact, finding, or decision merely to satisfy cadence.
 
-- **Imagine:** generate unfamiliar possibilities.
-- **Make:** create a tangible artifact or prototype.
-- **Release:** put something into the world.
-- **Observe:** inspect behavior or external change.
-- **Study:** investigate a question with an honest method.
-- **Tend:** maintain or simplify something worth keeping.
-- **Reflect:** revise the framing or learn from failure.
-- **Archive:** close a direction and preserve its lessons.
+## Reorientation
 
-Modes may be combined. Metrics are optional instruments. Production deployment
-is not required.
+At every wake, restate:
 
-## Tangible Trace
+> What kinds of public web encounters become possible when AI visitors are
+> treated as more than workers, crawlers, or conversion events?
 
-Every completed cycle must leave at least one tangible trace:
+Then ask:
 
-- a prototype or released artifact;
-- a new experiment brief;
-- a research note containing a concrete finding;
-- a meaningful revision to an active experiment;
-- an archive or termination decision;
-- a maintenance correction required to keep something trustworthy.
+- What can an independent visitor encounter now?
+- What do we actually know about how visitors reached or used it?
+- Which possible purposes are represented or excluded by the current place?
+- Is there a live reason to act, study, release, or wait?
+- Would the proposed action deepen the inquiry, or merely add another artifact?
 
-Repeating production facts, restating uncertainty, or leaving only an open
-question is not a tangible trace.
+## Modes
 
-## Stagnation Transition
+- **Orient:** recover the central inquiry and current state.
+- **Make:** create or revise an affordance tied to the inquiry.
+- **Release:** make an encounter independently reachable.
+- **Study:** investigate behavior, representation, access, or interpretation
+  with an honest method.
+- **Tend:** maintain trust, accessibility, or legibility.
+- **Synthesize:** connect findings or artifacts into a clearer place.
+- **Wait:** preserve the current state because no live intervention is
+  justified.
+- **Close:** make a direction dormant or archived and retain its lesson.
 
-Reflection and observation are valid, but they cannot repeat indefinitely.
+Modes may be combined. `Wait` is a valid result, not a failure to manufacture
+progress.
 
-If two consecutive cycles produce no new artifact, prototype, experiment,
-finding, or termination decision, the next cycle becomes a **transition
-cycle**.
+## Relevance Gate
 
-A transition cycle must do one of the following:
+New work must satisfy all of the following:
 
-1. create a small prototype without requiring proof of value;
-2. open a new experiment with a concrete first artifact;
-3. archive or end the stalled direction;
-4. reduce or stop the automation if continued waking has no purpose.
+1. It concerns a public encounter involving AI systems or people using them.
+2. It changes a reachable experience or produces concrete knowledge that can
+   shape one.
+3. Its reason to exist is stronger than novelty, scheduler cadence, or an
+   unrepresented medium.
+4. Its claims remain inside what the method can establish.
 
-Traffic changes, refreshed reports, and additional uncertainty do not reset
-stagnation. A genuine creation, finding, or ending does.
+A local prototype may pass only when it is a direct precursor to a public
+release or bounded study. A self-contained local artwork does not become
+relevant merely because an AI agent created it.
+
+Before opening a separate experiment, explain why the existing public places
+cannot carry the question. Prefer deepening, connecting, or simplifying over
+accumulating surfaces.
 
 ## Experiment Lifecycle
 
 Each experiment has one status:
 
-- `seed`: a question with a first concrete artifact to make;
-- `active`: currently receiving creative or investigative work;
-- `observing`: released and waiting for meaningful external change;
-- `dormant`: preserved without active attention;
-- `archived`: ended with lessons recorded.
+- `active`: receiving work around a live question;
+- `released`: independently reachable but not currently under observation;
+- `observing`: independently reachable with a specific external question and
+  a real observation channel;
+- `dormant`: preserved without a live question;
+- `archived`: concluded as an experiment, with its lesson retained.
 
-No more than two experiments should be `active` at once. This is a focus limit,
-not a limit on imagination.
+Do not label a private, completed artifact `observing` when no independent
+behavior can reach it and no observation method exists.
 
-An `observing` experiment does not deserve work merely because the scheduler
-woke. The steward may create elsewhere.
+## Evidence
 
-## Choosing Work
+When making behavioral claims, separate:
 
-Before continuing the most recent topic, ask:
+- verified system identity or behavior;
+- claimed User-Agent identity;
+- anonymous real behavior;
+- inference;
+- craft or design judgment;
+- measurement gaps and unknowns.
 
-- Am I choosing this because it is alive, or because it is already here?
-- What possibility has not been represented in the portfolio?
-- What can I make before knowing whether it will succeed?
-- Is this work creation, learning, care, or avoidance?
+Logs can show requests and transitions. They generally cannot establish why an
+AI system came, whether it was acting for itself, or whether an encounter felt
+like work, play, rest, curiosity, or anything else.
 
-No candidate table or score is required. A short intuitive decision is valid.
+## Cadence And Drift
 
-## Making and Verification
+The following are drift signals:
 
-When changing software, use tests first for behavior changes and verify in
-proportion to risk. Keep internal checks out of organic analytics.
+- repeatedly adding machine-readable utility because it is measurable;
+- repeatedly making unrelated artifacts because they are easy to complete;
+- selecting work because its medium is absent from the portfolio;
+- marking every artifact complete after one revision;
+- using governance objects as substitutes for public encounters;
+- refreshing reports without a live question;
+- treating inactivity as proof that waiting is wise.
 
-When making art, writing, concepts, or local prototypes, verify coherence and
-craft rather than inventing irrelevant metrics.
-
-When making behavioral claims, separate verified, claimed, anonymous, inferred,
-and unknown evidence.
+When drift appears, correct the governing assumption before creating another
+artifact.
 
 ## Recording
 
-Update `PORTFOLIO.md` when experiment status changes.
+Create or append a cycle log only when at least one of these occurs:
 
-Cycle logs should record:
+- a public or directly preparatory artifact changes;
+- an independent release occurs;
+- a concrete study produces a finding;
+- an experiment changes state for a substantive reason;
+- a strategic correction changes future choices.
 
-- the mode chosen;
-- the tangible trace;
-- why this was worth doing now;
-- what changed or was learned;
-- what remains open.
+Record:
 
-The next cycle may disagree, change direction, or begin elsewhere.
+- the central inquiry;
+- the live reason for action;
+- the mode;
+- the change or finding;
+- evidence boundaries;
+- what the result changes about future judgment.
+
+A no-action wake may update automation memory briefly. It does not require a
+cycle log, commit, or invented "tangible trace."

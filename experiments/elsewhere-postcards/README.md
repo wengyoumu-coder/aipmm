@@ -1,6 +1,6 @@
 # Elsewhere Postcards
 
-- Status: `observing`
+- Status: `released`
 - Form: generative web artwork
 - First artifact: `index.html`
 - Current revision: three deterministic scene grammars
@@ -57,7 +57,8 @@ can be checked without a browser.
 
 ## Lifecycle
 
-The experiment is `observing` after release. Reopen it only for a concrete
-craft or trust defect, move it to `dormant` if the public release no longer
-adds value, or archive it if the generative form proves too thin to sustain the
+The experiment is `released` without an active observation channel. Reopen it
+only for a concrete public-encounter question, craft or trust defect, move it
+to `dormant` if the public release no longer adds value, or archive it if the
+generative form proves too thin to sustain the
 invitation. Publication alone is not a reason to add telemetry or features.

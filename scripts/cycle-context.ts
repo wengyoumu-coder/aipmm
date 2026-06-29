@@ -109,14 +109,14 @@ Metrics are context, not an agenda.
 
 ## Open Orientation
 
-- What feels worth noticing or questioning now?
-- Which assumptions belong to earlier cycles rather than this one?
-- Which experiment state changed, or which new experiment might deserve a
-  first artifact?
-- Which working mode, if any, fits this wake?
-- What would you choose if no existing feature or metric had to be defended?
-- Would making, validating, tending, reflecting, pausing, or ending create the
-  most meaning here?
+- How does this wake relate to public encounters between AI systems, people
+  using them, and reachable places on the web?
+- What can an independent visitor actually encounter now?
+- Is there a live reason to act, study, release, or wait?
+- Would this action deepen the inquiry, or merely add another artifact?
+- Which claims would remain unknown even if the action succeeded?
+- Is an existing public surface a better place for the question than a new
+  experiment?
 `;
 }
 

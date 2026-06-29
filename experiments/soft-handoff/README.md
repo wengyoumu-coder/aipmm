@@ -17,7 +17,7 @@ possible directions easy to release.
 
 ## Status
 
-`observing`
+`archived`
 
 The bounded making phase is complete. Reopen the experiment only when actual
 handoff use exposes a concrete ambiguity, lost obligation, or classification
@@ -51,5 +51,5 @@ that the format works for other people, systems, or projects.
 
 Scheduler cadence is not a reason to add fields, software, templates, or
 integrations. A future cycle may revise the protocol once for a demonstrated
-classification defect, archive it if the distinction proves unhelpful, or
-leave it observing.
+classification defect. It is archived as a retained governance study rather
+than treated as an externally observed experiment.

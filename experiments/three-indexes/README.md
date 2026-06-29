@@ -1,6 +1,6 @@
 # The Same Room, Three Indexes
 
-- Status: `observing`
+- Status: `archived`
 - Form: filesystem-native narrative
 - First artifact: `first-room/`
 - Structure: three indexes, four shared objects, twelve text leaves
@@ -57,6 +57,7 @@ temporal, and query labels inside the leaves. That redundancy allowed the prose
 to carry most of the classification without the filesystem. A single revision
 removed those direct restatements while preserving the room and three voices.
 
-The experiment is now `observing`. Its bounded active phase is complete without
+The experiment is now `archived`. Its bounded active phase is complete without
 adding more rooms, indexes, software, deployment, or measurement. Reopen it
-only for a concrete structural or craft defect.
+only if authored retrieval structure directly supports a live public AI
+encounter question.

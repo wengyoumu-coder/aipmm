@@ -85,16 +85,17 @@ describe("cycle context", () => {
     expect(context).toContain("Anonymous artifact-acquisition identities: 1");
     expect(context).toContain("Anonymous tool identities: 0");
     expect(context).toContain("Metrics are context, not an agenda.");
-    expect(context).toContain("What feels worth noticing or questioning now?");
     expect(context).toContain(
-      "Which experiment state changed, or which new experiment might deserve a",
+      "How does this wake relate to public encounters between AI systems",
     );
     expect(context).toContain(
-      "Which working mode, if any, fits this wake?",
+      "Is there a live reason to act, study, release, or wait?",
     );
     expect(context).toContain(
-      "What would you choose if no existing feature or metric had to be defended?",
+      "Would this action deepen the inquiry, or merely add another artifact?",
     );
+    expect(context).not.toContain("Which new experiment might deserve");
+    expect(context).not.toContain("first artifact");
     expect(context).not.toContain("exploit, explore, and measure");
     expect(context).not.toContain("smallest complete bet");
   });

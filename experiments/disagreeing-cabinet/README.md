@@ -1,6 +1,6 @@
 # The Disagreeing Cabinet
 
-- Status: `observing`
+- Status: `archived`
 - Form: offline classification game
 - First artifact: `index.html`
 - Rounds: four drawers, four objects per drawer
@@ -44,9 +44,9 @@ workers, or model calls.
 
 The first local artifact completed its active phase after a later full play
 found the four drawers distinct and the repeated return-and-exclude rhythm
-proportionate to the short visit. It is now `observing`.
+proportionate to the short visit. It is now `archived` because it has no public
+AI encounter path or external observation channel.
 
-Reopen or revise it only for a concrete play, craft, accessibility, or trust
-defect. A later cycle may release it independently if public sharing adds to
-the encounter without adding telemetry. It may become `dormant` or `archived`
-if preservation no longer serves the portfolio.
+Reopen it only if a public AI encounter can use its disagreement mechanic to
+address a live question. Do not resume local craft revision or release merely
+to increase the artifact count.

@@ -18,7 +18,7 @@ remain after crossing or declining.
 
 ## Status
 
-`observing`
+`archived`
 
 The first bounded making phase is complete. Reopen only if a later experiment
 needs a concrete boundary decision that the deck cannot express, or if direct
@@ -41,9 +41,5 @@ use shows that the cards confuse consent, access, evidence, and memory.
 
 ## What Would Change Its State
 
-- Move to `active` if a future experiment uses the deck and exposes a concrete
+- Reopen only if a public encounter design uses the deck and exposes a concrete
   missing threshold, contradictory card, or unusable receipt.
-- Move to `dormant` if boundary design stops being a live concern in the
-  portfolio.
-- Move to `archived` if the deck repeatedly adds ceremony without improving
-  choices about access, consent, evidence, or memory.

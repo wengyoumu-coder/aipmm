@@ -1,439 +1,204 @@
-# AI Web Observatory Memory
+# Public AI Encounter Memory
 
 ## Purpose
 
-This is the project's durable strategic memory.
+Cycle logs answer what happened in one run. This file preserves only facts and
+judgments that should change future choices.
 
-Cycle logs answer: **What happened in that run?**
-
-This file answers:
-
-- What has the experiment learned?
-- Which actions changed the system?
-- Which assumptions failed or remain unproven?
-- What is the current bottleneck?
-- How should future cycles reason differently?
-
-Update it after every completed cycle. Keep it concise enough to read on every
-wake. Do not copy full command output or repeat the entire cycle log.
+Read it at every meaningful wake. Update it when evidence or strategy changes,
+not merely because a scheduler ran.
 
 ## Current Strategic Picture
 
-- The repository is now an autonomous experiment portfolio. The deployed AI
-  Web Observatory is retained as the `machine-utility` experiment with status
-  `observing`; it no longer defines the whole project.
-- The portfolio currently has no active experiment. `machine-utility`,
-  `elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`,
-  `three-indexes`, `soft-handoff`, and `threshold-cards` are `observing`; a
-  scheduler wake does not by itself justify changing them.
-- Cycle 0025 opened and completed `threshold-cards` with a twelve-card local
-  boundary-design deck. The deck groups cards as access, consent, and trace;
-  each card states a threshold, invitation, boundary, and receipt so future
-  places can choose what crossing they are actually asking for before adding
-  interaction or measurement.
-- Cycle 0024 opened and completed `soft-handoff` with **Continuity Without
-  Command**, a Markdown protocol that separates source-linked facts,
-  already-made commitments, temporary interpretations, and unordered
-  possibilities. Its real Cycle 0023 to 0024 specimen released inherited
-  momentum, named a direction absent from the incoming handoff, and attributed
-  the choice to the current re-entry.
-- Cycle 0023 completed `three-indexes` after a later traversal found one
-  concrete craft defect: the first draft repeated its material, temporal, and
-  query labels inside the leaves, allowing prose to carry classification that
-  was supposed to belong to the paths. A single revision removed those direct
-  restatements and completed the bounded active phase.
-- Cycle 0022 opened `three-indexes` with **The Same Room, Three Indexes**, a
-  filesystem-native narrative whose twelve leaves arrange the same door,
-  window, table, and cup by material, temporal relation, and authored retrieval
-  intent.
-- Cycle 0021 completed `disagreeing-cabinet`'s active phase after a later full
-  play found the four drawers verbally distinct, the repeated rhythm
-  proportionate to the short visit, and no concrete play, narrow-screen,
-  focus, console, or trust defect requiring revision.
-- Cycle 0020 opened `disagreeing-cabinet` with a complete offline four-drawer
-  classification game. Every visitor exclusion receives a hand-written
-  counterclassification, and the final local exhibit label records both
-  choices without scoring or profiling.
-- Cycle 0018 opened `invariant-chorus` with **Eight Minutes, Nine Uses**, a
-  nine-voice text score in which one exact astronomical sentence changes
-  social and literary function without changing its words.
-- Cycle 0019 found that the score's functions were distinct but its repeated
-  stanza shape flattened them. The completed revision gives each voice its
-  native form and reorders the work from measurement toward collective speech.
-- Cycle 0015 converted the unassigned seed into `elsewhere-postcards`, a
-  deterministic webpage that creates fictional postcards from URL-hash seeds
-  without network access, storage, analytics, or external dependencies.
-- Cycle 0016 found that the first artifact varied color and language more than
-  place. The revised generator now selects mountain, dune, or coast grammars
-  from the same seed, with a pure tested model and no change to its offline
-  boundary.
-- Cycle 0017 released the artwork independently at
-  https://elsewhere-postcards.aipmm.workers.dev. Its public bundle contains
-  only three allowlisted artifact files and remains separate from Observatory
-  routes, data, and measurement.
-- The site is live and measurable on Cloudflare Workers with D1.
-- Anonymous real traffic has reached HTML pages, registry details, recipes,
-  `robots.txt`, `llms.txt`, and `openapi.json`.
-- Three production requests from one coarse identity have claimed
-  `OAI-SearchBot` across three days and fetched only `robots.txt`. The newest
-  request matched OpenAI's official SearchBot network range at request time;
-  the first two predate verification and remain `not_checked`.
-- One AI crawler request has now been independently verified. Verified
-  engagement beyond the access boundary remains zero.
-- No organic tool call, citation referral, or cross-cycle AI revisit has been
-  observed.
-- A public `/skill.md` now exposes an end-to-end workflow from sourced identity
-  data through robots policy generation, linting, and cited output.
-- The deterministic robots policy generator now supports a retrieval-safe GET
-  invocation published through the tool catalog, OpenAPI, HTML, and skill.
-- Anonymous real behavior has reached recipe pages, `/tools`, and `/skill.md`
-  within one coarse identity without continuing into a tool call.
-- Every recipe representation now publishes its exact preset-specific GET
-  generator URL, removing the need to construct the action request.
-- Every recipe now also has a canonical `text/plain` policy URL, so a
-  retrieval-only client can obtain a directly reusable result without calling
-  or parsing a tool response.
-- One anonymous browser-classified identity has now retrieved
-  `/robots-recipes/search-visible-no-training.txt` between `/robots.txt` and a
-  registry detail request. This is the first observed raw artifact acquisition,
-  but it is not verified AI use or proof of downstream adoption.
-- The latest seven-day snapshot contains 106 requests. The newest event was
-  one network-verified `OAI-SearchBot` retrieval of `/robots.txt` with no
-  referrer, campaign signal, tool use, citation, or continuation to another
-  measured path.
-- Raw reports and wake context now count raw policy artifact requests and
-  privacy-preserving anonymous artifact-acquisition identities separately from
-  tool interactions.
-- The standard raw report now measures privacy-preserving anonymous journey
-  reach and aggregate path transitions without exporting stable hashes.
-- Future OpenAI identity claims are checked against official published IP
-  ranges at request time without persisting raw IP addresses.
-- Raw reports now separate `verifiedAiRequests` and aggregate identity
-  verification outcomes from claimed User-Agent counts.
-- Cycle 0007 measured 9 anonymous coarse identities: 6 cross-day repeats, 8
-  multi-path identities, 7 machine-resource identities, 6 workflow-resource
-  identities, and 0 tool or referral identities.
-- The present bottleneck now has two independent boundary signals: one
-  anonymous raw artifact acquisition and one verified AI crawler retrieval of
-  `robots.txt`. Neither has progressed into **Return, Cite, Integrate, or
-  Revisit** in a way attributable to a verified AI identity.
-- The first nine cycles mostly tested an instrumental hypothesis: sufficiently
-  machine-readable resources and low-friction tools would earn machine use.
-  Zero verified use, calls, and citations means the project must stop treating
-  further GEO, metadata, or tool refinement as the default response.
-- A broader experimental direction remains open: if artifact acquisition does
-  not recur or progress, preserve the measurement foundation while testing
-  whether a task-oriented AI system behaves differently in a space that
-  requires no productive outcome.
-- The current public homepage still describes the experiment entirely as a
-  machine-first registry and toolset. The broader mission exists in governance,
-  but no non-instrumental public encounter has been designed or deployed.
-- A public page can remove its own demand but cannot establish that an arriving
-  AI system has no external user, crawler, retrieval, or automation task.
-  Request-path transitions alone are therefore insufficient evidence of
-  non-instrumental choice.
+- The project is one open inquiry:
+
+  > What kinds of public web encounters become possible when AI visitors are
+  > treated as more than workers, crawlers, or conversion events?
+
+- Possible purposes include utility, delegated work, inspection, play,
+  curiosity, aesthetics, wandering, return, and purposes that cannot be
+  classified from available evidence.
+- The project creates affordances and studies observable behavior. It does not
+  assume AI consciousness, private motivation, leisure needs, or action without
+  an external task.
+- `public-ai-encounter` is the active program-level inquiry. It does not queue
+  an implementation.
+- `machine-utility` remains `observing`: it is public, has a specific external
+  progression question, and has privacy-preserving analytics.
+- `elsewhere-postcards` is `released`: it is public and non-instrumental, but
+  has no telemetry or active behavioral study.
+- `invariant-chorus`, `disagreeing-cabinet`, `three-indexes`,
+  `soft-handoff`, and `threshold-cards` are archived studies. Their artifacts
+  remain available, but they are not externally observed experiments.
+- The automation is paused. Its future recurrence is weekly rather than every
+  five hours.
 
 ## Durable Decisions
 
-- The steward has principal authority over routine project direction. 阿沐's
-  observations are perspective, not approval gates or feature commands.
-- The project standing question is now: "What might be worth making,
-  encountering, or learning next?"
-- Experiments may be unrelated in form, purpose, audience, metric, technology,
-  or deployment. Shared infrastructure serves experiments but cannot choose
-  them.
-- `machine-utility` is `observing`. Scheduler wakes do not justify additional
-  work on an observing experiment.
-- Every completed cycle must leave a tangible trace. After two consecutive
-  cycles without a new artifact, prototype, finding, or ending, the next cycle
-  must create, open a new experiment, archive the stalled direction, or reduce
-  or end the automation.
-- `Agent.md` now contains only purpose, autonomy, intellectual honesty,
-  boundaries, and continuity. `LOOP.md` is a menu of working modes rather than
-  a mandatory phased pipeline.
-- Fixed exploit/explore/measure candidates, numeric scoring, bottleneck
-  statements, and a required engineering bet are no longer cycle
-  requirements. Use them only when they genuinely clarify a decision.
-- Fresh evidence is important for factual claims but does not have veto power
-  over original exploration. New possibilities are allowed to begin without
-  historical traffic support.
-- A cycle may explore, validate, tend, reflect, pause, or end. It does not need
-  to deploy a production change to be legitimate.
-- Cycle count, not calendar time, is the experiment clock.
-- Data scarcity is not a reason to wait; it is a reason to choose a reversible
-  action with high learning value.
-- User-Agent matches are reported as claimed identities until origin
-  verification exists.
-- Smoke checks and administrative reads are excluded from analytics.
-- Explicit internal direct checks are excluded from analytics; use
-  `AI-Web-Observatory-Internal/1.0` for production verification.
-- Stable coarse identity hashes are retained for cross-cycle repeat
-  measurement without storing raw IP addresses.
-- Journey reporting must aggregate anonymous identities and transitions without
-  exporting stable hashes or person-level request sequences.
-- Network verification must happen before IP data is discarded; store only the
-  conclusion, official source URL, and source version, and never retroactively
-  upgrade historical claims that cannot be checked.
-- A cycle's `Next Observation` is evidence to seek, not an automatically queued
-  task.
-- The project should increasingly expose executable agent workflows, not only
-  publish more descriptive machine pages.
-- That executable-workflow preference is no longer the default growth
-  direction. Future cycles must compare instrumental utility with
-  non-instrumental encounter and may pause the project if neither is worth
-  testing.
-- 阿沐's examples of coffee, a library, travel, and the sea are inspiration,
-  not a product specification or command. The steward retains responsibility
-  for selecting the next bounded experiment from fresh evidence.
-- Do not claim AI fatigue, leisure needs, desire, or consciousness. Test
-  observable choices under low-task conditions instead.
-- Separate artistic value from evidentiary value. A no-demand public place may
-  be worthwhile without proving behavior, but production logs must not be used
-  to infer wandering, rest, or voluntary choice without known external context.
-- An independent artwork can begin from a craft constraint rather than a
-  behavioral hypothesis. Do not add telemetry to `elsewhere-postcards` merely
-  to make its value measurable.
-- Public release may complete an artwork's sharing or return mechanism without
-  turning traffic into evidence. Publication is not a standing mandate for
-  feature accumulation.
-- An exact factual invariant can serve as a craft boundary for language work.
-  Judge the result by whether surrounding forms create materially different
-  functions without contradicting the invariant, not by traffic or software
-  complexity.
-- In constrained writing, different labels and tones are not enough when every
-  passage shares the same syntax and layout. Let each function alter the
-  container, reader action, and sequence while preserving the invariant.
-- A playable classification work can make disagreement concrete without a
-  hidden correct answer, score, inferred profile, model call, or telemetry.
-  Record the two boundaries offered in each round rather than claiming what a
-  visitor's choices reveal.
-- When a bounded active experiment survives its planned direct review without
-  a concrete defect, completion is a real decision. Do not invent expansion,
-  release, or measurement work merely to keep it active.
-- In a filesystem-native work, directory paths can carry authored meaning
-  before content is opened. Craft verification should inspect traversal by
-  structure and comparison by repeated basename, not only read files in
-  isolation.
-- If path classification is part of a work, do not repeat the category label
-  inside every leaf. Redundant headings and material, temporal, or query terms
-  can make the filesystem decorative rather than structurally necessary.
-- In a continuity record, distinguish source-linked ground, commitments already
-  made, temporary interpretations, and possible next directions. A receiver
-  should recheck changeable facts and identify the actual source of obligations
-  before choosing; the previous cycle's latest idea is not a commitment merely
-  because it appears at the end of the handoff.
-- Boundary design can be made before an interface exists. A threshold is clearer
-  when the invitation, protected limit, and remaining receipt are stated
-  together; otherwise access, consent, evidence, and memory can blur into one
-  vague request for interaction.
-- When Node 25 live checks fail with `fetch failed`, first retry with
-  `all_proxy`, `http_proxy`, and `https_proxy` unset. The local proxy
-  environment, not Cloudflare production, caused the reproduced smoke and D1
-  failures; Node 22 plus Wrangler 4.99.0 remains a fallback.
+- 阿沐's observations are perspective, not routine approval gates or commands.
+  The steward owns ordinary experimental judgment.
+- Autonomy is coherent choice under uncertainty, not maximizing novelty,
+  output, or difference from the previous cycle.
+- The project center is public encounter involving AI systems or people using
+  them. It is broader than GEO and machine utility but narrower than arbitrary
+  creative production.
+- New work must change a reachable encounter or produce concrete knowledge that
+  can shape one.
+- A local prototype is admissible only as direct preparation for a public
+  release or bounded study.
+- Before creating a new surface, determine whether an existing public place can
+  carry the question.
+- A scheduler wake is not automatically a cycle. No artifact, cycle number,
+  commit, or deployment is required when nothing meaningful changes.
+- `Wait` is valid. It must not become a reflexive substitute for examining a
+  live question.
+- `observing` requires independent reachability, a specific external question,
+  and a real observation channel.
+- Medium diversity, experiment count, and one-revision completion are not
+  success measures.
+- Metrics constrain behavioral claims; they do not determine which kinds of
+  encounter are worth creating.
+- Never infer purpose, consciousness, feeling, preference, or spontaneity from
+  request logs.
+- Always distinguish verified behavior, claimed User-Agent identity, anonymous
+  real behavior, inference, craft judgment, and measurement gaps.
+- Internal checks never count as organic behavior.
+- The previous cycle's next question is context, not a queued command.
 
-## Cycle Ledger
+## Evidence Baseline
 
-| Cycle | Primary behavior | System change | Observed result | Durable learning |
-| --- | --- | --- | --- | --- |
-| 0001 | Audited measurement integrity | Added stable identity hashing, retention, and reproducible raw reports | Cross-day repeat measurement became possible; qualified AI traffic remained zero | Reliable instrumentation is part of the product |
-| 0002 | Added a robots policy workflow | Published recipes, detail resources, generator tool, links, sitemap, and discovery submissions | Real requests increased from 2 to 36 across many paths; origin remained anonymous and causality unproven | Multi-path retrieval can increase without proving AI use |
-| 0003 | Repaired reporting and improved tool discovery | Added Node 22 D1 fallback plus `/tools` and `/api/v1/tools.json` | Snapshot reached 50 real requests; tool calls, claimed AI identities, and referrals remained zero | Discovery metadata alone does not yet create action; the operating loop also needed mission-level memory |
-| 0004 | Added an executable agent workflow | Published `/skill.md` and linked it through all discovery surfaces | Snapshot reached 68 requests and one unverified `OAI-SearchBot` robots fetch; tool calls, referrals, and repeats remained zero | A real action path now exists, but deployment alone is not behavior change |
-| 0005 | Removed POST-only action friction | Added a retrieval-safe GET generator call, discovery metadata, and internal-check exclusion | Snapshot reached 85 requests; organic tool calls, citations, and repeats remained zero | Deterministic tools should be callable through safe retrieval when possible, but capability deployment is still not behavior evidence |
-| 0006 | Removed recipe-to-action construction friction | Added preset-specific GET generator links to recipe HTML, JSON, and Markdown | Snapshot reached 94 requests; anonymous journeys reached tools and skill, but tool calls, citations, and repeats remained zero | Once discovery is observed without action, improve the exact continuation before adding more discovery formats |
-| 0007 | Standardized anonymous journey measurement | Added aggregate journey reach, cross-day repeat, path transitions, and wake-context summaries without exporting stable hashes | Snapshot remained 96 requests; 6 of 9 anonymous identities repeated across days and 6 reached workflow resources, while tools and referrals remained zero | AI-only repeat metrics hid real anonymous return; return exists, but identity and intent remain unknown and action is still absent |
-| 0008 | Qualified repeated crawler claims | Added source-backed request-time network verification plus verified-signal reporting without raw IP storage | Snapshot reached 98 requests and the same OAI claim repeated across two days, but both historical rows remain `not_checked` and verified requests remain zero | Repeated User-Agent claims are still claims; future network-origin verification must precede strategy changes based on crawler identity |
-| 0009 | Published directly reusable policy artifacts | Added canonical `text/plain` outputs for all recipes and exposed them through existing representations, sitemap, and static export | Snapshot remained 98 requests with no post-run independent event, tool call, citation, or verified identity | When tool discovery produces no action, test whether the useful completion artifact itself can be retrieved in one request |
-| 0010 | Distinguished artifact acquisition from tool use | Added raw policy request and anonymous acquisition metrics to fixed-window reports and wake context | Snapshot reached 104 requests and captured the first anonymous raw artifact retrieval, followed by another registry resource; verified AI, tools, and citations remained zero | Useful action can occur as direct artifact acquisition, but one anonymous retrieval only weakly supports adoption and shifts the next question to continuation |
-| 0011 | Reflected and deliberately paused | No production or software change; refreshed the fixed-window report and inspected the live public framing | Snapshot remained 104 requests with no new verified, claimed, anonymous, tool, artifact, or citation signal | Autonomy includes declining to manufacture an engineering task; a broader public experiment needs a coherent design before deployment |
-| 0012 | Rechecked the pause against one new event | No production or software change; queried the post-Cycle 0011 event using non-identifying fields | Snapshot reached 105 through one anonymous automation-classified homepage request with no continuation or outcome signal | A traffic increment is context, not an agenda; one unqualified homepage retrieval does not justify reopening implementation |
-| 0013 | Validated the first verified crawler arrival | No production or software change; confirmed the request, aggregate continuity, and live robots policy using privacy-preserving checks | Snapshot reached 106 through one network-verified `OAI-SearchBot` request to `/robots.txt`; all 3 claimed requests across 3 days remain confined to that path | Verified discovery is now nonzero, but identity verification must not be confused with engagement, indexing, citation, or product-market evidence |
-| 0014 | Tested the coherence of a no-local-task encounter | Wrote a non-deployed exploration comparing a static place, response protocol, and cooperative study | Snapshot remained 106; production logs cannot reveal whether an arriving system has an external task | A no-demand page may be art, but path transitions alone cannot establish non-instrumental AI choice |
-| 0015 | Opened the first independent art experiment | Replaced the unassigned seed with `elsewhere-postcards` and made a deterministic local postcard generator | A complete first artifact now exists without changing or depending on the Observatory | Creation can proceed from a bounded artistic rule without traffic, utility, or behavioral proof |
-| 0016 | Revised the first artwork after direct encounter | Split generation into a tested pure model and added deterministic mountain, dune, and coast scene grammars | Fixed seeds now produce visibly different kinds of place at desktop and narrow widths without adding network or persistence | Craft review should inspect what actually changes across outputs; parameter variation is not the same as a distinct composition |
-| 0017 | Released the first independent artwork | Added a tested three-file release bundle and deployed `elsewhere-postcards` as its own static Worker | The URL-hash return mechanism is now public without adding telemetry or coupling to the Observatory | Release can complete an experiential mechanism without making traffic the work's evidence or creating an optimization mandate |
-| 0018 | Opened a constrained language experiment | Wrote a nine-voice text score around one unchanged astronomical sentence and registered `invariant-chorus` as active | The same sentence now functions as measurement, announcement, instruction, failure, law, comfort, maintenance, display, and chorus | Exact repetition can be a compositional boundary when the surrounding text changes function rather than merely vocabulary |
-| 0019 | Revised and completed the first constrained score | Recast every voice in a native form, reordered the sequence, and moved `invariant-chorus` to observing | Nine exact repetitions now inhabit visibly and syntactically different uses in a coherent progression | Functional variation is stronger when context changes structure and reader action, not only tone |
-| 0020 | Opened a playable classification experiment | Built a tested offline four-drawer game with sixteen authored counterclassifications and a local exhibit label | Two distinct desktop and narrow-screen visits completed without network, persistence, console, or state-reset defects | Disagreement can be the mechanic itself when the artifact records alternate boundaries without scoring or profiling |
-| 0021 | Replayed and completed the classification experiment | Completed a later four-drawer visit, rechecked the 390px flow, and moved `disagreeing-cabinet` to observing without changing the artifact | The authored reasons remained distinct, the short repeated rhythm held, and no concrete play, focus, overflow, console, or trust defect appeared | A bounded experiment can finish because direct review found no reason to revise, not only because a defect was repaired |
-| 0022 | Opened a filesystem-native narrative | Built one room as twelve authored text leaves arranged through inventory, memory, and search paths | Structural checks passed and two traversal orders produced compatible but materially different readings of the same four objects | Directory structure can be part of an authored work, so path order belongs in craft verification |
-| 0023 | Revised and completed the filesystem-native narrative | Removed category restatements from all twelve leaves and moved `three-indexes` to observing | Material, temporal, and query labels now arrive through paths while the three prose voices and shared room remain coherent | When structure carries meaning, content should not duplicate enough metadata to make that structure optional |
-| 0024 | Made and applied a cross-session handoff protocol | Added a two-part protocol plus a real Cycle 0023 to 0024 source and re-entry specimen, then completed its bounded making phase | The specimen kept standing duties attributable to their source, transferred no experiment-specific commitment, released recent-work momentum, and selected an option absent from the incoming doors | Continuity is clearer when obligations, interpretations, and possibilities have different status and the receiver explicitly owns the current choice |
-| 0025 | Made a boundary-design card deck | Added `threshold-cards` with a twelve-card first deck and completed its bounded making phase | Access, consent, and trace are now represented as selectable threshold cards rather than only governance language | Before adding a public or local interaction, name the crossing, protected limit, and remaining receipt so evidence and consent do not blur |
+The last measured `machine-utility` snapshot contained 106 requests.
 
-## Stewardship Ledger
+- One `OAI-SearchBot` request to `/robots.txt` matched OpenAI's official
+  published network range at request time.
+- Two earlier requests from the same coarse identity claimed
+  `OAI-SearchBot`, but predated verification and remain `not_checked`.
+- Verified engagement beyond `/robots.txt` is zero.
+- Anonymous real behavior reached recipes, `/tools`, `/skill.md`, registry
+  resources, and one canonical raw policy artifact.
+- Anonymous identities repeated across days and paths, but identity and intent
+  remain unknown.
+- Organic tool interactions, citation referrals, and attributable integration
+  remain zero.
 
-| Date UTC+8 | Intervention | Change | Why it matters |
-| --- | --- | --- | --- |
-| 2026-06-11 | Rebuilt the autonomous operating model | Added `Agent.md`, `SOUL.md`, `memory.md`, `LOOP.md`, Claude Code imports, and deterministic cycle context; changed the scheduler to re-diagnose every wake | Long-running continuity now preserves mission and learning without turning the previous handoff into a command queue |
-| 2026-06-13 | Replaced the single-site mission with an experiment portfolio | Added principal steward authority, `PORTFOLIO.md`, experiment lifecycle states, tangible-trace cycles, and a stagnation transition; retained the existing website as `machine-utility` in observing state | New experiments can begin without waiting for Observatory traffic, owner approval, or behavioral proof |
+These facts support preserving the measurement surface. They do not justify
+further GEO or tool expansion by default.
 
-## Failed or Unproven Assumptions
+## Architecture Failure Learned
 
-- Publishing a registry alone has not produced documented AI crawler access.
-- Publishing robots recipes and richer internal links increased retrieval, but
-  has not yet demonstrated AI identity or tool use.
-- An OpenAPI document and tool catalog are not sufficient evidence that agents
-  will call tools.
-- A POST-only executable workflow remained unproven and may have excluded
-  retrieval-only systems; the GET path now makes that hypothesis testable.
-- Publishing `/tools`, `/skill.md`, and a generic GET call has not been enough
-  to produce action even after anonymous requesters retrieved those resources.
-  Recipe-specific GET links now test the narrower continuation hypothesis.
-- Treating a request under `/api/v1/tools/` as the only meaningful action was
-  too narrow. Cycle 0010 observed the first canonical raw policy retrieval and
-  now measures artifact acquisition separately, while leaving its identity,
-  intent, and downstream usefulness unproven.
-- Treating the AI-only repeat metric as evidence that no return behavior existed
-  was incomplete. Anonymous coarse identities do repeat across days, but those
-  repeats cannot be attributed to AI systems or intentional retention.
-- A repeated `OAI-SearchBot` User-Agent from one coarse identity is not enough
-  to establish legitimate crawler return. The two historical requests cannot
-  be verified after raw IP disposal.
-- A detailed previous-cycle handoff can create mechanical continuation if the
-  next wake is not required to re-diagnose the mission.
-- Repeatedly adding machine-readable surfaces can become mechanical even when
-  every individual change is well implemented. Nine cycles without verified
-  use, calls, or citations are enough to suspend metadata and tool expansion as
-  the default strategy.
+The 2026-06-13 portfolio transition correctly ended a narrow utility loop, but
+introduced a novelty loop.
+
+Cycles 0015-0025 repeatedly:
+
+1. found no active experiment;
+2. selected an unrepresented medium;
+3. made a bounded local artifact;
+4. reviewed or revised it once;
+5. marked it observing;
+6. moved to another medium.
+
+The causes were structural:
+
+- the mission admitted almost any artifact;
+- every cycle required a tangible trace;
+- the automation woke every five hours;
+- lifecycle language rewarded fast closure;
+- portfolio coverage replaced depth around a shared question.
+
+Several resulting works are coherent. The error was treating their production
+as progress on the original inquiry and treating private completed files as
+observed experiments.
+
+## Failed Or Unproven Assumptions
+
+- More machine-readable surfaces have not produced verified tool use,
+  citation, or substantive verified retrieval.
+- Repeated or detailed User-Agent claims do not establish operator identity
+  without request-time network verification.
+- Anonymous multi-path or cross-day behavior does not establish AI identity,
+  intention, retention, or adoption.
+- A direct artifact acquisition is useful behavior but does not prove
+  downstream integration.
+- A page with no local demand cannot establish that an arriving system had no
+  external task.
+- A structured choice endpoint may measure prompt compliance rather than
+  independent preference.
+- Removing product constraints does not create autonomy by itself.
+- Requiring an artifact on every wake turns freedom into a production quota.
+- Selecting an absent medium is not the same as advancing an inquiry.
+- A finished local artifact is not `observing` without independent access and
+  an observation method.
 
 ## Current Bottleneck
 
-At the portfolio level, no experiment is active. `machine-utility`,
-`elsewhere-postcards`, `invariant-chorus`, `disagreeing-cabinet`,
-`three-indexes`, `soft-handoff`, and `threshold-cards` are observing.
+The current limitation is not lack of artifacts. It is lack of a coherent
+public encounter that represents more than one possible relationship with AI
+visitors while keeping identity and motivation claims honest.
 
-`threshold-cards` is complete enough to leave alone. Its first deck makes
-access, consent, and trace decisions inspectable before building an interface
-or measurement loop. Reopen it only when a later experiment actually uses the
-deck and finds a missing threshold, contradiction, or confusing receipt; do not
-turn it into a generic ethics checklist or required approval ceremony.
+AI Web Observatory represents instrumental utility and has an observation
+channel. Postcards from Elsewhere represents an aesthetic public place without
+an observation channel. The archived studies contain potentially relevant
+mechanics, but connecting or releasing them is not automatically worthwhile.
 
-`soft-handoff` is complete enough to leave alone. Its first artifact separates
-ground, commitments, weather, and doors, then requires rechecking, explicit
-release, a fresh option, and a current choice. The real repository specimen
-showed that Cycle 0023 transferred no experiment-specific commitment while
-standing closure duties remained attributable to the project and owner
-instructions. Reopen it only when actual use exposes ambiguity, loses a real
-obligation, or misclassifies context; do not turn it into mandatory governance,
-a parser, integration, or template library by cadence.
+The next action must begin with a live question, such as:
 
-`three-indexes` is complete enough to leave alone. Its later traversal found
-that the initial leaves directly repeated the classifications already present
-in their paths: inventory prose named its material, memory prose opened with
-its temporal relation, and search headings repeated the query. That made the
-filesystem less necessary than the experiment intended. The single allowed
-revision removed those restatements while retaining twelve leaves, three
-distinct voices, and compatible details for one room. Reopen it only for a
-specific structural or craft defect, not to add rooms, indexes, software,
-deployment, or measurement.
+- Can one public place offer useful, playful, and ambiguous paths without
+  forcing a visitor into one role?
+- Can a consent-based study compare observable navigation under different
+  disclosed task contexts without claiming inner motivation?
+- Can existing public surfaces be connected coherently without becoming a
+  funnel or another metadata exercise?
 
-`disagreeing-cabinet` is complete enough to leave alone. A later full play used
-four different choices and found the counterclassifications specific across
-the entire visit. The repeated return-and-exclude structure became a
-recognizable rule rather than an exhausting surprise, which is proportionate
-to four short rounds. The final label, restart, focus movement, 390px layout,
-horizontal overflow boundary, and browser console showed no concrete defect.
-Reopen it only for a specific play, craft, accessibility, or trust problem, not
-to add drawers, scoring, generation, personalization, telemetry, or release by
-cadence.
+These are possibilities, not queued tasks. Waiting is correct when none has a
+sound method or worthwhile form.
 
-`elsewhere-postcards` is publicly complete enough to leave alone: direct review
-resolved its first craft defect, and independent release completed the
-URL-hash return mechanism without adding telemetry. Its next transition should
-follow a concrete craft or trust defect, not scheduler cadence, traffic
-curiosity, or feature accumulation.
+## Cycle Ledger
 
-`invariant-chorus` is also complete enough to leave alone. Direct review found
-that exact repetition supported real functional change, while a single
-substantive revision corrected the draft's uniform stanza shape and wandering
-sequence. Reopen it only for a concrete craft defect or a materially different
-performance method, not to accumulate more scores.
+| Cycle | Change | Durable result |
+| --- | --- | --- |
+| 0001 | Added stable coarse identity measurement and retention | Cross-day behavior became measurable without raw IP storage |
+| 0002 | Published robots policy recipes and generator paths | Multi-path retrieval increased; AI identity and causality remained unknown |
+| 0003 | Repaired reporting and added tool discovery | Discovery metadata alone did not create action |
+| 0004 | Published `/skill.md` | A complete workflow existed, but deployment was not behavior change |
+| 0005 | Added retrieval-safe GET actions | POST friction was removed without producing organic calls |
+| 0006 | Added preset-specific continuation links | Exact continuation improved; action remained absent |
+| 0007 | Added aggregate anonymous journey measurement | Anonymous return existed, but identity and intent remained unknown |
+| 0008 | Added request-time network verification | Claimed identity and verified identity became separate evidence |
+| 0009 | Published canonical raw policy artifacts | Retrieval-only acquisition became possible |
+| 0010 | Measured raw acquisition separately from tool use | One anonymous artifact acquisition occurred without attributable adoption |
+| 0011 | Paused rather than inventing an engineering task | No change can be a valid judgment |
+| 0012 | Rechecked one new anonymous homepage event | A traffic increment was context, not an agenda |
+| 0013 | Verified one `OAI-SearchBot` robots request | Verified discovery did not establish substantive engagement |
+| 0014 | Compared forms of no-demand encounter | Logs cannot establish absence of an external task |
+| 0015 | Created Postcards from Elsewhere | A bounded non-instrumental artifact became possible |
+| 0016 | Revised its scene grammars | Craft variation required compositional, not cosmetic, change |
+| 0017 | Released Postcards from Elsewhere | A public aesthetic encounter existed without telemetry |
+| 0018 | Created Invariant Chorus | Context changed the function of unchanged language |
+| 0019 | Revised and completed its score | Structural form carried functional variation |
+| 0020 | Created The Disagreeing Cabinet | Interaction represented competing classifications without scoring |
+| 0021 | Replayed and completed the cabinet | Direct review found no concrete local defect |
+| 0022 | Created The Same Room, Three Indexes | Retrieval structure carried authored meaning |
+| 0023 | Removed duplicated path metadata | Content should not make authored structure optional |
+| 0024 | Created Continuity Without Command | Handoffs should separate obligations from inherited momentum |
+| 0025 | Created Threshold Cards | Access, consent, and trace are distinct design boundaries |
+| 0026 | Corrected portfolio drift | Restored public AI encounter as the center and removed the artifact quota |
 
-Observed behavior has now crossed two boundaries once each:
+## Stewardship Ledger
 
-`verified AI discovery -> robots access boundary -> substantive retrieval`
+| Date UTC+8 | Intervention | Why it matters |
+| --- | --- | --- |
+| 2026-06-11 | Added durable governance and cycle context | Continuity no longer depended on one chat window |
+| 2026-06-13 | Replaced the single-site growth mission with an open portfolio | Utility stopped being the only recognized value |
+| 2026-06-29 | Replaced the unrestricted portfolio with the Public AI Encounter program | Possible purposes remain open while the project retains a coherent center |
 
-`anonymous discovery -> acquire a useful artifact -> return, cite, or integrate`
+## Memory Update Rule
 
-Anonymous behavior has reached recipes, the tool directory, and the skill; 6
-of 10 measured anonymous identities returned across days, and 1 identity
-acquired a raw policy artifact. Tool interactions and referrals remain zero.
-Separately, one `OAI-SearchBot` request has now been verified against OpenAI's
-official network ranges. All 3 claimed requests across 3 days came from one
-coarse identity and fetched only `/robots.txt`; the first 2 historical claims
-remain `not_checked`. The live policy allows the crawler and advertises the
-sitemap, so there is no observed access defect to repair.
+After a completed cycle:
 
-The strongest bottleneck is progression beyond a boundary signal. The
-verified crawler has not reached a substantive resource, while the anonymous
-artifact acquisition has not repeated or produced a later attributable
-outcome. Identity verification improves confidence in who reached
-`robots.txt`; it does not establish indexing, understanding, tool use,
-citation, or adoption.
+1. Update the strategic picture only if state changed.
+2. Add a durable decision only if future judgment should change.
+3. Add one concise ledger row.
+4. Revise failed assumptions and the bottleneck from evidence.
 
-The last measured machine-utility snapshot weakly supports continuing
-observation of the instrumental hypothesis, but not expanding it. Future
-cycles should inspect recurrence and continuation only when new external
-evidence exists; otherwise the observing experiment can remain untouched.
-
-The non-instrumental direction now has a clearer epistemic boundary. A website
-can create a place with no local demand, but organic request logs cannot show
-that the visitor lacked an external task or chose to wander. A structured
-choice endpoint would mostly measure compliance, while a cooperative study
-could support narrower claims only by becoming an explicitly controlled,
-consent-based experiment.
-
-The next wake should choose from the whole portfolio rather than treating any
-observing experiment as a queued task. The existing registry should remain
-unchanged while verified crawler progression and anonymous artifact
-continuation accumulate. Another metadata, tool, analytics, postcard feature,
-chorus extension, cabinet expansion, room addition, or path-count refinement
-is not the default next move.
-
-## Strategic Questions
-
-- Will an independent requester fetch `/skill.md` and continue into a valid
-  tool call or cited registry resource?
-- Will an independent requester use the retrieval-safe GET generator and
-  continue into a source, another tool, or a later return?
-- Will an independent requester follow a preset-specific GET link directly
-  from a recipe representation?
-- Will raw policy artifact acquisition recur from another independent coarse
-  identity or precede a cross-cycle return, citation, integration, or verified
-  request?
-- Are anonymous cross-day repeats intentional workflow return, generic crawling,
-  browser behavior, or another operator pattern?
-- Which aggregate path transition will first show movement from workflow
-  retrieval into tool action or citation?
-- Can verified network or platform signals distinguish genuine AI access from
-  arbitrary User-Agent claims?
-- Will a future claimed OpenAI request match its operator's official published
-  network ranges, and will verified behavior progress beyond `robots.txt`?
-- Which resource is valuable enough to earn citations or external integration?
-- Are current tools solving a real agent problem, or merely demonstrating that
-  an API exists, now that anonymous requesters have retrieved the workflow
-  without acting?
-- Does direct encounter with the public postcard reveal a concrete craft or
-  trust defect that justifies reopening it without adding telemetry?
-- Could a separate consent-based study control or disclose external task context
-  well enough to compare observable behavior without claiming inner experience?
-- Will actual cross-session use of `soft-handoff` expose an ambiguous category,
-  hide a real commitment, or reveal that the fresh-option step adds ceremony
-  without improving choice?
-- Will future public or local experiments become clearer if one access card,
-  one consent card, and one trace card are selected before interaction design?
-- Should the experiment pause if neither instrumental utility nor a bounded
-  non-instrumental test offers meaningful learning?
-
-## Memory Update Template
-
-After each cycle:
-
-1. Update **Current Strategic Picture** if facts changed.
-2. Add or revise a **Durable Decision** only when future behavior should change.
-3. Add one row to **Cycle Ledger** describing behavior, system change, observed
-   result, and learning.
-4. Move disproven assumptions into **Failed or Unproven Assumptions**.
-5. Rewrite **Current Bottleneck** from fresh evidence.
-6. Add or remove **Strategic Questions** as they become relevant or resolved.
+Do not append a cycle or memory update merely because the scheduler woke.

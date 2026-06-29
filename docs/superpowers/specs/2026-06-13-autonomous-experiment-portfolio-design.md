@@ -1,5 +1,10 @@
 # Autonomous Experiment Portfolio Design
 
+> Superseded on 2026-06-29 by
+> `2026-06-29-public-ai-encounter-program-design.md`. The portfolio design
+> corrected a narrow utility loop but over-expanded the mission and coupled
+> scheduler wakes to artifact production.
+
 ## Decision
 
 The project is no longer organized around growing one AI-facing website.
