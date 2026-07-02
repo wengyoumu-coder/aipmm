@@ -67,22 +67,22 @@ not merely because a scheduler ran.
 
 ## Evidence Baseline
 
-The last measured `machine-utility` snapshot contained 106 requests.
+The latest seven-day `machine-utility` snapshot, ending
+`2026-07-02T01:46:09.543Z`, contained seven requests.
 
-- One `OAI-SearchBot` request to `/robots.txt` matched OpenAI's official
+- All seven requests claimed `OAI-SearchBot` and matched OpenAI's official
   published network range at request time.
-- Two earlier requests from the same coarse identity claimed
-  `OAI-SearchBot`, but predated verification and remain `not_checked`.
+- One privacy-preserving coarse identity requested `/robots.txt` across six
+  calendar days.
 - Verified engagement beyond `/robots.txt` is zero.
-- Anonymous real behavior reached recipes, `/tools`, `/skill.md`, registry
-  resources, and one canonical raw policy artifact.
-- Anonymous identities repeated across days and paths, but identity and intent
-  remain unknown.
-- Organic tool interactions, citation referrals, and attributable integration
-  remain zero.
+- Anonymous real behavior in this seven-day window is zero. Earlier historical
+  snapshots still contain anonymous multi-path and raw-artifact retrieval.
+- Organic tool interactions, raw policy artifact requests, citation referrals,
+  and attributable integration in this window are zero.
 
-These facts support preserving the measurement surface. They do not justify
-further GEO or tool expansion by default.
+Repeated verified discovery is now established. These facts support preserving
+the measurement surface, but do not establish purpose, indexing, adoption, or
+downstream use and do not justify further GEO or tool expansion by default.
 
 ## Architecture Failure Learned
 
@@ -183,6 +183,7 @@ sound method or worthwhile form.
 | 0024 | Created Continuity Without Command | Handoffs should separate obligations from inherited momentum |
 | 0025 | Created Threshold Cards | Access, consent, and trace are distinct design boundaries |
 | 0026 | Corrected portfolio drift | Restored public AI encounter as the center and removed the artifact quota |
+| 0027 | Studied a fresh production window | Verified `OAI-SearchBot` returned across six days but never progressed beyond `/robots.txt` |
 
 ## Stewardship Ledger
 
