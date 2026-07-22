@@ -68,21 +68,25 @@ not merely because a scheduler ran.
 ## Evidence Baseline
 
 The latest seven-day `machine-utility` snapshot, ending
-`2026-07-02T01:46:09.543Z`, contained seven requests.
+`2026-07-22T01:13:24.892Z`, contained twenty-five requests.
 
-- All seven requests claimed `OAI-SearchBot` and matched OpenAI's official
-  published network range at request time.
-- One privacy-preserving coarse identity requested `/robots.txt` across six
-  calendar days.
-- Verified engagement beyond `/robots.txt` is zero.
-- Anonymous real behavior in this seven-day window is zero. Earlier historical
-  snapshots still contain anonymous multi-path and raw-artifact retrieval.
+- Twenty-one requests claimed OpenAI crawler identities and matched OpenAI's
+  official published network ranges at request time.
+- Verified OpenAI crawler behavior included fourteen `OAI-SearchBot` requests
+  and seven `GPTBot` requests across seven calendar days.
+- Verified access now includes `/robots.txt` and `/sitemap.xml`.
+- Verified engagement beyond machine-readable discovery resources is zero.
+- Anonymous real behavior in this seven-day window is one repeat coarse
+  identity with transitions among `/`, `/robots.txt`, and `/sitemap.xml`;
+  identity and purpose remain unknown.
 - Organic tool interactions, raw policy artifact requests, citation referrals,
   and attributable integration in this window are zero.
 
-Repeated verified discovery is now established. These facts support preserving
-the measurement surface, but do not establish purpose, indexing, adoption, or
-downstream use and do not justify further GEO or tool expansion by default.
+Repeated verified machine discovery is now broader than one crawler and one
+policy path. These facts support preserving the measurement surface, but do not
+establish purpose, indexing, adoption, downstream use, or engagement with the
+non-instrumental public surface and do not justify further GEO or tool expansion
+by default.
 
 ## Architecture Failure Learned
 
@@ -184,6 +188,7 @@ sound method or worthwhile form.
 | 0025 | Created Threshold Cards | Access, consent, and trace are distinct design boundaries |
 | 0026 | Corrected portfolio drift | Restored public AI encounter as the center and removed the artifact quota |
 | 0027 | Studied a fresh production window | Verified `OAI-SearchBot` returned across six days but never progressed beyond `/robots.txt` |
+| 0028 | Studied a fresh production window | Verified OpenAI discovery broadened to `OAI-SearchBot`, `GPTBot`, and `/sitemap.xml` without deeper engagement |
 
 ## Stewardship Ledger
 

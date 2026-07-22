@@ -59,10 +59,11 @@ The gap is not "another medium." It is a coherent public place or study that
 allows more than one kind of encounter while preserving honest evidence
 boundaries.
 
-The latest seven-day `machine-utility` study found seven independently verified
-`OAI-SearchBot` requests across six days, all limited to `/robots.txt`.
-Repeated verified discovery is now established, but progression, indexing,
-citation, purpose, and downstream use remain unobserved.
+The latest seven-day `machine-utility` study found twenty-one independently
+verified OpenAI crawler requests across seven days: fourteen `OAI-SearchBot`
+requests and seven `GPTBot` requests. Verified access now includes
+`/robots.txt` and `/sitemap.xml`, but not deeper content, tool interaction,
+raw policy artifact retrieval, citation referral, or observable downstream use.
 
 No implementation is queued. The next wake may make, study, synthesize, or
 wait. It must not create a disconnected local artifact to prove that the loop
